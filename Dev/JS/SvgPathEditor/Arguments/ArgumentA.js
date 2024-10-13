@@ -139,13 +139,13 @@ export class ArgumentA {
 
     /** */
     removeInputs() {
-        this.#radius.removeInputPair();
+        this.#position.removeInputPair();
 
         const parantDiv = /** @type {HTMLDivElement} */(/** @type {HTMLDivElement} */(this.#inputDiv).parentElement);
         parantDiv.removeChild(/** @type {ChildNode} */(parantDiv.lastChild));
         this.#inputDiv = null;
 
-        this.#position.removeInputPair();
+        this.#radius.removeInputPair();
     }
 
     /** @param {Event} event */
@@ -174,8 +174,8 @@ export class ArgumentA {
 
     /** */
     createDots() {
-        this.#radius.createDot(0);
-        this.#position.createDot(1);
+        this.#radius.createDot(1);
+        this.#position.createDot(0);
     }
 
     /** */
