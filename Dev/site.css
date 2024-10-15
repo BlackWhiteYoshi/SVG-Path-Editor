@@ -1,11 +1,18 @@
 * { box-sizing: border-box; }
 
+html {
+    --background-color-light: #DDD;
+    --background-color-dark: #222;
+    --foreground-color-max-light: #000;
+    --foreground-color-max-dark: #FFF;
+}
+
 html:has(#light-radio:checked) {
     --foreground-color: #222;
     --foreground-color-strong: #111;
-    --foreground-color-max: #000;
+    --foreground-color-max: var(--foreground-color-max-light);
 
-    --background-color: #DDD;
+    --background-color: var(--background-color-light);
     --background-color-strong: #EEE;
     --background-color-max: #FFF;
 
@@ -15,9 +22,9 @@ html:has(#light-radio:checked) {
 html:has(#dark-radio:checked) {
     --foreground-color: #EEE;
     --foreground-color-strong: #EAEAEA;
-    --foreground-color-max: #FFF;
+    --foreground-color-max: var(--foreground-color-max-dark);
 
-    --background-color: #222;
+    --background-color: var(--background-color-dark);
     --background-color-strong: #1A1A1A;
     --background-color-max: #000;
 
@@ -68,6 +75,11 @@ select {
 
 
 #theme-icon {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8em;
+    justify-content: center;
+    
     & > input[type=radio] {
         position: absolute;
         inset: 0 auto auto 0;
@@ -80,8 +92,6 @@ select {
     }
 
     #sun, #moon {
-        display: table;
-        margin: 0 auto;
         cursor: pointer;
 
         & > svg {
@@ -89,8 +99,9 @@ select {
             aspect-ratio: 1;
             fill: var(--foreground-color);
             border-radius: 50%;
-            background-color: var(--background-color-strong);
+            background-color: var(--background-color);
             padding: 0.5em;
+            border: #8888 solid 0.1em;
             transition: all 100ms ease-in-out;
         }
 
@@ -101,12 +112,28 @@ select {
         }
     }
 
-    &:has(#light-radio:checked) > #sun {
-        display: none;
+    &:has(#light-radio:checked) {
+        & > #sun {
+            cursor: auto;
+
+            & > svg {
+                fill: var(--background-color-dark);
+                background-color: var(--foreground-color-max-dark);
+                transition: all 300ms ease-in-out;
+            }
+        }
     }
 
-    &:has(#dark-radio:checked) > #moon {
-        display: none;
+    &:has(#dark-radio:checked) {
+        & > #moon {
+            cursor: auto;
+
+            & > svg {
+                fill: var(--background-color-light);
+                background-color: var(--foreground-color-max-light);
+                transition: all 300ms ease-in-out;
+            }
+        }
     }
 }
 
