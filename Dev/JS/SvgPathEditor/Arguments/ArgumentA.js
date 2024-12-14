@@ -81,7 +81,7 @@ export class ArgumentA {
     toAbsoluteCoordinates(current) {
         current.x = this.#position.getValue().x;
         current.y = this.#position.getValue().y;
-        return `A ${this.#radius.getValue().x} ${this.#radius.getValue().y} , ${this.#xAxisRotation} , ${this.#largeArcFlag ? 1 : 0} , ${this.#sweepFlag ? 1 : 0} , ${this.#position.getValue().x} ${this.#position.getValue().y}`;
+        return `A ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x} ${this.#position.getValue().y}`;
     }
 
     /**
@@ -89,7 +89,7 @@ export class ArgumentA {
      * @returns {string}
      */
     toRelativeCoordinates(current) {
-        const result = `a ${this.#radius.getValue().x} ${this.#radius.getValue().y} , ${this.#xAxisRotation} , ${this.#largeArcFlag ? 1 : 0} , ${this.#sweepFlag ? 1 : 0} , ${this.#position.getValue().x.minus(current.x)} ${this.#position.getValue().y.minus(current.y)}`;
+        const result = `a ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x.minus(current.x)} ${this.#position.getValue().y.minus(current.y)}`;
 
         current.x = this.#position.getValue().x;
         current.y = this.#position.getValue().y;

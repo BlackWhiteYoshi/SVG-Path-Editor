@@ -242,10 +242,6 @@ select {
                     width: 1.1em;
                     height: 1.1em;
                     margin-inline: 0.4em;
-
-                    &:nth-child(2) {
-                        margin-left: auto;
-                    }
                 }
             }
         }

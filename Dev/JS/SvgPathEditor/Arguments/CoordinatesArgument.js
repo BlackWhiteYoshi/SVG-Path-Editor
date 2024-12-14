@@ -131,8 +131,7 @@ export class CoordinatesArgument {
         let result = this.#capitalLetter;
 
         for (const coordinate of this.#coordinates)
-            result += ` ${coordinate.getValue().x} ${coordinate.getValue().y} ,`;
-        result = result.substring(0, result.length - 2);
+            result += ` ${coordinate.getValue().x} ${coordinate.getValue().y}`;
 
         current.x = this.#coordinates[this.#coordinates.length - 1].getValue().x;
         current.y = this.#coordinates[this.#coordinates.length - 1].getValue().y;
@@ -161,8 +160,7 @@ export class CoordinatesArgument {
         let result = this.#smallLetter;
 
         for (const coordinate of this.#coordinates)
-            result += ` ${coordinate.getValue().x.minus(current.x)} ${coordinate.getValue().y.minus(current.y)} ,`;
-        result = result.substring(0, result.length - 2);
+            result += ` ${coordinate.getValue().x.minus(current.x)} ${coordinate.getValue().y.minus(current.y)}`;
 
         current.x = this.#coordinates[this.#coordinates.length - 1].getValue().x;
         current.y = this.#coordinates[this.#coordinates.length - 1].getValue().y;

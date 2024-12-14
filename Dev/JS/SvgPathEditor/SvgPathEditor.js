@@ -305,20 +305,11 @@ export class SvgPathEditor {
         this.#parsingErrorLabel.style.display = "none";
         this.#parsingErrorLabel.textContent = "";
 
+        const me = this;
         const input = this.#readInInput.value;
         if (input.length === 0)
             return;
 
-
-        /** @param {string} errorMessage */
-        const renderError = (errorMessage) => {
-            if (this.#parsingErrorLabel.style.display === "block")
-                return;
-            this.#parsingErrorLabel.style.display = "block";
-            this.#parsingErrorLabel.textContent = errorMessage;
-        }
-
-        
         // '<path '
         if (input.length <= 0 || input[0] !== '<')
             return renderError("At position 1: '<' expected");
@@ -370,6 +361,7 @@ export class SvgPathEditor {
 
         let originX = new Decimal(0);
         let originY = new Decimal(0);
+        let lastArgument = '';
         /** @type {import("Arguments/Argument").Argument[]} */
         const result = [];
 
@@ -379,108 +371,79 @@ export class SvgPathEditor {
                 case ',':
                     break;
 
-                case 'M':
-                    originX = new Decimal(0);
-                    originY = new Decimal(0);
-                case 'm': {
-                    originX = originX.plus(parseNumber());
-                    originY = originY.plus(parseNumber());
-                    result.push(CoordinatesArgument.newM({ x: new Decimal(originX), y: new Decimal(originY) }, this));
-                    break;
-                }
+                case 'M': parse_M(); lastArgument = 'M'; break;
+                case 'm': parse_m(); lastArgument = 'm'; break;
 
-                case 'H':
-                    originX = new Decimal(0);
-                case 'h': {
-                    originX = originX.plus(parseNumber());
-                    result.push(CoordinatesArgument.newL({ x: new Decimal(originX), y: new Decimal(originY) }, this));
-                    break;
-                }
+                case 'H': parse_H(); lastArgument = 'H'; break;
+                case 'h': parse_h(); lastArgument = 'h'; break;
 
-                case 'V':
-                    originY = new Decimal(0);
-                case 'v': {
-                    originY = originY.plus(parseNumber());
-                    result.push(CoordinatesArgument.newL({ x: new Decimal(originX), y: new Decimal(originY) }, this));
-                    break;
-                }
+                case 'V': parse_V(); lastArgument = 'V'; break;
+                case 'v': parse_v(); lastArgument = 'v'; break;
 
-                case 'L':
-                    originX = new Decimal(0);
-                    originY = new Decimal(0);
-                case 'l': {
-                    originX = originX.plus(parseNumber());
-                    originY = originY.plus(parseNumber());
-                    result.push(CoordinatesArgument.newL({ x: new Decimal(originX), y: new Decimal(originY) }, this));
-                    break;
-                }
+                case 'L': parse_L(); lastArgument = 'L'; break;
+                case 'l': parse_l(); lastArgument = 'l'; break;
 
-                case 'Q':
-                    originX = new Decimal(0);
-                    originY = new Decimal(0);
-                case 'q': {
-                    const x1 = originX.plus(parseNumber());
-                    const y1 = originY.plus(parseNumber());
-                    originX = originX.plus(parseNumber());
-                    originY = originY.plus(parseNumber());
-                    result.push(CoordinatesArgument.newQ({ x: new Decimal(x1), y: new Decimal(y1) }, { x: new Decimal(originX), y: new Decimal(originY) }, this));
-                    break;
-                }
+                case 'Q': parse_Q(); lastArgument = 'Q'; break;
+                case 'q': parse_q(); lastArgument = 'q'; break;
 
-                case 'T':
-                    originX = new Decimal(0);
-                    originY = new Decimal(0);
-                case 't': {
-                    originX = originX.plus(parseNumber());
-                    originY = originY.plus(parseNumber());
-                    result.push(CoordinatesArgument.newT({ x: new Decimal(originX), y: new Decimal(originY) }, this));
-                    break;
-                }
+                case 'T': parse_T(); lastArgument = 'T'; break;
+                case 't': parse_t(); lastArgument = 't'; break;
 
-                case 'C':
-                    originX = new Decimal(0);
-                    originY = new Decimal(0);
-                case 'c': {
-                    const x1 = originX.plus(parseNumber());
-                    const y1 = originY.plus(parseNumber());
-                    const x2 = originX.plus(parseNumber());
-                    const y2 = originY.plus(parseNumber());
-                    originX = originX.plus(parseNumber());
-                    originY = originY.plus(parseNumber());
-                    result.push(CoordinatesArgument.newC({ x: new Decimal(x1), y: new Decimal(y1) }, { x: new Decimal(x2), y: new Decimal(y2) }, { x: new Decimal(originX), y: new Decimal(originY) }, this));
-                    break;
-                }
+                case 'C': parse_C(); lastArgument = 'C'; break;
+                case 'c': parse_c(); lastArgument = 'c'; break;
 
-                case 'S':
-                    originX = new Decimal(0);
-                    originY = new Decimal(0);
-                case 's': {
-                    const x1 = originX.plus(parseNumber());
-                    const y1 = originY.plus(parseNumber());
-                    originX = originX.plus(parseNumber());
-                    originY = originY.plus(parseNumber());
-                    result.push(CoordinatesArgument.newS({ x: new Decimal(x1), y: new Decimal(y1) }, { x: new Decimal(originX), y: new Decimal(originY) }, this));
-                    break;
-                }
+                case 'S': parse_S(); lastArgument = 'S'; break;
+                case 's': parse_s(); lastArgument = 's'; break;
 
-                case 'A':
-                    originX = new Decimal(0);
-                    originY = new Decimal(0);
-                case 'a': {
-                    const radiusX = parseNumber();
-                    const radiusY = parseNumber();
-                    const xAxisRotation = parseNumber();
-                    const largeArcFlag = parseFlag();
-                    const sweepFlag = parseFlag();
-                    originX = originX.plus(parseNumber());
-                    originY = originY.plus(parseNumber());
-                    result.push(new ArgumentA({ x: radiusX, y: radiusY }, xAxisRotation, largeArcFlag, sweepFlag, { x: new Decimal(originX), y: new Decimal(originY) }, this));
-                    break;
-                }
+                case 'A': parse_A(); lastArgument = 'A'; break;
+                case 'a': parse_a(); lastArgument = 'a'; break;
 
                 case 'Z':
-                case 'z': {
-                    result.push(new ArgumentZ());
+                case 'z': result.push(new ArgumentZ()); lastArgument = ''; break;
+
+                case '-':
+                case '.':
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9': {
+                    parseIndex--;
+                    switch (lastArgument) {
+                        case '': return renderError(`At position ${parseIndex}: unexpected '${input[parseIndex]}'`);
+
+                        case 'M': parse_M(); lastArgument = 'M'; break;
+                        case 'm': parse_m(); lastArgument = 'm'; break;
+
+                        case 'H': parse_H(); lastArgument = 'H'; break;
+                        case 'h': parse_h(); lastArgument = 'h'; break;
+
+                        case 'V': parse_V(); lastArgument = 'V'; break;
+                        case 'v': parse_v(); lastArgument = 'v'; break;
+
+                        case 'L': parse_L(); lastArgument = 'L'; break;
+                        case 'l': parse_l(); lastArgument = 'l'; break;
+
+                        case 'Q': parse_Q(); lastArgument = 'Q'; break;
+                        case 'q': parse_q(); lastArgument = 'q'; break;
+
+                        case 'T': parse_T(); lastArgument = 'T'; break;
+                        case 't': parse_t(); lastArgument = 't'; break;
+
+                        case 'C': parse_C(); lastArgument = 'C'; break;
+                        case 'c': parse_c(); lastArgument = 'c'; break;
+
+                        case 'S': parse_S(); lastArgument = 'S'; break;
+                        case 's': parse_s(); lastArgument = 's'; break;
+
+                        case 'A': parse_A(); lastArgument = 'A'; break;
+                        case 'a': parse_a(); lastArgument = 'a'; break;
+                    }
                     break;
                 }
 
@@ -490,6 +453,133 @@ export class SvgPathEditor {
 
             if (this.#parsingErrorLabel.style.display === "block")
                 return;
+
+
+            /** */
+            function parse_M() {
+                originX = new Decimal(0);
+                originY = new Decimal(0);
+                parse_m();
+            }
+            /** */
+            function parse_m() {
+                originX = originX.plus(parseNumber());
+                originY = originY.plus(parseNumber());
+                result.push(CoordinatesArgument.newM({ x: new Decimal(originX), y: new Decimal(originY) }, me));
+            }
+
+            /** */
+            function parse_H() {
+                originX = new Decimal(0);
+                parse_h();
+            }
+            /** */
+            function parse_h() {
+                originX = originX.plus(parseNumber());
+                result.push(CoordinatesArgument.newL({ x: new Decimal(originX), y: new Decimal(originY) }, me));
+            }
+
+            /** */
+            function parse_V() {
+                originY = new Decimal(0);
+                parse_v();
+            }
+            /** */
+            function parse_v() {
+                originY = originY.plus(parseNumber());
+                result.push(CoordinatesArgument.newL({ x: new Decimal(originX), y: new Decimal(originY) }, me));
+            }
+
+            /** */
+            function parse_L() {
+                originX = new Decimal(0);
+                originY = new Decimal(0);
+                parse_l();
+            }
+            /** */
+            function parse_l() {
+                originX = originX.plus(parseNumber());
+                originY = originY.plus(parseNumber());
+                result.push(CoordinatesArgument.newL({ x: new Decimal(originX), y: new Decimal(originY) }, me));
+            }
+
+            /** */
+            function parse_Q() {
+                originX = new Decimal(0);
+                originY = new Decimal(0);
+                parse_q();
+            }
+            /** */
+            function parse_q() {
+                const x1 = originX.plus(parseNumber());
+                const y1 = originY.plus(parseNumber());
+                originX = originX.plus(parseNumber());
+                originY = originY.plus(parseNumber());
+                result.push(CoordinatesArgument.newQ({ x: new Decimal(x1), y: new Decimal(y1) }, { x: new Decimal(originX), y: new Decimal(originY) }, me));
+            }
+
+            /** */
+            function parse_T() {
+                originX = new Decimal(0);
+                originY = new Decimal(0);
+                parse_t();
+            }
+            /** */
+            function parse_t() {
+                originX = originX.plus(parseNumber());
+                originY = originY.plus(parseNumber());
+                result.push(CoordinatesArgument.newT({ x: new Decimal(originX), y: new Decimal(originY) }, me));
+            }
+
+            /** */
+            function parse_C() {
+                originX = new Decimal(0);
+                originY = new Decimal(0);
+                parse_c();
+            }
+            /** */
+            function parse_c() {
+                const x1 = originX.plus(parseNumber());
+                const y1 = originY.plus(parseNumber());
+                const x2 = originX.plus(parseNumber());
+                const y2 = originY.plus(parseNumber());
+                originX = originX.plus(parseNumber());
+                originY = originY.plus(parseNumber());
+                result.push(CoordinatesArgument.newC({ x: new Decimal(x1), y: new Decimal(y1) }, { x: new Decimal(x2), y: new Decimal(y2) }, { x: new Decimal(originX), y: new Decimal(originY) }, me));
+            }
+
+            /** */
+            function parse_S() {
+                originX = new Decimal(0);
+                originY = new Decimal(0);
+                parse_s();
+            }
+            /** */
+            function parse_s() {
+                const x1 = originX.plus(parseNumber());
+                const y1 = originY.plus(parseNumber());
+                originX = originX.plus(parseNumber());
+                originY = originY.plus(parseNumber());
+                result.push(CoordinatesArgument.newS({ x: new Decimal(x1), y: new Decimal(y1) }, { x: new Decimal(originX), y: new Decimal(originY) }, me));
+            }
+
+            /** */
+            function parse_A() {
+                originX = new Decimal(0);
+                originY = new Decimal(0);
+                parse_a();
+            }
+            /** */
+            function parse_a() {
+                const radiusX = parseNumber();
+                const radiusY = parseNumber();
+                const xAxisRotation = parseNumber();
+                const largeArcFlag = parseFlag();
+                const sweepFlag = parseFlag();
+                originX = originX.plus(parseNumber());
+                originY = originY.plus(parseNumber());
+                result.push(new ArgumentA({ x: radiusX, y: radiusY }, xAxisRotation, largeArcFlag, sweepFlag, { x: new Decimal(originX), y: new Decimal(originY) }, me));
+            }
 
 
             /** @returns {Decimal} */
@@ -505,14 +595,35 @@ export class SvgPathEditor {
                 }
 
                 const startIndex = parseIndex;
+                let dotVisited = false;
+                if (input[parseIndex] === '-')
+                    parseIndex++;
                 while (true) {
                     if (input.length <= parseIndex) {
                         renderError(`Failed parsing number at position ${startIndex + 1} - ${parseIndex + 1}`);
                         return new Decimal(0);
                     }
-                    if (input[parseIndex] === ' ' || input[parseIndex] === ',' || input[parseIndex] === '"')
-                        break;
-                    parseIndex++
+
+                    if (input[parseIndex] === '.')
+                        if (!dotVisited) {
+                            dotVisited = true;
+                            parseIndex++;
+                        }
+                        else
+                            break;
+                    else
+                        if (input[parseIndex] !== '0'
+                            && input[parseIndex] !== '1'
+                            && input[parseIndex] !== '2'
+                            && input[parseIndex] !== '3'
+                            && input[parseIndex] !== '4'
+                            && input[parseIndex] !== '5'
+                            && input[parseIndex] !== '6'
+                            && input[parseIndex] !== '7'
+                            && input[parseIndex] !== '8'
+                            && input[parseIndex] !== '9')
+                            break;
+                    parseIndex++;
                 }
 
                 try {
@@ -551,11 +662,6 @@ export class SvgPathEditor {
                         break;
                 }
 
-                if (input.length <= parseIndex || (input[parseIndex] !== ' ' && input[parseIndex] !== ',')) {
-                    renderError(`At position ${parseIndex + 1}: ' ' or ',' expected`);
-                    return false;
-                }
-
                 return result;
             }
         }
@@ -570,6 +676,15 @@ export class SvgPathEditor {
             this.#addArgument(argument);
 
         this.renderPath();
+
+
+        /** @param {string} errorMessage */
+        function renderError(errorMessage) {
+            if (me.#parsingErrorLabel.style.display === "block")
+                return;
+            me.#parsingErrorLabel.style.display = "block";
+            me.#parsingErrorLabel.textContent = errorMessage;
+        }
     }
 
     /** */

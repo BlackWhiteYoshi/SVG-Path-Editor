@@ -1,4 +1,4 @@
-# SVG-Path Editor
+# SVG-Path-Editor
 
 [*SVG-Path-Editor* page](https://blackwhiteyoshi.github.io/SVG-Path-Editor/svg-path-editor.html)
 
