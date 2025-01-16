@@ -41,6 +41,8 @@ export class ArgumentZ {
         return this.getSmallLetter();
     }
 
+    roundCoordinates() { }
+
 
     /** @type {HTMLInputElement} */
     #dotsVisibleInput;

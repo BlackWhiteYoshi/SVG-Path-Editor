@@ -1,6 +1,5 @@
 import { SvgPathEditor } from "../SvgPathEditor";
 import { Coordinate } from "./Coordinate";
-import Decimal from "../../Decimal/Decimal";
 
 export class CoordinatesArgument {
     /**
@@ -144,16 +143,18 @@ export class CoordinatesArgument {
      * @returns {string}
      */
     toRelativeCoordinates(current) {
-        if (this.#capitalLetter === 'L' && this.#coordinates[0].getValue().y.equals(current.y)) {
-            const result = `h ${this.#coordinates[0].getValue().x.minus(current.x)}`;
-            current.x = this.#coordinates[this.#coordinates.length - 1].getValue().x;
-            return result;
-        }
+        if (this.#capitalLetter === 'L') {
+            if (this.#coordinates[0].getValue().y.equals(current.y)) {
+                const result = `h ${this.#coordinates[0].getValue().x.minus(current.x)}`;
+                current.x = this.#coordinates[this.#coordinates.length - 1].getValue().x;
+                return result;
+            }
 
-        if (this.#capitalLetter === 'L' && this.#coordinates[0].getValue().x.equals(current.x)) {
-            const result = `v ${this.#coordinates[0].getValue().y.minus(current.y)}`
-            current.y = this.#coordinates[this.#coordinates.length - 1].getValue().y;
-            return result;
+            if (this.#coordinates[0].getValue().x.equals(current.x)) {
+                const result = `v ${this.#coordinates[0].getValue().y.minus(current.y)}`
+                current.y = this.#coordinates[this.#coordinates.length - 1].getValue().y;
+                return result;
+            }
         }
 
 
@@ -166,6 +167,11 @@ export class CoordinatesArgument {
         current.y = this.#coordinates[this.#coordinates.length - 1].getValue().y;
 
         return result;
+    }
+
+    roundCoordinates() {
+        for (const coordinate of this.#coordinates)
+            coordinate.round();
     }
 
 

@@ -27,6 +27,7 @@ export class SvgPathEditor {
     #decimalPointUpButton = /** @type {HTMLButtonElement} */ (document.getElementById("decimal-point-up"));
     #decimalPointDownButton = /** @type {HTMLButtonElement} */ (document.getElementById("decimal-point-down"));
     #pointsRoundingLabel = /** @type {HTMLLabelElement} */ (document.getElementById("points-rounding"));
+    #pointsRoundingExecuteButton = /** @type {HTMLButtonElement} */ (document.getElementById("decimal-point-round"));
     #argumentAddButton = /** @type {HTMLButtonElement} */ (document.getElementById("argument-add-button"));
     #argumentCountLabel = /** @type {HTMLLabelElement} */ (document.getElementById("argument-count"));
     #argumentRemoveButton = /** @type {HTMLButtonElement} */ (document.getElementById("argument-remove-button"));
@@ -273,6 +274,7 @@ export class SvgPathEditor {
         this.#circleRadiusInput.oninput = this.#onCircleRadius;
         this.#decimalPointUpButton.onclick = this.#onDecimalPointUp;
         this.#decimalPointDownButton.onclick = this.#onDecimalPointDown;
+        this.#pointsRoundingExecuteButton.onclick = this.#onPointsRoundingExecute;
         this.#argumentAddButton.onclick = this.#onArgumentAdd;
         this.#argumentRemoveButton.onclick = this.#onArgumentRemove;
 
@@ -768,6 +770,12 @@ export class SvgPathEditor {
 
         this.roundNumber--;
         this.#pointsRoundingLabel.textContent = this.roundNumber.toString();
+    }
+    
+    /** */
+    #onPointsRoundingExecute = () => {
+        for (const argument of this.#argumentList)
+            argument.roundCoordinates();
     }
 
 

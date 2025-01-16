@@ -28,6 +28,17 @@ export class Coordinate {
     }
 
 
+    /** */
+    round() {
+        this.#p.x = this.#p.x.toDecimalPlaces(this.#editor.roundNumber + 1);
+        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).firstChild).value = this.#p.x.toString();
+        this.#pDot?.setAttribute("cx", this.#p.x.toString());
+        this.#p.y = this.#p.y.toDecimalPlaces(this.#editor.roundNumber + 1);
+        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).lastChild).value = this.#p.y.toString();
+        this.#pDot?.setAttribute("cy", this.#p.y.toString());
+    }
+
+
     /**
      * @param {import("../../Decimal/Decimal").Decimal} x
      * @param {import("../../Decimal/Decimal").Decimal} y
@@ -216,7 +227,7 @@ export class Coordinate {
 
         this.#p.x = this.#dragPoint.x.plus(new Decimal(dx / this.#editor.svg.clientWidth * this.#editor.viewBoxWidth)).toDecimalPlaces(this.#editor.roundNumber + 1);
         this.#p.y = this.#dragPoint.y.plus(new Decimal(dy / this.#editor.svg.clientHeight * this.#editor.viewBoxHeight)).toDecimalPlaces(this.#editor.roundNumber + 1);
-
+        
         /** @type {SVGCircleElement} */(this.#pDot).setAttribute("cx", this.#p.x.toString());
         /** @type {SVGCircleElement} */(this.#pDot).setAttribute("cy", this.#p.y.toString());
         /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).firstChild).value = this.#p.x.toString();

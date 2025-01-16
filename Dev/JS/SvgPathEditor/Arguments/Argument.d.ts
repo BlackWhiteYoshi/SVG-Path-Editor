@@ -17,6 +17,8 @@ export interface Argument {
 
     toRelativeCoordinates(current: Coordinate): string;
 
+    roundCoordinates(): void;
+
 
     createInputs(argumentDiv: HTMLDivElement): void;
 

@@ -318,6 +318,14 @@ select {
                         box-shadow: 3px 3px #0A58CA inset;
                     }
                 }
+                
+                #decimal-point-round {
+                    width: 49px;
+                    margin-left: 5px;
+                    padding: 0;
+                    border-radius: 1em;
+                    color: #FFF;
+                }
             }
         }
 

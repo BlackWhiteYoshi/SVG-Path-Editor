@@ -97,6 +97,13 @@ export class ArgumentA {
         return result;
     }
 
+    roundCoordinates() {
+        this.#radius.round();
+        this.#xAxisRotation = this.#xAxisRotation.toDecimalPlaces(this.#editor.roundNumber + 1);
+        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#inputDiv).firstChild).value = this.#xAxisRotation.toString();
+        this.#position.round();
+    }
+
 
     // input elements
 
