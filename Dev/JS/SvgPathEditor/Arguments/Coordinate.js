@@ -192,6 +192,8 @@ export class Coordinate {
 
     #dragCoordinateX = 0;
     #dragCoordinateY = 0;
+    /** @type {import("../../Decimal/Decimal").Coordinate} */
+    #dragPoint = { x: new Decimal(0), y: new Decimal(0) };
 
     /** @param {PointerEvent} event */
     #dotPointerDown = (event) => {
@@ -199,7 +201,9 @@ export class Coordinate {
         /** @type {SVGCircleElement} */(this.#pDot).setPointerCapture(event.pointerId);
 
         this.#dragCoordinateX = event.clientX;
+        this.#dragPoint.x = this.#p.x;
         this.#dragCoordinateY = event.clientY;
+        this.#dragPoint.y = this.#p.y;
 
         /** @type {SVGCircleElement} */(this.#pDot).onpointermove = this.#dotPointerMove;
         /** @type {SVGCircleElement} */(this.#pDot).onpointerup = this.#dotPointerUp;
@@ -209,11 +213,9 @@ export class Coordinate {
     #dotPointerMove = (event) => {
         const dx = event.clientX - this.#dragCoordinateX;
         const dy = event.clientY - this.#dragCoordinateY;
-        this.#dragCoordinateX = event.clientX;
-        this.#dragCoordinateY = event.clientY;
 
-        this.#p.x = this.#p.x.plus(new Decimal(dx / this.#editor.svg.clientWidth * this.#editor.viewBoxWidth)).toDecimalPlaces(this.#editor.roundNumber + 1);
-        this.#p.y = this.#p.y.plus(new Decimal(dy / this.#editor.svg.clientHeight * this.#editor.viewBoxHeight)).toDecimalPlaces(this.#editor.roundNumber + 1);
+        this.#p.x = this.#dragPoint.x.plus(new Decimal(dx / this.#editor.svg.clientWidth * this.#editor.viewBoxWidth)).toDecimalPlaces(this.#editor.roundNumber + 1);
+        this.#p.y = this.#dragPoint.y.plus(new Decimal(dy / this.#editor.svg.clientHeight * this.#editor.viewBoxHeight)).toDecimalPlaces(this.#editor.roundNumber + 1);
 
         /** @type {SVGCircleElement} */(this.#pDot).setAttribute("cx", this.#p.x.toString());
         /** @type {SVGCircleElement} */(this.#pDot).setAttribute("cy", this.#p.y.toString());
