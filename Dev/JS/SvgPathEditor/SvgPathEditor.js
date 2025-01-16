@@ -776,6 +776,8 @@ export class SvgPathEditor {
     #onPointsRoundingExecute = () => {
         for (const argument of this.#argumentList)
             argument.roundCoordinates();
+
+        this.renderPath();
     }
 
 
