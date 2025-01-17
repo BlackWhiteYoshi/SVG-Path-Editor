@@ -363,6 +363,8 @@ export class SvgPathEditor {
 
         let originX = new Decimal(0);
         let originY = new Decimal(0);
+        let startX = new Decimal(0);
+        let startY = new Decimal(0);
         let lastArgument = '';
         /** @type {import("Arguments/Argument").Argument[]} */
         const result = [];
@@ -401,7 +403,12 @@ export class SvgPathEditor {
                 case 'a': parse_a(); lastArgument = 'a'; break;
 
                 case 'Z':
-                case 'z': result.push(new ArgumentZ()); lastArgument = ''; break;
+                case 'z':
+                    originX = startX;
+                    originY = startY;
+                    result.push(new ArgumentZ());
+                    lastArgument = '';
+                    break;
 
                 case '-':
                 case '.':
@@ -467,6 +474,8 @@ export class SvgPathEditor {
             function parse_m() {
                 originX = originX.plus(parseNumber());
                 originY = originY.plus(parseNumber());
+                startX = originX;
+                startY = originY;
                 result.push(CoordinatesArgument.newM({ x: new Decimal(originX), y: new Decimal(originY) }, me));
             }
 
