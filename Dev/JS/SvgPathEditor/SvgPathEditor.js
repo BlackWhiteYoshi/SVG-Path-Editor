@@ -913,9 +913,10 @@ export class SvgPathEditor {
         let relativePath = `<path d="`;
         {
             const current = { x: new Decimal(0), y: new Decimal(0) }
+            const start = { x: new Decimal(0), y: new Decimal(0) }
 
             for (const argument of this.#argumentList)
-                relativePath += `${argument.toRelativeCoordinates(current)} `;
+                relativePath += `${argument.toRelativeCoordinates(current, start)} `;
             relativePath = relativePath.substring(0, relativePath.length - 1);
 
             relativePath += `" `;

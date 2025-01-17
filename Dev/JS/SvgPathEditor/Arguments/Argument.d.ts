@@ -15,7 +15,7 @@ export interface Argument {
 
     toAbsoluteCoordinates(current: Coordinate): string;
 
-    toRelativeCoordinates(current: Coordinate): string;
+    toRelativeCoordinates(current: Coordinate, start: Coordinate): string;
 
     roundCoordinates(): void;
 

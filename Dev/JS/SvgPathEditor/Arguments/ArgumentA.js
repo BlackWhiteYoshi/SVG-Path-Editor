@@ -86,9 +86,10 @@ export class ArgumentA {
 
     /**
      * @param {import("../../Decimal/Decimal").Coordinate} current
+     * @param {import("../../Decimal/Decimal").Coordinate} start
      * @returns {string}
      */
-    toRelativeCoordinates(current) {
+    toRelativeCoordinates(current, start) {
         const result = `a ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x.minus(current.x)} ${this.#position.getValue().y.minus(current.y)}`;
 
         current.x = this.#position.getValue().x;
