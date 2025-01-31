@@ -50,10 +50,10 @@ export class SvgPathEditor {
     svgPath = /** @type {HTMLElement} */ (document.getElementById("svg-path"));
 
 
-    viewBoxX = -10;
-    viewBoxY = -10;
-    viewBoxWidth = 20;
-    viewBoxHeight = 20;
+    viewBoxX = -8;
+    viewBoxY = -8;
+    viewBoxWidth = 16;
+    viewBoxHeight = 16;
 
     circleRadius = new Decimal(0.2);
     roundNumber = 2;
