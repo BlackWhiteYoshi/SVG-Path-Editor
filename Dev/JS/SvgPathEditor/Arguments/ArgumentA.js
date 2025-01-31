@@ -42,10 +42,10 @@ export class ArgumentA {
 
 
     /** @returns {string} */
-    getCapitalLetter() { return "A"; }
+    getCapitalLetter() { return 'A'; }
 
     /** @returns {string} */
-    getSmallLetter() { return "a"; }
+    getSmallLetter() { return 'a'; }
 
 
     /**
@@ -81,7 +81,7 @@ export class ArgumentA {
     toAbsoluteCoordinates(current) {
         current.x = this.#position.getValue().x;
         current.y = this.#position.getValue().y;
-        return `A ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x} ${this.#position.getValue().y}`;
+        return `A ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x} ${this.#position.getValue().y} `;
     }
 
     /**
@@ -90,12 +90,111 @@ export class ArgumentA {
      * @returns {string}
      */
     toRelativeCoordinates(current, start) {
-        const result = `a ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x.minus(current.x)} ${this.#position.getValue().y.minus(current.y)}`;
+        const result = `a ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x.minus(current.x)} ${this.#position.getValue().y.minus(current.y)} `;
 
         current.x = this.#position.getValue().x;
         current.y = this.#position.getValue().y;
 
         return result;
+    }
+
+    /**
+     * @param {import("../../Decimal/Decimal").Coordinate} current
+     * @param {import("../../Decimal/Decimal").Coordinate} start
+     * @param {{argument: string, hasDot: boolean}} last
+     * @returns {string}
+     */
+    toMinCoordinates(current, start, last) {
+        /**
+         * @param {Decimal} value
+         * @returns {string}
+         */
+        function ToMinimizedString(value) {
+            if (value.isZero())
+                return " 0";
+
+            let result = value.toString();
+            if (value.greaterThan(0)) {
+                if (value.lessThan(1)) {
+                    result = result.substring(1);   // remove leading ' 0'
+                    if (!last.hasDot)
+                        result = ` ${result}` // add space
+                }
+                else
+                    result = ` ${result}`; // add space
+            }
+            else {
+                // is minus -> no space
+                if (value.greaterThan(-1))
+                    result = `-${result.substring(2)}` // remove second character: '0'
+            }
+
+            last.hasDot = result.includes('.');
+            return result;
+        }
+
+
+        const radiusX_minimized = ToMinimizedString(this.#radius.getValue().x);
+        const radiusY_minimized = ToMinimizedString(this.#radius.getValue().y);
+        const xAxisRotation_minimized = ToMinimizedString(this.#xAxisRotation);
+        const largeArcFlagString = ` ${this.#largeArcFlag ? 1 : 0}`;
+        const sweepFlagString = ` ${this.#sweepFlag ? 1 : 0}`;
+
+        let resultBig = "";
+        {
+            if (last.argument !== 'A')
+                resultBig += 'A';
+
+            if (last.argument !== 'A' && radiusX_minimized.charAt(0) === ' ')
+                resultBig += radiusX_minimized.substring(1);
+            else
+                resultBig += radiusX_minimized;
+
+            resultBig += radiusY_minimized;
+
+            resultBig += xAxisRotation_minimized;
+
+            resultBig += largeArcFlagString;
+            resultBig += sweepFlagString;
+            last.hasDot = false;
+
+            resultBig += ToMinimizedString(this.#position.getValue().x);
+            resultBig += ToMinimizedString(this.#position.getValue().y);
+        }
+
+        let resultSmall = "";
+        {
+            if (last.argument !== 'a')
+                resultSmall += 'a';
+
+            if (last.argument !== 'a' && radiusX_minimized.charAt(0) === ' ')
+                resultSmall += radiusX_minimized.substring(1);
+            else
+                resultSmall += radiusX_minimized;
+
+            resultSmall += radiusY_minimized;
+
+            resultSmall += xAxisRotation_minimized;
+
+            resultSmall += largeArcFlagString;
+            resultSmall += sweepFlagString;
+            last.hasDot = false;
+
+            resultSmall += ToMinimizedString(this.#position.getValue().x.minus(current.x));
+            resultSmall += ToMinimizedString(this.#position.getValue().y.minus(current.y));
+        }
+        
+        current.x = this.#position.getValue().x;
+        current.y = this.#position.getValue().y;
+
+        if (resultBig.length <= resultSmall.length) {
+            last.argument = 'A';
+            return resultBig;
+        }
+        else {
+            last.argument = 'a';
+            return resultSmall;
+        }
     }
 
     roundCoordinates() {

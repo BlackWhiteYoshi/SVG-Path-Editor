@@ -14,8 +14,10 @@ export class SvgPathEditor {
 
     #outputAbsoluteLabel = /** @type {HTMLLabelElement} */ (document.getElementById("output-absolute"));
     #outputRelativeLabel = /** @type {HTMLLabelElement} */ (document.getElementById("output-relative"));
+    #outputMinLabel = /** @type {HTMLLabelElement} */ (document.getElementById("output-min"));
     #copyAbsoluteButton = /** @type {HTMLButtonElement} */ (document.getElementById("output-absolute-button"));
     #copyRelativeButton = /** @type {HTMLButtonElement} */ (document.getElementById("output-relative-button"));
+    #copyMinButton = /** @type {HTMLButtonElement} */ (document.getElementById("output-min-button"));
 
     #viewBoxXInput = /** @type {HTMLInputElement} */ (document.getElementById("view-box-x"));
     #viewBoxYInput = /** @type {HTMLInputElement} */ (document.getElementById("view-box-y"));
@@ -265,6 +267,7 @@ export class SvgPathEditor {
         this.#readInButton.onclick = this.#onReadInPath;
         this.#copyAbsoluteButton.onclick = this.#onCopyToClipboardAbsolute;
         this.#copyRelativeButton.onclick = this.#onCopyToClipboardRelative;
+        this.#copyMinButton.onclick = this.#onCopyToClipboardMin;
 
         this.#viewBoxXInput.oninput = this.#onViewBoxX;
         this.#viewBoxYInput.oninput = this.#onViewBoxY;
@@ -708,6 +711,11 @@ export class SvgPathEditor {
         navigator.clipboard.writeText(/** @type {string} */(this.#outputRelativeLabel.textContent));
     }
 
+    /** */
+    #onCopyToClipboardMin = () => {
+        navigator.clipboard.writeText(/** @type {string} */(this.#outputMinLabel.textContent));
+    }
+
 
     /** */
     #onViewBoxX = () => {
@@ -889,51 +897,57 @@ export class SvgPathEditor {
 
     /** updates all attributes of the "path" element and updates the output labels */
     renderPath = () => {
-        let absolutePath = `<path d="`;
-        {
-            const current = { x: new Decimal(0), y: new Decimal(0) }
+        /**
+         * @param {(argument: import("Arguments/Argument").Argument) => string} argumentToString
+         * @returns {string}
+         **/
+        const createPath = (argumentToString) => {
+            let path = `<path d="`;
 
             for (const argument of this.#argumentList)
-                absolutePath += `${argument.toAbsoluteCoordinates(current)} `;
-            absolutePath = absolutePath.substring(0, absolutePath.length - 1);
+                path += argumentToString(argument);
+            if (path[path.length - 1] === ' ')
+                path = path.substring(0, path.length - 1);
 
-            // set arguments-part to attribute "d"
-            this.svgPath.setAttribute("d", absolutePath.substring(9, absolutePath.length));
-
-            absolutePath += `" `;
+            path += `" `;
 
             for (const style of this.#styleList)
                 if (style.key !== "")
-                    absolutePath += `${style.key}="${style.value}" `;
+                    path += `${style.key}="${style.value}" `;
 
-            absolutePath += `/>`;
+            path += `/>`;
+
+            return path;
         }
-        this.#outputAbsoluteLabel.textContent = absolutePath;
 
-        let relativePath = `<path d="`;
+        // absolute path
         {
             const current = { x: new Decimal(0), y: new Decimal(0) }
-            const start = { x: new Decimal(0), y: new Decimal(0) }
-
-            for (const argument of this.#argumentList)
-                relativePath += `${argument.toRelativeCoordinates(current, start)} `;
-            relativePath = relativePath.substring(0, relativePath.length - 1);
-
-            relativePath += `" `;
-
-            for (const style of this.#styleList)
-                if (style.key !== "")
-                    relativePath += `${style.key}="${style.value}" `;
-
-            relativePath += `/>`;
+            this.#outputAbsoluteLabel.textContent = createPath((argument) => argument.toAbsoluteCoordinates(current));
         }
-        this.#outputRelativeLabel.textContent = relativePath;
 
-        // remove all attributes except "d"
+        // relative path
+        {
+            const current = { x: new Decimal(0), y: new Decimal(0) };
+            const start = { x: new Decimal(0), y: new Decimal(0) };
+            this.#outputRelativeLabel.textContent = createPath((argument) => argument.toRelativeCoordinates(current, start));
+        }
+
+        // min path
+        {
+            const current = { x: new Decimal(0), y: new Decimal(0) };
+            const start = { x: new Decimal(0), y: new Decimal(0) };
+            const last = { argument: '', hasDot: false };
+            this.#outputMinLabel.textContent = createPath((argument) => argument.toMinCoordinates(current, start, last));
+        }
+
+
+        // remove all attributes
         for (const attribute of this.svgPath.attributes)
-            if (attribute.name !== "d")
-                this.svgPath.removeAttribute(attribute.name);
-        // add attributes
+            this.svgPath.removeAttribute(attribute.name);
+        // set attribute "d" with absolutePath
+        this.svgPath.setAttribute("d", this.#outputAbsoluteLabel.textContent.substring(9, this.#outputAbsoluteLabel.textContent.indexOf('"', 9)));
+        // add other attributes
         for (const style of this.#styleList)
             if (style.key !== "")
                 this.svgPath.setAttribute(style.key, style.value);
