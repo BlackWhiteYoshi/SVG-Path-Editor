@@ -625,6 +625,11 @@ export class SvgPathEditor {
                         }
                         else
                             break;
+                    else if (input[parseIndex] === 'e') {
+                        dotVisited = true;
+                        if (parseIndex + 1 < input.length && input[parseIndex + 1] === '-')
+                            parseIndex++;
+                    }
                     else
                         if (input[parseIndex] !== '0'
                             && input[parseIndex] !== '1'
