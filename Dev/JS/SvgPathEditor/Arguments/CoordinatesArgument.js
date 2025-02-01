@@ -186,8 +186,10 @@ export class CoordinatesArgument {
           * @returns {string}
           */
         function ToMinimizedString(value) {
-            if (value.isZero())
+            if (value.isZero()) {
+                last.hasDot = false;
                 return " 0";
+            }
 
             let result = value.toString();
             if (value.greaterThan(0)) {
