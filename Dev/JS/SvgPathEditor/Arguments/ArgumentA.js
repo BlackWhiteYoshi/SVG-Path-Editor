@@ -105,13 +105,16 @@ export class ArgumentA {
      * @returns {string}
      */
     toMinCoordinates(current, start, last) {
+        /** @type {boolean} */
+        let lastHasDot;
+
         /**
          * @param {Decimal} value
          * @returns {string}
          */
         function ToMinimizedString(value) {
             if (value.isZero()) {
-                last.hasDot = false;
+                lastHasDot = false;
                 return " 0";
             }
 
@@ -119,7 +122,7 @@ export class ArgumentA {
             if (value.greaterThan(0)) {
                 if (value.lessThan(1)) {
                     result = result.substring(1);   // remove leading ' 0'
-                    if (!last.hasDot)
+                    if (!lastHasDot)
                         result = ` ${result}` // add space
                 }
                 else
@@ -131,7 +134,7 @@ export class ArgumentA {
                     result = `-${result.substring(2)}` // remove second character: '0'
             }
 
-            last.hasDot = result.includes('.');
+            lastHasDot = result.includes('.');
             return result;
         }
 
@@ -142,6 +145,7 @@ export class ArgumentA {
         const largeArcFlagString = ` ${this.#largeArcFlag ? 1 : 0}`;
         const sweepFlagString = ` ${this.#sweepFlag ? 1 : 0}`;
 
+        lastHasDot = last.hasDot;
         let resultBig = "";
         {
             if (last.argument !== 'A')
@@ -163,7 +167,9 @@ export class ArgumentA {
             resultBig += ToMinimizedString(this.#position.getValue().x);
             resultBig += ToMinimizedString(this.#position.getValue().y);
         }
+        const lastHasDotBig = lastHasDot;
 
+        lastHasDot = last.hasDot;
         let resultSmall = "";
         {
             if (last.argument !== 'a')
@@ -185,16 +191,19 @@ export class ArgumentA {
             resultSmall += ToMinimizedString(this.#position.getValue().x.minus(current.x));
             resultSmall += ToMinimizedString(this.#position.getValue().y.minus(current.y));
         }
+        const lastHasDotSmall = lastHasDot;
         
         current.x = this.#position.getValue().x;
         current.y = this.#position.getValue().y;
 
         if (resultBig.length <= resultSmall.length) {
             last.argument = 'A';
+            last.hasDot = lastHasDotBig;
             return resultBig;
         }
         else {
             last.argument = 'a';
+            last.hasDot = lastHasDotSmall;
             return resultSmall;
         }
     }
