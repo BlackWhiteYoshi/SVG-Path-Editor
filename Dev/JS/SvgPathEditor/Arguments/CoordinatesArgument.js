@@ -119,12 +119,12 @@ export class CoordinatesArgument {
     toAbsoluteCoordinates(current) {
         if (this.#capitalLetter === 'L' && this.#coordinates[0].getValue().y.equals(current.y)) {
             current.x = this.#coordinates[0].getValue().x;
-            return `H ${this.#coordinates[0].getValue().x}`;
+            return `H ${this.#coordinates[0].getValue().x} `;
         }
 
         if (this.#capitalLetter === 'L' && this.#coordinates[0].getValue().x.equals(current.x)) {
             current.y = this.#coordinates[0].getValue().y;
-            return `V ${this.#coordinates[0].getValue().y}`;
+            return `V ${this.#coordinates[0].getValue().y} `;
         }
 
 
