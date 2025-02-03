@@ -13,7 +13,7 @@ export interface Argument {
     scale(x: Decimal, y: Decimal): void;
 
 
-    toAbsoluteCoordinates(current: Coordinate): string;
+    toAbsoluteCoordinates(current: Coordinate, start: Coordinate): string;
 
     toRelativeCoordinates(current: Coordinate, start: Coordinate): string;
 

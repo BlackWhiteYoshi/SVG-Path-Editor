@@ -76,9 +76,10 @@ export class ArgumentA {
 
     /**
      * @param {import("../../Decimal/Decimal").Coordinate} current
+     * @param {import("../../Decimal/Decimal").Coordinate} start
      * @returns {string}
      */
-    toAbsoluteCoordinates(current) {
+    toAbsoluteCoordinates(current, start) {
         current.x = this.#position.getValue().x;
         current.y = this.#position.getValue().y;
         return `A ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x} ${this.#position.getValue().y} `;

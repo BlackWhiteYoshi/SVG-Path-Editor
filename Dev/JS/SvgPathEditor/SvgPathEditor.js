@@ -927,8 +927,9 @@ export class SvgPathEditor {
 
         // absolute path
         {
-            const current = { x: new Decimal(0), y: new Decimal(0) }
-            this.#outputAbsoluteLabel.textContent = createPath((argument) => argument.toAbsoluteCoordinates(current));
+            const current = { x: new Decimal(0), y: new Decimal(0) };
+            const start = { x: new Decimal(0), y: new Decimal(0) };
+            this.#outputAbsoluteLabel.textContent = createPath((argument) => argument.toAbsoluteCoordinates(current, start));
         }
 
         // relative path

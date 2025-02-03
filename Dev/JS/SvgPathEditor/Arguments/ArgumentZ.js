@@ -27,9 +27,12 @@ export class ArgumentZ {
 
     /**
      * @param {import("../../Decimal/Decimal").Coordinate} current
+     * @param {import("../../Decimal/Decimal").Coordinate} start
      * @returns {string}
      */
-    toAbsoluteCoordinates(current) {
+    toAbsoluteCoordinates(current, start) {
+        current.x = start.x;
+        current.y = start.y;
         return `${this.getCapitalLetter()} `;
     }
 

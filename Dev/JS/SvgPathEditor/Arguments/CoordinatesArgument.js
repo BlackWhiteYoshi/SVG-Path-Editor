@@ -114,9 +114,10 @@ export class CoordinatesArgument {
 
     /**
      * @param {import("../../Decimal/Decimal").Coordinate} current
+     * @param {import("../../Decimal/Decimal").Coordinate} start
      * @returns {string}
      */
-    toAbsoluteCoordinates(current) {
+    toAbsoluteCoordinates(current, start) {
         if (this.#capitalLetter === 'L' && this.#coordinates[0].getValue().y.equals(current.y)) {
             current.x = this.#coordinates[0].getValue().x;
             return `H ${this.#coordinates[0].getValue().x} `;
@@ -134,6 +135,11 @@ export class CoordinatesArgument {
 
         current.x = this.#coordinates[this.#coordinates.length - 1].getValue().x;
         current.y = this.#coordinates[this.#coordinates.length - 1].getValue().y;
+
+        if (this.#capitalLetter === 'M') {
+            start.x = current.x;
+            start.y = current.y;
+        }
 
         return result;
     }
