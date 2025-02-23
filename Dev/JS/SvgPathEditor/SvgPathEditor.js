@@ -148,7 +148,7 @@ export class SvgPathEditor {
                 }
                 select.appendChild(optionZ);
 
-                select.value = argument.getCapitalLetter();
+                select.value = argument.capitalLetter;
 
                 select.onchange = () => {
                     const index = this.#argumentList.indexOf(argument);

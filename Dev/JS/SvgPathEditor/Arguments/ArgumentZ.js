@@ -1,9 +1,9 @@
 export class ArgumentZ {
     /** @returns {string} */
-    getCapitalLetter() { return 'Z'; }
+    get capitalLetter() { return 'Z'; }
 
     /** @returns {string} */
-    getSmallLetter() { return 'z'; }
+    get smallLetter() { return 'z'; }
 
 
     /**
@@ -33,7 +33,7 @@ export class ArgumentZ {
     toAbsoluteCoordinates(current, start) {
         current.x = start.x;
         current.y = start.y;
-        return `${this.getCapitalLetter()} `;
+        return "Z ";
     }
 
     /**
@@ -44,7 +44,7 @@ export class ArgumentZ {
     toRelativeCoordinates(current, start) {
         current.x = start.x;
         current.y = start.y;
-        return `${this.getSmallLetter() } `;
+        return "z ";
     }
 
     /**
@@ -54,14 +54,14 @@ export class ArgumentZ {
      * @returns {string}
      */
     toMinCoordinates(current, start, last) {
-        if (last.argument === this.getSmallLetter())
+        if (last.argument === 'z')
             return '';
 
         current.x = start.x;
         current.y = start.y;
-        last.argument = this.getSmallLetter();
+        last.argument = 'z';
         last.hasDot = false;
-        return this.getSmallLetter();
+        return 'z';
     }
 
     roundCoordinates() { }

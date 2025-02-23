@@ -4,8 +4,8 @@ module.exports = {
     mode: "production",
     entry: "./main.js",
     output: {
-        path: path.resolve(__dirname, "."),
-        filename: "../temp.js"
+        path: path.resolve(__dirname, ".."),
+        filename: "temp.js"
     }
 };
 

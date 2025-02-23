@@ -1,9 +1,9 @@
 import Decimal, { Coordinate } from "../../Decimal/Decimal";
 
 export interface Argument {
-    getCapitalLetter(): string;
+    capitalLetter: string;
 
-    getSmallLetter(): string;
+    smallLetter: string;
 
 
     translate(x: Decimal, y: Decimal): void;

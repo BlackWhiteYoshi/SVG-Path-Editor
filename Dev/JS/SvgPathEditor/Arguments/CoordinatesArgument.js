@@ -1,5 +1,5 @@
 import { SvgPathEditor } from "../SvgPathEditor";
-import { Coordinate } from "./Coordinate";
+import { Point } from "./Point";
 import Decimal from "../../Decimal/Decimal";
 
 export class CoordinatesArgument {
@@ -57,18 +57,18 @@ export class CoordinatesArgument {
 
 
 
-    /** @type {Coordinate[]} */
+    /** @type {Point[]} */
     #coordinates;
 
     /** @type {string} */
     #capitalLetter;
     /** @returns {string} */
-    getCapitalLetter() { return this.#capitalLetter }
+    get capitalLetter() { return this.#capitalLetter }
 
     /** @type {string} */
     #smallLetter;
     /** @returns {string} */
-    getSmallLetter() { return this.#smallLetter; }
+    get smallLetter() { return this.#smallLetter; }
 
 
     /**
@@ -80,7 +80,7 @@ export class CoordinatesArgument {
     constructor(capitalLetter, smallLetter, coordinates, editor) {
         this.#capitalLetter = capitalLetter;
         this.#smallLetter = smallLetter;
-        this.#coordinates = coordinates.map((coordinate) => new Coordinate(coordinate, editor));
+        this.#coordinates = coordinates.map((coordinate) => new Point(coordinate, editor));
     }
 
 
@@ -118,23 +118,23 @@ export class CoordinatesArgument {
      * @returns {string}
      */
     toAbsoluteCoordinates(current, start) {
-        if (this.#capitalLetter === 'L' && this.#coordinates[0].getValue().y.equals(current.y)) {
-            current.x = this.#coordinates[0].getValue().x;
-            return `H ${this.#coordinates[0].getValue().x} `;
+        if (this.#capitalLetter === 'L' && this.#coordinates[0].y.equals(current.y)) {
+            current.x = this.#coordinates[0].x;
+            return `H ${this.#coordinates[0].x} `;
         }
 
-        if (this.#capitalLetter === 'L' && this.#coordinates[0].getValue().x.equals(current.x)) {
-            current.y = this.#coordinates[0].getValue().y;
-            return `V ${this.#coordinates[0].getValue().y} `;
+        if (this.#capitalLetter === 'L' && this.#coordinates[0].x.equals(current.x)) {
+            current.y = this.#coordinates[0].y;
+            return `V ${this.#coordinates[0].y} `;
         }
 
 
         let result = `${this.#capitalLetter} `;
         for (const coordinate of this.#coordinates)
-            result += `${coordinate.getValue().x} ${coordinate.getValue().y} `;
+            result += `${coordinate.x} ${coordinate.y} `;
 
-        current.x = this.#coordinates[this.#coordinates.length - 1].getValue().x;
-        current.y = this.#coordinates[this.#coordinates.length - 1].getValue().y;
+        current.x = this.#coordinates[this.#coordinates.length - 1].x;
+        current.y = this.#coordinates[this.#coordinates.length - 1].y;
 
         if (this.#capitalLetter === 'M') {
             start.x = current.x;
@@ -151,15 +151,15 @@ export class CoordinatesArgument {
      */
     toRelativeCoordinates(current, start) {
         if (this.#capitalLetter === 'L') {
-            if (this.#coordinates[0].getValue().y.equals(current.y)) {
-                const result = `h ${this.#coordinates[0].getValue().x.minus(current.x)} `;
-                current.x = this.#coordinates[0].getValue().x;
+            if (this.#coordinates[0].y.equals(current.y)) {
+                const result = `h ${this.#coordinates[0].x.minus(current.x)} `;
+                current.x = this.#coordinates[0].x;
                 return result;
             }
 
-            if (this.#coordinates[0].getValue().x.equals(current.x)) {
-                const result = `v ${this.#coordinates[0].getValue().y.minus(current.y)} `
-                current.y = this.#coordinates[0].getValue().y;
+            if (this.#coordinates[0].x.equals(current.x)) {
+                const result = `v ${this.#coordinates[0].y.minus(current.y)} `
+                current.y = this.#coordinates[0].y;
                 return result;
             }
         }
@@ -167,10 +167,10 @@ export class CoordinatesArgument {
 
         let result = `${this.#smallLetter} `;
         for (const coordinate of this.#coordinates)
-            result += `${coordinate.getValue().x.minus(current.x)} ${coordinate.getValue().y.minus(current.y)} `;
+            result += `${coordinate.x.minus(current.x)} ${coordinate.y.minus(current.y)} `;
 
-        current.x = this.#coordinates[this.#coordinates.length - 1].getValue().x;
-        current.y = this.#coordinates[this.#coordinates.length - 1].getValue().y;
+        current.x = this.#coordinates[this.#coordinates.length - 1].x;
+        current.y = this.#coordinates[this.#coordinates.length - 1].y;
 
         if (this.#capitalLetter === 'M') {
             start.x = current.x;
@@ -222,9 +222,9 @@ export class CoordinatesArgument {
 
 
         if (this.#capitalLetter === 'L') {
-            if (this.#coordinates[0].getValue().y.equals(current.y)) {
+            if (this.#coordinates[0].y.equals(current.y)) {
                 lastHasDot = last.hasDot;
-                let resultBig = ToMinimizedString(this.#coordinates[0].getValue().x);
+                let resultBig = ToMinimizedString(this.#coordinates[0].x);
                 if (last.argument !== 'H') {
                     if (resultBig.charAt(0) === ' ')
                         resultBig = resultBig.substring(1); // remove ' '
@@ -233,7 +233,7 @@ export class CoordinatesArgument {
                 const lastHasDotBig = lastHasDot;
 
                 lastHasDot = last.hasDot;
-                let resultSmall = ToMinimizedString(this.#coordinates[0].getValue().x.minus(current.x));
+                let resultSmall = ToMinimizedString(this.#coordinates[0].x.minus(current.x));
                 if (last.argument !== 'h') {
                     if (resultSmall.charAt(0) === ' ')
                         resultSmall = resultSmall.substring(1); // remove ' '
@@ -241,7 +241,7 @@ export class CoordinatesArgument {
                 }
                 const lastHasDotSmall = lastHasDot;
 
-                current.x = this.#coordinates[0].getValue().x;
+                current.x = this.#coordinates[0].x;
 
                 if (resultBig.length <= resultSmall.length) {
                     last.argument = 'H';
@@ -255,9 +255,9 @@ export class CoordinatesArgument {
                 }
             }
 
-            if (this.#coordinates[0].getValue().x.equals(current.x)) {
+            if (this.#coordinates[0].x.equals(current.x)) {
                 lastHasDot = last.hasDot;
-                let resultBig = ToMinimizedString(this.#coordinates[0].getValue().y);
+                let resultBig = ToMinimizedString(this.#coordinates[0].y);
                 if (last.argument !== 'V') {
                     if (resultBig.charAt(0) === ' ')
                         resultBig = resultBig.substring(1); // remove ' '
@@ -266,7 +266,7 @@ export class CoordinatesArgument {
                 const lastHasDotBig = lastHasDot;
 
                 lastHasDot = last.hasDot;
-                let resultSmall = ToMinimizedString(this.#coordinates[0].getValue().y.minus(current.y));
+                let resultSmall = ToMinimizedString(this.#coordinates[0].y.minus(current.y));
                 if (last.argument !== 'v') {
                     if (resultSmall.charAt(0) === ' ')
                         resultSmall = resultSmall.substring(1); // remove ' '
@@ -274,7 +274,7 @@ export class CoordinatesArgument {
                 }
                 const lastHasDotSmall = lastHasDot;
 
-                current.y = this.#coordinates[0].getValue().y;
+                current.y = this.#coordinates[0].y;
 
                 if (resultBig.length <= resultSmall.length) {
                     last.argument = 'V';
@@ -294,14 +294,14 @@ export class CoordinatesArgument {
         let resultBig = "";
         {
             for (let coordinate of this.#coordinates) {
-                resultBig += ToMinimizedString(coordinate.getValue().x);
-                resultBig += ToMinimizedString(coordinate.getValue().y);
+                resultBig += ToMinimizedString(coordinate.x);
+                resultBig += ToMinimizedString(coordinate.y);
             }
 
-            if (last.argument !== this.getCapitalLetter()) {
+            if (last.argument !== this.#capitalLetter) {
                 if (resultBig.charAt(0) === ' ')
                     resultBig = resultBig.substring(1); // remove ' '
-                resultBig = `${this.getCapitalLetter()}${resultBig}`;
+                resultBig = `${this.#capitalLetter}${resultBig}`;
             }
         }
         const lastHasDotBig = lastHasDot;
@@ -310,34 +310,34 @@ export class CoordinatesArgument {
         let resultSmall = "";
         {
             for (let coordinate of this.#coordinates) {
-                resultSmall += ToMinimizedString(coordinate.getValue().x.minus(current.x));
-                resultSmall += ToMinimizedString(coordinate.getValue().y.minus(current.y));
+                resultSmall += ToMinimizedString(coordinate.x.minus(current.x));
+                resultSmall += ToMinimizedString(coordinate.y.minus(current.y));
             }
 
-            if (last.argument !== this.getSmallLetter()) {
+            if (last.argument !== this.#smallLetter) {
                 if (resultSmall.charAt(0) === ' ')
                     resultSmall = resultSmall.substring(1); // remove ' '
-                resultSmall = `${this.getSmallLetter()}${resultSmall}`;
+                resultSmall = `${this.#smallLetter}${resultSmall}`;
             }
         }
         const lastHasDotSmall = lastHasDot;
 
 
-        current.x = this.#coordinates[this.#coordinates.length - 1].getValue().x;
-        current.y = this.#coordinates[this.#coordinates.length - 1].getValue().y;
+        current.x = this.#coordinates[this.#coordinates.length - 1].x;
+        current.y = this.#coordinates[this.#coordinates.length - 1].y;
 
-        if (this.getCapitalLetter() === 'M') {
+        if (this.#capitalLetter === 'M') {
             start.x = current.x;
             start.y = current.y;
         }
 
         if (resultBig.length <= resultSmall.length) {
-            last.argument = this.getCapitalLetter();
+            last.argument = this.#capitalLetter;
             last.hasDot = lastHasDotBig;
             return resultBig;
         }
         else {
-            last.argument = this.getSmallLetter();
+            last.argument = this.#smallLetter;
             last.hasDot = lastHasDotSmall;
             return resultSmall;
         }

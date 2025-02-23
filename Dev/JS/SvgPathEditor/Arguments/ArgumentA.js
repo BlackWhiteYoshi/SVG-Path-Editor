@@ -1,9 +1,9 @@
 import { SvgPathEditor } from "../SvgPathEditor";
-import { Coordinate } from "./Coordinate";
+import { Point } from "./Point";
 import Decimal from "../../Decimal/Decimal";
 
 export class ArgumentA {
-    /** @type {Coordinate} */
+    /** @type {Point} */
     #radius;
 
     /** @type {import("../../Decimal/Decimal").Decimal} */
@@ -15,7 +15,7 @@ export class ArgumentA {
     /** @type {boolean} */
     #sweepFlag
 
-    /** @type {Coordinate} */
+    /** @type {Point} */
     #position;
 
 
@@ -32,20 +32,20 @@ export class ArgumentA {
      * @param {SvgPathEditor} editor
      */
     constructor(radius, xAxisRotation, largeArcFlag, sweepFlag, position, editor) {
-        this.#radius = new Coordinate(radius, editor);
+        this.#radius = new Point(radius, editor);
         this.#xAxisRotation = xAxisRotation;
         this.#largeArcFlag = largeArcFlag;
         this.#sweepFlag = sweepFlag;
-        this.#position = new Coordinate(position, editor);
+        this.#position = new Point(position, editor);
         this.#editor = editor;
     }
 
 
     /** @returns {string} */
-    getCapitalLetter() { return 'A'; }
+    get capitalLetter() { return 'A'; }
 
     /** @returns {string} */
-    getSmallLetter() { return 'a'; }
+    get smallLetter() { return 'a'; }
 
 
     /**
@@ -80,9 +80,9 @@ export class ArgumentA {
      * @returns {string}
      */
     toAbsoluteCoordinates(current, start) {
-        current.x = this.#position.getValue().x;
-        current.y = this.#position.getValue().y;
-        return `A ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x} ${this.#position.getValue().y} `;
+        current.x = this.#position.x;
+        current.y = this.#position.y;
+        return `A ${this.#radius.x} ${this.#radius.y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.x} ${this.#position.y} `;
     }
 
     /**
@@ -91,10 +91,10 @@ export class ArgumentA {
      * @returns {string}
      */
     toRelativeCoordinates(current, start) {
-        const result = `a ${this.#radius.getValue().x} ${this.#radius.getValue().y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.getValue().x.minus(current.x)} ${this.#position.getValue().y.minus(current.y)} `;
+        const result = `a ${this.#radius.x} ${this.#radius.y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.x.minus(current.x)} ${this.#position.y.minus(current.y)} `;
 
-        current.x = this.#position.getValue().x;
-        current.y = this.#position.getValue().y;
+        current.x = this.#position.x;
+        current.y = this.#position.y;
 
         return result;
     }
@@ -140,8 +140,8 @@ export class ArgumentA {
         }
 
 
-        const radiusX_minimized = ToMinimizedString(this.#radius.getValue().x);
-        const radiusY_minimized = ToMinimizedString(this.#radius.getValue().y);
+        const radiusX_minimized = ToMinimizedString(this.#radius.x);
+        const radiusY_minimized = ToMinimizedString(this.#radius.y);
         const xAxisRotation_minimized = ToMinimizedString(this.#xAxisRotation);
         const largeArcFlagString = ` ${this.#largeArcFlag ? 1 : 0}`;
         const sweepFlagString = ` ${this.#sweepFlag ? 1 : 0}`;
@@ -165,8 +165,8 @@ export class ArgumentA {
             resultBig += sweepFlagString;
             last.hasDot = false;
 
-            resultBig += ToMinimizedString(this.#position.getValue().x);
-            resultBig += ToMinimizedString(this.#position.getValue().y);
+            resultBig += ToMinimizedString(this.#position.x);
+            resultBig += ToMinimizedString(this.#position.y);
         }
         const lastHasDotBig = lastHasDot;
 
@@ -189,13 +189,13 @@ export class ArgumentA {
             resultSmall += sweepFlagString;
             last.hasDot = false;
 
-            resultSmall += ToMinimizedString(this.#position.getValue().x.minus(current.x));
-            resultSmall += ToMinimizedString(this.#position.getValue().y.minus(current.y));
+            resultSmall += ToMinimizedString(this.#position.x.minus(current.x));
+            resultSmall += ToMinimizedString(this.#position.y.minus(current.y));
         }
         const lastHasDotSmall = lastHasDot;
         
-        current.x = this.#position.getValue().x;
-        current.y = this.#position.getValue().y;
+        current.x = this.#position.x;
+        current.y = this.#position.y;
 
         if (resultBig.length <= resultSmall.length) {
             last.argument = 'A';

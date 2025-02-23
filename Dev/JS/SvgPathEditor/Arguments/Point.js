@@ -1,7 +1,7 @@
 import Decimal from "../../Decimal/Decimal";
 import { SvgPathEditor } from "../SvgPathEditor";
 
-export class Coordinate {
+export class Point {
     /** "p" is shorthand for point
      * @type {import("../../Decimal/Decimal").Coordinate}
      **/
@@ -20,12 +20,11 @@ export class Coordinate {
         this.#editor = editor;
     }
 
-    /**
-     * @returns {import("../../Decimal/Decimal").Coordinate}
-     */
-    getValue() {
-        return this.#p;
-    }
+    /** @returns {Decimal} */
+    get x() { return this.#p.x; }
+
+    /** @returns {Decimal} */
+    get y() { return this.#p.y; }
 
 
     /** */
@@ -40,8 +39,8 @@ export class Coordinate {
 
 
     /**
-     * @param {import("../../Decimal/Decimal").Decimal} x
-     * @param {import("../../Decimal/Decimal").Decimal} y
+     * @param {Decimal} x
+     * @param {Decimal} y
      */
     translate(x, y) {
         this.#p.x = this.#p.x.plus(x);
@@ -55,8 +54,8 @@ export class Coordinate {
     }
 
     /**
-     * @param {import("../../Decimal/Decimal").Decimal} cos
-     * @param {import("../../Decimal/Decimal").Decimal} sin
+     * @param {Decimal} cos
+     * @param {Decimal} sin
      */
     rotate(cos, sin) {
         const x = cos.mul(this.#p.x).minus(sin.mul(this.#p.y)).toDecimalPlaces(this.#editor.roundNumber + 1);
@@ -72,8 +71,8 @@ export class Coordinate {
     }
 
     /**
-     * @param {import("../../Decimal/Decimal").Decimal} x
-     * @param {import("../../Decimal/Decimal").Decimal} y
+     * @param {Decimal} x
+     * @param {Decimal} y
      */
     scale(x, y) {
         this.#p.x = this.#p.x.mul(x);
