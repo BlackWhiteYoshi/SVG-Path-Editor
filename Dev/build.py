@@ -6,7 +6,7 @@
 # python (obviously)
 # html-minifier-terser
 # css-minify
-# webpack
+# rspack
 
 
 import subprocess
@@ -18,7 +18,7 @@ os.chdir("JS")
 print("--> creating optimized JS...")
 
 # create js file
-result = subprocess.run(["npx", "webpack", "build", "--config", "webpack.config.prod.js"], shell = True, check = True, capture_output = True, text = True)
+result = subprocess.run(["npx", "rspack", "build", "--config", "rspack.config.prod.js"], shell = True, check = True, capture_output = True, text = True)
 print("Output:\n", result.stdout)
 
 # read in js file
