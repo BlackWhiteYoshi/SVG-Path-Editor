@@ -1,37 +1,17 @@
 import { SvgPathEditor } from "../SvgPathEditor";
 import { Point } from "./Point";
-import Decimal from "../../Decimal/Decimal";
+import Decimal, { Coordinate } from "../../Decimal/Decimal";
 
 export class ArgumentA {
-    /** @type {Point} */
-    #radius;
+    #radius: Point;
+    #xAxisRotation: Decimal;
+    #largeArcFlag: boolean;
+    #sweepFlag: boolean;
+    #position: Point;
 
-    /** @type {import("../../Decimal/Decimal").Decimal} */
-    #xAxisRotation
+    #editor: SvgPathEditor;
 
-    /** @type {boolean} */
-    #largeArcFlag
-
-    /** @type {boolean} */
-    #sweepFlag
-
-    /** @type {Point} */
-    #position;
-
-
-    /** @type {SvgPathEditor} */
-    #editor;
-
-
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} radius
-     * @param {import("../../Decimal/Decimal").Decimal} xAxisRotation
-     * @param {boolean} largeArcFlag
-     * @param {boolean} sweepFlag
-     * @param {import("../../Decimal/Decimal").Coordinate} position
-     * @param {SvgPathEditor} editor
-     */
-    constructor(radius, xAxisRotation, largeArcFlag, sweepFlag, position, editor) {
+    constructor(radius: Coordinate, xAxisRotation: Decimal, largeArcFlag: boolean, sweepFlag: boolean, position: Coordinate, editor: SvgPathEditor) {
         this.#radius = new Point(radius, editor);
         this.#xAxisRotation = xAxisRotation;
         this.#largeArcFlag = largeArcFlag;
@@ -41,56 +21,32 @@ export class ArgumentA {
     }
 
 
-    /** @returns {string} */
-    get capitalLetter() { return 'A'; }
+    get capitalLetter(): string { return 'A'; }
 
-    /** @returns {string} */
-    get smallLetter() { return 'a'; }
+    get smallLetter(): string { return 'a'; }
 
 
-    /**
-     * @param {import("../../Decimal/Decimal").Decimal} x
-     * @param {import("../../Decimal/Decimal").Decimal} y
-     */
-    translate(x, y) {
+    translate(x: Decimal, y: Decimal) {
         this.#position.translate(x, y);
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Decimal} cos
-     * @param {import("../../Decimal/Decimal").Decimal} sin
-     */
-    rotate(cos, sin) {
+    rotate(cos: Decimal, sin: Decimal) {
         this.#position.rotate(cos, sin);
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Decimal} x
-     * @param {import("../../Decimal/Decimal").Decimal} y
-     */
-    scale(x, y) {
+    scale(x: Decimal, y: Decimal) {
         this.#radius.scale(x, y);
         this.#position.scale(x, y);
     }
 
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} current
-     * @param {import("../../Decimal/Decimal").Coordinate} start
-     * @returns {string}
-     */
-    toAbsoluteCoordinates(current, start) {
+    toAbsoluteCoordinates(current: Coordinate, start: Coordinate): string {
         current.x = this.#position.x;
         current.y = this.#position.y;
         return `A ${this.#radius.x} ${this.#radius.y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.x} ${this.#position.y} `;
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} current
-     * @param {import("../../Decimal/Decimal").Coordinate} start
-     * @returns {string}
-     */
-    toRelativeCoordinates(current, start) {
+    toRelativeCoordinates(current: Coordinate, start: Coordinate): string {
         const result = `a ${this.#radius.x} ${this.#radius.y} ${this.#xAxisRotation} ${this.#largeArcFlag ? 1 : 0} ${this.#sweepFlag ? 1 : 0} ${this.#position.x.minus(current.x)} ${this.#position.y.minus(current.y)} `;
 
         current.x = this.#position.x;
@@ -99,21 +55,10 @@ export class ArgumentA {
         return result;
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} current
-     * @param {import("../../Decimal/Decimal").Coordinate} start
-     * @param {{argument: string, hasDot: boolean}} last
-     * @returns {string}
-     */
-    toMinCoordinates(current, start, last) {
-        /** @type {boolean} */
-        let lastHasDot;
+    toMinCoordinates(current: Coordinate, start: Coordinate, last: { argument: string, hasDot: boolean; }): string {
+        let lastHasDot: boolean;
 
-        /**
-         * @param {Decimal} value
-         * @returns {string}
-         */
-        function ToMinimizedString(value) {
+        function ToMinimizedString(value: Decimal): string {
             if (value.isZero()) {
                 lastHasDot = false;
                 return " 0";
@@ -212,18 +157,16 @@ export class ArgumentA {
     roundCoordinates() {
         this.#radius.round();
         this.#xAxisRotation = this.#xAxisRotation.toDecimalPlaces(this.#editor.roundNumber + 1);
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#inputDiv).firstChild).value = this.#xAxisRotation.toString();
+        (this.#inputDiv!.firstChild as HTMLInputElement).value = this.#xAxisRotation.toString();
         this.#position.round();
     }
 
 
     // input elements
 
-    /** @type {HTMLDivElement | null} */
-    #inputDiv = null;
+    #inputDiv: HTMLDivElement | null = null;
 
-    /** @param {HTMLDivElement} argumentDiv */
-    createInputs(argumentDiv) {
+    createInputs(argumentDiv: HTMLDivElement) {
         this.#radius.createInputPair(argumentDiv);
 
         this.#inputDiv = document.createElement("div");
@@ -256,21 +199,19 @@ export class ArgumentA {
         this.#position.createInputPair(argumentDiv);
     }
 
-    /** */
     removeInputs() {
         this.#position.removeInputPair();
 
-        const parantDiv = /** @type {HTMLDivElement} */(/** @type {HTMLDivElement} */(this.#inputDiv).parentElement);
-        parantDiv.removeChild(/** @type {ChildNode} */(parantDiv.lastChild));
+        const parantDiv = this.#inputDiv!.parentElement!;
+        parantDiv.removeChild(parantDiv.lastChild!);
         this.#inputDiv = null;
 
         this.#radius.removeInputPair();
     }
 
-    /** @param {Event} event */
-    #onInputXAxisRotation = (event) => {
+    #onInputXAxisRotation = (event: Event) => {
         try {
-            this.#xAxisRotation = new Decimal(/** @type {HTMLInputElement} */(event.target).value);
+            this.#xAxisRotation = new Decimal((event.target as HTMLInputElement).value);
             this.#editor.renderPath();
         }
         catch {
@@ -278,32 +219,27 @@ export class ArgumentA {
         }
     };
 
-    /** @param {Event} event */
-    #onInputLargeArcFlag = (event) => {
-        this.#largeArcFlag = /** @type {HTMLInputElement} */(event.target).checked;
+    #onInputLargeArcFlag = (event: Event) => {
+        this.#largeArcFlag = (event.target as HTMLInputElement).checked;
         this.#editor.renderPath();
     };
 
-    /** @param {Event} event */
-    #onInputSweepFlag = (event) => {
-        this.#sweepFlag = /** @type {HTMLInputElement} */(event.target).checked;
+    #onInputSweepFlag = (event: Event) => {
+        this.#sweepFlag = (event.target as HTMLInputElement).checked;
         this.#editor.renderPath();
     }
 
 
-    /** */
     createDots() {
         this.#radius.createDot(1);
         this.#position.createDot(0);
     }
 
-    /** */
     updateDotsRadius() {
         this.#radius.updateDotRadius();
         this.#position.updateDotRadius();
     }
 
-    /** */
     removeDots() {
         this.#position.removeDot();
         this.#radius.removeDot();

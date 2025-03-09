@@ -1,85 +1,63 @@
-import Decimal from "../../Decimal/Decimal";
+import Decimal, { Coordinate } from "../../Decimal/Decimal";
 import { SvgPathEditor } from "../SvgPathEditor";
 
 export class Point {
-    /** "p" is shorthand for point
-     * @type {import("../../Decimal/Decimal").Coordinate}
-     **/
-    #p;
+    /** "p" is shorthand for point */
+    #p: Coordinate;
 
-    /** @type {SvgPathEditor} */
-    #editor;
+    #editor: SvgPathEditor;
 
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} p
-     * @param {SvgPathEditor} editor
-     */
-    constructor(p, editor) {
+    constructor(p: Coordinate, editor: SvgPathEditor) {
         this.#p = p;
         this.#editor = editor;
     }
 
-    /** @returns {Decimal} */
-    get x() { return this.#p.x; }
+    get x(): Decimal { return this.#p.x; }
 
-    /** @returns {Decimal} */
-    get y() { return this.#p.y; }
+    get y(): Decimal { return this.#p.y; }
 
 
-    /** */
     round() {
         this.#p.x = this.#p.x.toDecimalPlaces(this.#editor.roundNumber + 1);
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).firstChild).value = this.#p.x.toString();
+        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
         this.#pDot?.setAttribute("cx", this.#p.x.toString());
         this.#p.y = this.#p.y.toDecimalPlaces(this.#editor.roundNumber + 1);
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).lastChild).value = this.#p.y.toString();
+        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
         this.#pDot?.setAttribute("cy", this.#p.y.toString());
     }
 
 
-    /**
-     * @param {Decimal} x
-     * @param {Decimal} y
-     */
-    translate(x, y) {
+    translate(x: Decimal, y: Decimal) {
         this.#p.x = this.#p.x.plus(x);
         this.#p.y = this.#p.y.plus(y);
 
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).firstChild).value = this.#p.x.toString();
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).lastChild).value = this.#p.y.toString();
+        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
+        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
 
         this.#pDot?.setAttribute("cx", this.#p.x.toString());
         this.#pDot?.setAttribute("cy", this.#p.y.toString());
     }
 
-    /**
-     * @param {Decimal} cos
-     * @param {Decimal} sin
-     */
-    rotate(cos, sin) {
+    rotate(cos: Decimal, sin: Decimal) {
         const x = cos.mul(this.#p.x).minus(sin.mul(this.#p.y)).toDecimalPlaces(this.#editor.roundNumber + 1);
         const y = sin.mul(this.#p.x).plus(cos.mul(this.#p.y)).toDecimalPlaces(this.#editor.roundNumber + 1);
         this.#p.x = x;
         this.#p.y = y;
 
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).firstChild).value = this.#p.x.toString();
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).lastChild).value = this.#p.y.toString();
+        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
+        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
 
         this.#pDot?.setAttribute("cx", this.#p.x.toString());
         this.#pDot?.setAttribute("cy", this.#p.y.toString());
     }
 
-    /**
-     * @param {Decimal} x
-     * @param {Decimal} y
-     */
-    scale(x, y) {
+    scale(x: Decimal, y: Decimal) {
         this.#p.x = this.#p.x.mul(x);
         this.#p.y = this.#p.y.mul(y);
 
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).firstChild).value = this.#p.x.toString();
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).lastChild).value = this.#p.y.toString();
+        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
+        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
 
         this.#pDot?.setAttribute("cx", this.#p.x.toString());
         this.#pDot?.setAttribute("cy", this.#p.y.toString());
@@ -89,8 +67,7 @@ export class Point {
 
     // input elements
 
-    /** @type {HTMLDivElement | null} */
-    #pDiv = null;
+    #pDiv: HTMLDivElement | null = null;
 
 
     /** component:
@@ -98,9 +75,8 @@ export class Point {
      *     <input>
      *     <input>
      * </div>
-     * @param {HTMLDivElement} argumentDiv
      */
-    createInputPair(argumentDiv) {
+    createInputPair(argumentDiv: HTMLDivElement) {
         this.#pDiv = document.createElement("div");
         {
             const inputX = document.createElement("input");
@@ -122,16 +98,15 @@ export class Point {
 
     /** */
     removeInputPair() {
-        const parantDiv = /** @type {HTMLDivElement} */(/** @type {HTMLDivElement} */(this.#pDiv).parentElement);
-        parantDiv.removeChild(/** @type {ChildNode} */(parantDiv.lastChild));
+        const parantDiv = this.#pDiv!.parentElement as HTMLDivElement;
+        parantDiv.removeChild(parantDiv.lastChild as ChildNode);
         this.#pDiv = null;
     }
 
 
-    /** @param {Event} event */
-    #oninputX = (event) => {
+    #oninputX = (event: Event) => {
         try {
-            this.#p.x = new Decimal(/** @type {HTMLInputElement} */(event.target).value);
+            this.#p.x = new Decimal((event.target as HTMLInputElement).value);
             this.#pDot?.setAttribute("cx", this.#p.x.toString());
             this.#editor.renderPath();
         }
@@ -140,10 +115,9 @@ export class Point {
         }
     }
 
-    /** @param {Event} event */
-    #oninputY = (event) => {
+    #oninputY = (event: Event) => {
         try {
-            this.#p.y = new Decimal(/** @type {HTMLInputElement} */(event.target).value);
+            this.#p.y = new Decimal((event.target as HTMLInputElement).value);
             this.#pDot?.setAttribute("cy", this.#p.y.toString());
             this.#editor.renderPath();
         }
@@ -156,15 +130,13 @@ export class Point {
 
     // circle dots
 
-    /** @type {SVGCircleElement | null} */
-    #pDot = null;
+    #pDot: SVGCircleElement | null = null;
 
 
     /** component:
      * <circle cx="p.x" cy="p.y" r="circleRadius" fill="color" stroke-width="0" style="cursor: grab|grabbing;" />
-     * @param {number} colorIndex
      */
-    createDot(colorIndex) {
+    createDot(colorIndex: number) {
         const colors = ["blue", "green", "yellow", "red", "purple", "brown"];
         const color = colors[colorIndex % colors.length]
 
@@ -183,17 +155,15 @@ export class Point {
         this.#editor.svg.appendChild(this.#pDot);
     }
 
-    /** */
     updateDotRadius() {
         this.#pDot?.setAttribute("r", this.#editor.circleRadius.toString());
     }
 
-    /** */
     removeDot() {
         if (this.#pDot === null)
             return;
 
-        const parantSvg = /** @type {HTMLElement} */(this.#pDot.parentElement);
+        const parantSvg = this.#pDot.parentElement!;
         parantSvg.removeChild(this.#pDot);
 
         this.#pDot = null;
@@ -202,44 +172,40 @@ export class Point {
 
     #dragCoordinateX = 0;
     #dragCoordinateY = 0;
-    /** @type {import("../../Decimal/Decimal").Coordinate} */
-    #dragPoint = { x: new Decimal(0), y: new Decimal(0) };
+    #dragPoint: Coordinate = { x: new Decimal(0), y: new Decimal(0) };
 
-    /** @param {PointerEvent} event */
-    #dotPointerDown = (event) => {
-        /** @type {SVGCircleElement} */(this.#pDot).style.cursor = "grabbing";
-        /** @type {SVGCircleElement} */(this.#pDot).setPointerCapture(event.pointerId);
+    #dotPointerDown = (event: PointerEvent) => {
+        this.#pDot!.style.cursor = "grabbing";
+        this.#pDot!.setPointerCapture(event.pointerId);
 
         this.#dragCoordinateX = event.clientX;
         this.#dragPoint.x = this.#p.x;
         this.#dragCoordinateY = event.clientY;
         this.#dragPoint.y = this.#p.y;
 
-        /** @type {SVGCircleElement} */(this.#pDot).onpointermove = this.#dotPointerMove;
-        /** @type {SVGCircleElement} */(this.#pDot).onpointerup = this.#dotPointerUp;
+        this.#pDot!.onpointermove = this.#dotPointerMove;
+        this.#pDot!.onpointerup = this.#dotPointerUp;
     }
 
-    /** @param {PointerEvent} event */
-    #dotPointerMove = (event) => {
+    #dotPointerMove = (event: PointerEvent) => {
         const dx = event.clientX - this.#dragCoordinateX;
         const dy = event.clientY - this.#dragCoordinateY;
 
         this.#p.x = this.#dragPoint.x.plus(new Decimal(dx / this.#editor.svg.clientWidth * this.#editor.viewBoxWidth)).toDecimalPlaces(this.#editor.roundNumber + 1);
         this.#p.y = this.#dragPoint.y.plus(new Decimal(dy / this.#editor.svg.clientHeight * this.#editor.viewBoxHeight)).toDecimalPlaces(this.#editor.roundNumber + 1);
         
-        /** @type {SVGCircleElement} */(this.#pDot).setAttribute("cx", this.#p.x.toString());
-        /** @type {SVGCircleElement} */(this.#pDot).setAttribute("cy", this.#p.y.toString());
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).firstChild).value = this.#p.x.toString();
-        /** @type {HTMLInputElement} */(/** @type {HTMLDivElement} */(this.#pDiv).lastChild).value = this.#p.y.toString();
+        this.#pDot!.setAttribute("cx", this.#p.x.toString());
+        this.#pDot!.setAttribute("cy", this.#p.y.toString());
+        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
+        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
         this.#editor.renderPath();
     }
 
-    /** @param {PointerEvent} event */
-    #dotPointerUp = (event) => {
-        /** @type {SVGCircleElement} */(this.#pDot).style.cursor = "grab";
-        /** @type {SVGCircleElement} */(this.#pDot).releasePointerCapture(event.pointerId);
+    #dotPointerUp = (event: PointerEvent) => {
+        this.#pDot!.style.cursor = "grab";
+        this.#pDot!.releasePointerCapture(event.pointerId);
 
-        /** @type {SVGCircleElement} */(this.#pDot).onpointermove = null;
-        /** @type {SVGCircleElement} */(this.#pDot).onpointerup = null;
+        this.#pDot!.onpointermove = null;
+        this.#pDot!.onpointerup = null;
     }
 }

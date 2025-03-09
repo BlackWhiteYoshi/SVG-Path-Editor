@@ -1,55 +1,56 @@
 import Decimal from "../Decimal/Decimal";
+import { Argument } from "./Arguments/Argument";
 import { ArgumentA } from "./Arguments/ArgumentA";
 import { ArgumentZ } from "./Arguments/ArgumentZ";
 import { CoordinatesArgument } from "./Arguments/CoordinatesArgument";
 
 export class SvgPathEditor {
-    #lightRadio = /** @type {HTMLInputElement} */ (document.getElementById("light-radio"));
-    #darkRadio = /** @type {HTMLInputElement} */ (document.getElementById("dark-radio"));
+    #lightRadio = document.getElementById("light-radio") as HTMLInputElement;
+    #darkRadio = document.getElementById("dark-radio") as HTMLInputElement;
 
 
-    #readInInput = /** @type {HTMLInputElement} */ (document.getElementById("read-in-input"));
-    #readInButton = /** @type {HTMLButtonElement} */ (document.getElementById("read-in-button"));
-    #parsingErrorLabel = /** @type {HTMLDivElement} */ (document.getElementById("parsing-error"));
+    #readInInput = document.getElementById("read-in-input") as HTMLInputElement;
+    #readInButton = document.getElementById("read-in-button") as HTMLButtonElement;
+    #parsingErrorLabel = document.getElementById("parsing-error") as HTMLDivElement;
 
-    #outputAbsoluteLabel = /** @type {HTMLLabelElement} */ (document.getElementById("output-absolute"));
-    #outputRelativeLabel = /** @type {HTMLLabelElement} */ (document.getElementById("output-relative"));
-    #outputMinLabel = /** @type {HTMLLabelElement} */ (document.getElementById("output-min"));
-    #copyAbsoluteButton = /** @type {HTMLButtonElement} */ (document.getElementById("output-absolute-button"));
-    #copyRelativeButton = /** @type {HTMLButtonElement} */ (document.getElementById("output-relative-button"));
-    #copyMinButton = /** @type {HTMLButtonElement} */ (document.getElementById("output-min-button"));
+    #outputAbsoluteLabel = document.getElementById("output-absolute") as HTMLLabelElement;
+    #outputRelativeLabel = document.getElementById("output-relative") as HTMLLabelElement;
+    #outputMinLabel = document.getElementById("output-min") as HTMLLabelElement;
+    #copyAbsoluteButton = document.getElementById("output-absolute-button") as HTMLButtonElement;
+    #copyRelativeButton = document.getElementById("output-relative-button") as HTMLButtonElement;
+    #copyMinButton = document.getElementById("output-min-button") as HTMLButtonElement;
 
-    #viewBoxXInput = /** @type {HTMLInputElement} */ (document.getElementById("view-box-x"));
-    #viewBoxYInput = /** @type {HTMLInputElement} */ (document.getElementById("view-box-y"));
-    #viewBoxWidthInput = /** @type {HTMLInputElement} */ (document.getElementById("view-box-width"));
-    #viewBoxHeightInput = /** @type {HTMLInputElement} */ (document.getElementById("view-box-height"));
+    #viewBoxXInput = document.getElementById("view-box-x") as HTMLInputElement;
+    #viewBoxYInput = document.getElementById("view-box-y") as HTMLInputElement;
+    #viewBoxWidthInput = document.getElementById("view-box-width") as HTMLInputElement;
+    #viewBoxHeightInput = document.getElementById("view-box-height") as HTMLInputElement;
 
-    #argumentListDiv = /** @type {HTMLDivElement} */ (document.getElementById("argument-list"));
-    #circleRadiusInput = /** @type {HTMLInputElement} */ (document.getElementById("circle-radius-input"));
-    #decimalPointUpButton = /** @type {HTMLButtonElement} */ (document.getElementById("decimal-point-up"));
-    #decimalPointDownButton = /** @type {HTMLButtonElement} */ (document.getElementById("decimal-point-down"));
-    #pointsRoundingLabel = /** @type {HTMLLabelElement} */ (document.getElementById("points-rounding"));
-    #pointsRoundingExecuteButton = /** @type {HTMLButtonElement} */ (document.getElementById("decimal-point-round"));
-    #argumentAddButton = /** @type {HTMLButtonElement} */ (document.getElementById("argument-add-button"));
-    #argumentCountLabel = /** @type {HTMLLabelElement} */ (document.getElementById("argument-count"));
-    #argumentRemoveButton = /** @type {HTMLButtonElement} */ (document.getElementById("argument-remove-button"));
+    #argumentListDiv = document.getElementById("argument-list") as HTMLDivElement;
+    #circleRadiusInput = document.getElementById("circle-radius-input") as HTMLInputElement;
+    #decimalPointUpButton = document.getElementById("decimal-point-up") as HTMLButtonElement;
+    #decimalPointDownButton = document.getElementById("decimal-point-down") as HTMLButtonElement;
+    #pointsRoundingLabel = document.getElementById("points-rounding") as HTMLLabelElement;
+    #pointsRoundingExecuteButton = document.getElementById("decimal-point-round") as HTMLButtonElement;
+    #argumentAddButton = document.getElementById("argument-add-button") as HTMLButtonElement;
+    #argumentCountLabel = document.getElementById("argument-count") as HTMLLabelElement;
+    #argumentRemoveButton = document.getElementById("argument-remove-button") as HTMLButtonElement;
 
-    #styleListDiv = /** @type {HTMLDivElement} */ (document.getElementById("style-list"));
-    #styleAddButton = /** @type {HTMLButtonElement} */ (document.getElementById("style-add-button"));
-    #styleCountLabel = /** @type {HTMLLabelElement} */ (document.getElementById("style-count"));
-    #styleRemoveButton = /** @type {HTMLButtonElement} */ (document.getElementById("style-remove-button"));
+    #styleListDiv = document.getElementById("style-list") as HTMLDivElement;
+    #styleAddButton = document.getElementById("style-add-button") as HTMLButtonElement;
+    #styleCountLabel = document.getElementById("style-count") as HTMLLabelElement;
+    #styleRemoveButton = document.getElementById("style-remove-button") as HTMLButtonElement;
 
-    #translateXInput = /** @type {HTMLInputElement} */ (document.getElementById("translate-x"));
-    #translateYInput = /** @type {HTMLInputElement} */ (document.getElementById("translate-y"));
-    #translateButton = /** @type {HTMLButtonElement} */ (document.getElementById("translate-button"));
-    #rotateInput = /** @type {HTMLInputElement} */ (document.getElementById("rotate"));
-    #rotateButton = /** @type {HTMLButtonElement} */ (document.getElementById("rotate-button"));
-    #scaleXInput = /** @type {HTMLInputElement} */ (document.getElementById("scale-x"));
-    #scaleYInput = /** @type {HTMLInputElement} */ (document.getElementById("scale-y"));
-    #scaleButton = /** @type {HTMLButtonElement} */ (document.getElementById("scale-button"));
+    #translateXInput = document.getElementById("translate-x") as HTMLInputElement;
+    #translateYInput = document.getElementById("translate-y") as HTMLInputElement;
+    #translateButton = document.getElementById("translate-button") as HTMLButtonElement;
+    #rotateInput = document.getElementById("rotate") as HTMLInputElement;
+    #rotateButton = document.getElementById("rotate-button") as HTMLButtonElement;
+    #scaleXInput = document.getElementById("scale-x") as HTMLInputElement;
+    #scaleYInput = document.getElementById("scale-y") as HTMLInputElement;
+    #scaleButton = document.getElementById("scale-button") as HTMLButtonElement;
 
-    svg = /** @type {HTMLElement} */ (document.getElementById("svg"));
-    svgPath = /** @type {HTMLElement} */ (document.getElementById("svg-path"));
+    svg = document.getElementById("svg") as unknown as SVGElement;
+    svgPath = document.getElementById("svg-path") as unknown as SVGPathElement;
 
 
     viewBoxX = -8;
@@ -61,11 +62,9 @@ export class SvgPathEditor {
     roundNumber = 2;
 
 
-    /** @type {import("Arguments/Argument").Argument[]} */
-    #argumentList = [];
+    #argumentList: Argument[] = [];
 
-    /** @param {import("Arguments/Argument").Argument} argument */
-    #addArgument(argument) {
+    #addArgument(argument: Argument) {
         this.#argumentList.push(argument);
         this.#argumentCountLabel.textContent = this.#argumentList.length.toString();
 
@@ -192,31 +191,28 @@ export class SvgPathEditor {
         this.#argumentListDiv.appendChild(div);
     }
 
-    /** */
     #removeArgument() {
         if (this.#argumentList.length === 0)
             return;
 
-        const argument = /** @type {import("Arguments/Argument").Argument} */(this.#argumentList.pop());
+        const argument = this.#argumentList.pop()!;
         this.#argumentCountLabel.textContent = this.#argumentList.length.toString();
 
-        this.#argumentListDiv.removeChild(/** @type {ChildNode} */(this.#argumentListDiv.lastChild));
+        this.#argumentListDiv.removeChild(this.#argumentListDiv.lastChild!);
         argument.removeDots();
     }
 
 
-    /** @type {{key: string, value: string}[]} */
-    #styleList = [];
+    #styleList: { key: string, value: string; }[] = [];
 
-    /** @param {{key: string, value: string}} style */
-    #addStyle(style) {
+    #addStyle(style: { key: string, value: string; }) {
         this.#styleList.push(style);
         this.#styleCountLabel.textContent = this.#styleList.length.toString();
 
         const inputKey = document.createElement("input");
         inputKey.value = style.key;
         inputKey.oninput = (event) => {
-            style.key = /** @type {HTMLInputElement} */(event.target).value;
+            style.key = (event.target as HTMLInputElement).value;
             this.renderPath();
         }
         this.#styleListDiv.appendChild(inputKey);
@@ -224,13 +220,12 @@ export class SvgPathEditor {
         const inputValue = document.createElement("input");
         inputValue.value = style.value;
         inputValue.oninput = (event) => {
-            style.value = /** @type {HTMLInputElement} */(event.target).value;
+            style.value = (event.target as HTMLInputElement).value;
             this.renderPath();
         }
         this.#styleListDiv.appendChild(inputValue);
     }
 
-    /** */
     #removeStyle() {
         if (this.#styleList.length === 0)
             return;
@@ -239,11 +234,10 @@ export class SvgPathEditor {
         this.#styleCountLabel.textContent = this.#styleList.length.toString();
 
         for (let i = 0; i < 2; i++)
-            this.#styleListDiv.removeChild(/** @type {ChildNode} */(this.#styleListDiv.lastChild));
+            this.#styleListDiv.removeChild(this.#styleListDiv.lastChild!);
     }
 
 
-    /** */
     constructor() {
         const theme = localStorage.getItem("theme");
         if (theme !== null)
@@ -305,7 +299,6 @@ export class SvgPathEditor {
 
 
 
-    /** */
     #onReadInPath = () => {
         this.#parsingErrorLabel.style.display = "none";
         this.#parsingErrorLabel.textContent = "";
@@ -369,8 +362,7 @@ export class SvgPathEditor {
         let startX = new Decimal(0);
         let startY = new Decimal(0);
         let lastArgument = '';
-        /** @type {import("Arguments/Argument").Argument[]} */
-        const result = [];
+        const result: Argument[] = [];
 
         while (input.length > parseIndex && input[parseIndex] !== '"') {
             switch (input[parseIndex++]) {
@@ -467,13 +459,11 @@ export class SvgPathEditor {
                 return;
 
 
-            /** */
             function parse_M() {
                 originX = new Decimal(0);
                 originY = new Decimal(0);
                 parse_m();
             }
-            /** */
             function parse_m() {
                 originX = originX.plus(parseNumber());
                 originY = originY.plus(parseNumber());
@@ -482,48 +472,40 @@ export class SvgPathEditor {
                 result.push(CoordinatesArgument.newM({ x: new Decimal(originX), y: new Decimal(originY) }, me));
             }
 
-            /** */
             function parse_H() {
                 originX = new Decimal(0);
                 parse_h();
             }
-            /** */
             function parse_h() {
                 originX = originX.plus(parseNumber());
                 result.push(CoordinatesArgument.newL({ x: new Decimal(originX), y: new Decimal(originY) }, me));
             }
 
-            /** */
             function parse_V() {
                 originY = new Decimal(0);
                 parse_v();
             }
-            /** */
             function parse_v() {
                 originY = originY.plus(parseNumber());
                 result.push(CoordinatesArgument.newL({ x: new Decimal(originX), y: new Decimal(originY) }, me));
             }
 
-            /** */
             function parse_L() {
                 originX = new Decimal(0);
                 originY = new Decimal(0);
                 parse_l();
             }
-            /** */
             function parse_l() {
                 originX = originX.plus(parseNumber());
                 originY = originY.plus(parseNumber());
                 result.push(CoordinatesArgument.newL({ x: new Decimal(originX), y: new Decimal(originY) }, me));
             }
 
-            /** */
             function parse_Q() {
                 originX = new Decimal(0);
                 originY = new Decimal(0);
                 parse_q();
             }
-            /** */
             function parse_q() {
                 const x1 = originX.plus(parseNumber());
                 const y1 = originY.plus(parseNumber());
@@ -532,26 +514,22 @@ export class SvgPathEditor {
                 result.push(CoordinatesArgument.newQ({ x: new Decimal(x1), y: new Decimal(y1) }, { x: new Decimal(originX), y: new Decimal(originY) }, me));
             }
 
-            /** */
             function parse_T() {
                 originX = new Decimal(0);
                 originY = new Decimal(0);
                 parse_t();
             }
-            /** */
             function parse_t() {
                 originX = originX.plus(parseNumber());
                 originY = originY.plus(parseNumber());
                 result.push(CoordinatesArgument.newT({ x: new Decimal(originX), y: new Decimal(originY) }, me));
             }
 
-            /** */
             function parse_C() {
                 originX = new Decimal(0);
                 originY = new Decimal(0);
                 parse_c();
             }
-            /** */
             function parse_c() {
                 const x1 = originX.plus(parseNumber());
                 const y1 = originY.plus(parseNumber());
@@ -562,13 +540,11 @@ export class SvgPathEditor {
                 result.push(CoordinatesArgument.newC({ x: new Decimal(x1), y: new Decimal(y1) }, { x: new Decimal(x2), y: new Decimal(y2) }, { x: new Decimal(originX), y: new Decimal(originY) }, me));
             }
 
-            /** */
             function parse_S() {
                 originX = new Decimal(0);
                 originY = new Decimal(0);
                 parse_s();
             }
-            /** */
             function parse_s() {
                 const x1 = originX.plus(parseNumber());
                 const y1 = originY.plus(parseNumber());
@@ -577,13 +553,11 @@ export class SvgPathEditor {
                 result.push(CoordinatesArgument.newS({ x: new Decimal(x1), y: new Decimal(y1) }, { x: new Decimal(originX), y: new Decimal(originY) }, me));
             }
 
-            /** */
             function parse_A() {
                 originX = new Decimal(0);
                 originY = new Decimal(0);
                 parse_a();
             }
-            /** */
             function parse_a() {
                 const radiusX = parseNumber();
                 const radiusY = parseNumber();
@@ -596,8 +570,7 @@ export class SvgPathEditor {
             }
 
 
-            /** @returns {Decimal} */
-            function parseNumber() {
+            function parseNumber(): Decimal {
                 while (true) {
                     if (input.length <= parseIndex || input[parseIndex] == '"') {
                         renderError(`Failed parsing number at position ${parseIndex + 1}`);
@@ -654,8 +627,7 @@ export class SvgPathEditor {
                 }
             }
 
-            /** @returns {boolean} */
-            function parseFlag() {
+            function parseFlag(): boolean {
                 while (true) {
                     if (input.length <= parseIndex || input[parseIndex] == '"') {
                         renderError(`Failed parsing number at position ${parseIndex + 1}`);
@@ -697,8 +669,7 @@ export class SvgPathEditor {
         this.renderPath();
 
 
-        /** @param {string} errorMessage */
-        function renderError(errorMessage) {
+        function renderError(errorMessage: string) {
             if (me.#parsingErrorLabel.style.display === "block")
                 return;
             me.#parsingErrorLabel.style.display = "block";
@@ -706,23 +677,19 @@ export class SvgPathEditor {
         }
     }
 
-    /** */
     #onCopyToClipboardAbsolute = () => {
-        navigator.clipboard.writeText(/** @type {string} */(this.#outputAbsoluteLabel.textContent));
+        navigator.clipboard.writeText(this.#outputAbsoluteLabel.textContent!);
     }
 
-    /** */
     #onCopyToClipboardRelative = () => {
-        navigator.clipboard.writeText(/** @type {string} */(this.#outputRelativeLabel.textContent));
+        navigator.clipboard.writeText(this.#outputRelativeLabel.textContent!);
     }
 
-    /** */
     #onCopyToClipboardMin = () => {
-        navigator.clipboard.writeText(/** @type {string} */(this.#outputMinLabel.textContent));
+        navigator.clipboard.writeText(this.#outputMinLabel.textContent!);
     }
 
 
-    /** */
     #onViewBoxX = () => {
         const viewBoxValue = parseFloat(this.#viewBoxXInput.value);
         if (isNaN(viewBoxValue))
@@ -732,7 +699,6 @@ export class SvgPathEditor {
         this.renderSvgViewBox();
     }
 
-    /** */
     #onViewBoxY = () => {
         const viewBoxValue = parseFloat(this.#viewBoxYInput.value);
         if (isNaN(viewBoxValue))
@@ -742,7 +708,6 @@ export class SvgPathEditor {
         this.renderSvgViewBox();
     }
 
-    /** */
     #onViewBoxWidth = () => {
         const viewBoxValue = parseFloat(this.#viewBoxWidthInput.value);
         if (isNaN(viewBoxValue))
@@ -752,7 +717,6 @@ export class SvgPathEditor {
         this.renderSvgViewBox();
     }
 
-    /** */
     #onViewBoxHeight = () => {
         const viewBoxValue = parseFloat(this.#viewBoxHeightInput.value);
         if (isNaN(viewBoxValue))
@@ -763,7 +727,6 @@ export class SvgPathEditor {
     }
 
 
-    /** */
     #onCircleRadius = () => {
         try {
             this.circleRadius = new Decimal(this.#circleRadiusInput.value);
@@ -776,7 +739,6 @@ export class SvgPathEditor {
     }
 
 
-    /** */
     #onDecimalPointUp = () => {
         if (this.roundNumber >= 6)
             return;
@@ -785,7 +747,6 @@ export class SvgPathEditor {
         this.#pointsRoundingLabel.textContent = this.roundNumber.toString();
     }
 
-    /** */
     #onDecimalPointDown = () => {
         if (this.roundNumber <= 1)
             return;
@@ -794,7 +755,6 @@ export class SvgPathEditor {
         this.#pointsRoundingLabel.textContent = this.roundNumber.toString();
     }
     
-    /** */
     #onPointsRoundingExecute = () => {
         for (const argument of this.#argumentList)
             argument.roundCoordinates();
@@ -803,13 +763,11 @@ export class SvgPathEditor {
     }
 
 
-    /** */
     #onArgumentAdd = () => {
         this.#addArgument(CoordinatesArgument.newM({ x: new Decimal(0), y: new Decimal(0) }, this));
         this.renderPath();
     }
 
-    /** */
     #onArgumentRemove = () => {
         if (this.#argumentList.length === 0)
             return;
@@ -819,12 +777,10 @@ export class SvgPathEditor {
     }
 
 
-    /** */
     #onStyleAdd = () => {
         this.#addStyle({ key: "", value: "" });
     }
 
-    /** */
     #onStyleRemove = () => {
         if (this.#styleList.length === 0)
             return;
@@ -834,7 +790,6 @@ export class SvgPathEditor {
     }
 
 
-    /** */
     #onTranslate = () => {
         try {
             const x = new Decimal(this.#translateXInput.value);
@@ -850,7 +805,6 @@ export class SvgPathEditor {
         this.renderPath();
     }
 
-    /** */
     #onRotate = () => {
         const rotation = parseFloat(this.#rotateInput.value);
         if (isNaN(rotation))
@@ -877,7 +831,6 @@ export class SvgPathEditor {
         this.renderPath();
     }
 
-    /** */
     #onScale = () => {
         try {
             const x = new Decimal(this.#scaleXInput.value);
@@ -902,11 +855,7 @@ export class SvgPathEditor {
 
     /** updates all attributes of the "path" element and updates the output labels */
     renderPath = () => {
-        /**
-         * @param {(argument: import("Arguments/Argument").Argument) => string} argumentToString
-         * @returns {string}
-         **/
-        const createPath = (argumentToString) => {
+        const createPath = (argumentToString: (argument: Argument) => string): string => {
             let path = `<path d="`;
 
             for (const argument of this.#argumentList)

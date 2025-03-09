@@ -1,123 +1,67 @@
 import { SvgPathEditor } from "../SvgPathEditor";
 import { Point } from "./Point";
-import Decimal from "../../Decimal/Decimal";
+import Decimal, { Coordinate } from "../../Decimal/Decimal";
 
 export class CoordinatesArgument {
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate
-     * @param {SvgPathEditor} editor
-     */
-    static newM(coordinate, editor) {
+    static newM(coordinate: Coordinate, editor: SvgPathEditor) {
         return new CoordinatesArgument('M', 'm', [coordinate], editor);
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate
-     * @param {SvgPathEditor} editor
-     */
-    static newL(coordinate, editor) {
+    static newL(coordinate: Coordinate, editor: SvgPathEditor) {
         return new CoordinatesArgument('L', 'l', [coordinate], editor);
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate1
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate
-     * @param {SvgPathEditor} editor
-     */
-    static newQ(coordinate1, coordinate, editor) {
+    static newQ(coordinate1: Coordinate, coordinate: Coordinate, editor: SvgPathEditor) {
         return new CoordinatesArgument('Q', 'q', [coordinate1, coordinate], editor);
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate
-     * @param {SvgPathEditor} editor
-     */
-    static newT(coordinate, editor) {
+    static newT(coordinate: Coordinate, editor: SvgPathEditor) {
         return new CoordinatesArgument('T', 't', [coordinate], editor);
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate1
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate2
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate
-     * @param {SvgPathEditor} editor
-     */
-    static newC(coordinate1, coordinate2, coordinate, editor) {
+    static newC(coordinate1: Coordinate, coordinate2: Coordinate, coordinate: Coordinate, editor: SvgPathEditor) {
         return new CoordinatesArgument('C', 'c', [coordinate1, coordinate2, coordinate], editor);
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate1
-     * @param {import("../../Decimal/Decimal").Coordinate} coordinate
-     * @param {SvgPathEditor} editor
-     */
-    static newS(coordinate1, coordinate, editor) {
+    static newS(coordinate1: Coordinate, coordinate: Coordinate, editor: SvgPathEditor) {
         return new CoordinatesArgument('S', 's', [coordinate1, coordinate], editor);
     }
 
 
 
-    /** @type {Point[]} */
-    #coordinates;
+    #coordinates: Point[];
 
-    /** @type {string} */
-    #capitalLetter;
-    /** @returns {string} */
-    get capitalLetter() { return this.#capitalLetter }
+    #capitalLetter: string;
+    get capitalLetter(): string { return this.#capitalLetter }
 
-    /** @type {string} */
-    #smallLetter;
-    /** @returns {string} */
-    get smallLetter() { return this.#smallLetter; }
+    #smallLetter: string;
+    get smallLetter(): string { return this.#smallLetter; }
 
 
-    /**
-     * @param {string} capitalLetter
-     * @param {string} smallLetter
-     * @param {import("../../Decimal/Decimal").Coordinate[]} coordinates
-     * @param {SvgPathEditor} editor
-     */
-    constructor(capitalLetter, smallLetter, coordinates, editor) {
+    constructor(capitalLetter: string, smallLetter: string, coordinates: Coordinate[], editor: SvgPathEditor) {
         this.#capitalLetter = capitalLetter;
         this.#smallLetter = smallLetter;
         this.#coordinates = coordinates.map((coordinate) => new Point(coordinate, editor));
     }
 
 
-    /**
-     * @param {import("../../Decimal/Decimal").Decimal} x
-     * @param {import("../../Decimal/Decimal").Decimal} y
-     */
-    translate(x, y) {
+    translate(x: Decimal, y: Decimal) {
         for (const coordinate of this.#coordinates)
             coordinate.translate(x, y);
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Decimal} cos
-     * @param {import("../../Decimal/Decimal").Decimal} sin
-     */
-    rotate(cos, sin) {
+    rotate(cos: Decimal, sin: Decimal) {
         for (const coordinate of this.#coordinates)
             coordinate.rotate(cos, sin);
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Decimal} x
-     * @param {import("../../Decimal/Decimal").Decimal} y
-     */
-    scale(x, y) {
+    scale(x: Decimal, y: Decimal) {
         for (const coordinate of this.#coordinates)
             coordinate.scale(x, y);
     }
 
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} current
-     * @param {import("../../Decimal/Decimal").Coordinate} start
-     * @returns {string}
-     */
-    toAbsoluteCoordinates(current, start) {
+    toAbsoluteCoordinates(current: Coordinate, start: Coordinate): string {
         if (this.#capitalLetter === 'L' && this.#coordinates[0].y.equals(current.y)) {
             current.x = this.#coordinates[0].x;
             return `H ${this.#coordinates[0].x} `;
@@ -144,12 +88,7 @@ export class CoordinatesArgument {
         return result;
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} current
-     * @param {import("../../Decimal/Decimal").Coordinate} start
-     * @returns {string}
-     */
-    toRelativeCoordinates(current, start) {
+    toRelativeCoordinates(current: Coordinate, start: Coordinate): string {
         if (this.#capitalLetter === 'L') {
             if (this.#coordinates[0].y.equals(current.y)) {
                 const result = `h ${this.#coordinates[0].x.minus(current.x)} `;
@@ -180,21 +119,10 @@ export class CoordinatesArgument {
         return result;
     }
 
-    /**
-     * @param {import("../../Decimal/Decimal").Coordinate} current
-     * @param {import("../../Decimal/Decimal").Coordinate} start
-     * @param {{argument: string, hasDot: boolean}} last
-     * @returns {string}
-     */
-    toMinCoordinates(current, start, last) {
-        /** @type {boolean} */
-        let lastHasDot;
+    toMinCoordinates(current: Coordinate, start: Coordinate, last: { argument: string, hasDot: boolean; }): string {
+        let lastHasDot: boolean;
 
-        /**
-          * @param {Decimal} value
-          * @returns {string}
-          */
-        function ToMinimizedString(value) {
+        function ToMinimizedString(value: Decimal): string {
             if (value.isZero()) {
                 lastHasDot = false;
                 return " 0";
@@ -349,32 +277,27 @@ export class CoordinatesArgument {
     }
 
 
-    /** @param {HTMLDivElement} argumentDiv */
-    createInputs(argumentDiv) {
+    createInputs(argumentDiv: HTMLDivElement) {
         for (let i = 0; i < this.#coordinates.length; i++)
             this.#coordinates[i].createInputPair(argumentDiv);
     }
 
-    /** */
     removeInputs() {
         for (let i = this.#coordinates.length - 1; i >= 0; i--)
             this.#coordinates[i].removeInputPair();
     }
 
 
-    /** */
     createDots() {
         for (let i = this.#coordinates.length - 1, j = 0; i >= 0; i--, j++)
             this.#coordinates[i].createDot(j);
     }
 
-    /** */
     updateDotsRadius() {
         for (const coordinate of this.#coordinates)
             coordinate.updateDotRadius();
     }
 
-    /** */
     removeDots() {
         for (let i = 0; i < this.#coordinates.length; i++)
             this.#coordinates[i].removeDot();
