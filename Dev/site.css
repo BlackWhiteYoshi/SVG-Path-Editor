@@ -1,38 +1,46 @@
 * { box-sizing: border-box; }
 
-html {
+:root {
     --background-color-light: #DDD;
     --background-color-dark: #222;
     --foreground-color-max-light: #000;
     --foreground-color-max-dark: #FFF;
+    
+    
+    --foreground-color: light-dark(#222, #EEE);
+    --foreground-color-strong: light-dark(#111, #EAEAEA);
+    --foreground-color-max: light-dark(var(--foreground-color-max-light), var(--foreground-color-max-dark));
+
+    --background-color: light-dark(var(--background-color-light), var(--background-color-dark));
+    --background-color-strong: light-dark(#EEE, #1A1A1A);
+    --background-color-max: light-dark(#FFF, #000);
+
+    --error-color: light-dark(#D22, #F44);
 }
 
 html:has(#light-radio:checked) {
-    --foreground-color: #222;
-    --foreground-color-strong: #111;
-    --foreground-color-max: var(--foreground-color-max-light);
-
-    --background-color: var(--background-color-light);
-    --background-color-strong: #EEE;
-    --background-color-max: #FFF;
-
-    --error-color: #D22;
+    color-scheme: light;
 }
 
 html:has(#dark-radio:checked) {
-    --foreground-color: #EEE;
-    --foreground-color-strong: #EAEAEA;
-    --foreground-color-max: var(--foreground-color-max-dark);
-
-    --background-color: var(--background-color-dark);
-    --background-color-strong: #1A1A1A;
-    --background-color-max: #000;
-
-    --error-color: #F44;
+    color-scheme: dark;
 }
 
 
+html {
+    font-family: system-ui;
+    interpolate-size: allow-keywords;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+        scroll-behavior: smooth;
+    }
+}
+
 body {
+    min-height: 100vh;
     margin: 0;
     padding: 2%;
     color: var(--foreground-color);
@@ -49,6 +57,11 @@ body {
         opacity: 1;
         scale: 1;
     }
+}
+
+button, select, input, textarea {
+    font-family: inherit;
+    font-size: 0.9rem;
 }
 
 
@@ -163,18 +176,22 @@ select {
 
 #grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr;
     gap: 2em;
-}
 
-@media (max-width: 1000px) {
-    #grid {
+    @media (max-width: 1000px) {
         grid-template-columns: 1fr;
     }
 }
 
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #view-box {
-    margin-left: 0;
+    margin-inline: 0;
 
     & > div {
         display: flex;
@@ -201,7 +218,7 @@ select {
 }
 
 #arguments {
-    margin-left: 0;
+    margin-inline: 0;
 
     & > #argument-list {
         display: grid;
@@ -260,12 +277,11 @@ select {
             align-items: center;
 
             & > label {
-                font-size: 0.7em;
+                font-size: 0.7rem;
             }
 
             & > input {
                 width: 4em;
-                font-size: 0.9em;
                 padding: 0.2em 0.6em;
                 text-align: center;
             }
@@ -278,7 +294,7 @@ select {
             align-items: center;
 
             & > label {
-                font-size: 0.7em;
+                font-size: 0.7rem;
             }
 
             & > div {
@@ -340,7 +356,7 @@ select {
             & > button {
                 width: 2em;
                 height: 2em;
-                font-size: 1.2em;
+                font-size: 1.2rem;
                 padding: 0 10px;
                 margin: 0;
                 border-radius: 50%;
@@ -356,6 +372,7 @@ select {
 }
 
 #styles {
+    margin-inline: 0;
     max-width: 450px;
 
     display: flex;
@@ -383,7 +400,7 @@ select {
         & > button {
             width: 2em;
             height: 2em;
-            font-size: 1.2em;
+            font-size: 1.2rem;
             padding: 0 10px;
             margin: 0;
             border-radius: 50%;
@@ -392,17 +409,17 @@ select {
 }
 
 #transform {
+    margin-inline: 0;
     max-width: 350px;
 
     display: grid;
     grid-template-columns: 1fr 1fr auto;
     gap: 1em;
     align-items: center;
+}
 
-    & > button {
-        witdh: 100%;
-        padding: 0.8em 1.2em    
-    }
+#svg {
+    max-height: 100vh;
 }
 
 
@@ -423,10 +440,12 @@ select {
 }
 
 
-button:not(:disabled) { cursor: pointer; }
+button:not(:disabled) {
+    cursor: pointer;
+}
 
 .btn-main {
-    padding: 0.5em 1em;
+    padding: 0.4em 0.8em;
     border: 0.125em outset #EEE;
     border-radius: 0.25em;
     color: #FFF;
@@ -451,7 +470,7 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .btn-deny {
-    padding: 0.5em 1em;
+    padding: 0.4em 0.8em;
     border: 0.125em outset #EEE;
     border-radius: 0.25em;
     color: #FFF;
