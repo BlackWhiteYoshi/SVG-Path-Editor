@@ -227,9 +227,6 @@ export class SvgPathEditor {
     }
 
     #removeStyle() {
-        if (this.#styleList.length === 0)
-            return;
-
         this.#styleList.pop();
         this.#styleCountLabel.textContent = this.#styleList.length.toString();
 
@@ -322,7 +319,7 @@ export class SvgPathEditor {
         if (input.length <= 5 || input[5] !== ' ')
             return renderError("At position 6: ' ' expected");
         if (input.length <= 6)
-            return renderError("At position 7: 'd' or 'i' expected")
+            return renderError("At position 7: 'd' or 'i' expected");
 
         // 'id="..." '
         let parseIndex = 6;
@@ -338,7 +335,7 @@ export class SvgPathEditor {
             do {
                 if (input.length <= parseIndex)
                     return renderError(`At position ${input.length + 1}: ending " expected`);
-            } while (input[parseIndex++] !== '"')
+            } while (input[parseIndex++] !== '"');
 
             if (input.length <= parseIndex || input[parseIndex] !== ' ')
                 return renderError(`At position ${parseIndex + 1}: ' ' expected`);
@@ -572,13 +569,13 @@ export class SvgPathEditor {
 
             function parseNumber(): Decimal {
                 while (true) {
-                    if (input.length <= parseIndex || input[parseIndex] == '"') {
+                    if (input.length <= parseIndex || input[parseIndex] === '"') {
                         renderError(`Failed parsing number at position ${parseIndex + 1}`);
                         return new Decimal(0);
                     }
                     if (input[parseIndex] !== ' ' && input[parseIndex] !== ',')
                         break;
-                    parseIndex++
+                    parseIndex++;
                 }
 
                 const startIndex = parseIndex;
@@ -629,7 +626,7 @@ export class SvgPathEditor {
 
             function parseFlag(): boolean {
                 while (true) {
-                    if (input.length <= parseIndex || input[parseIndex] == '"') {
+                    if (input.length <= parseIndex || input[parseIndex] === '"') {
                         renderError(`Failed parsing number at position ${parseIndex + 1}`);
                         return false;
                     }
@@ -643,17 +640,15 @@ export class SvgPathEditor {
                     return false;
                 }
 
-                let result;
                 switch (input[parseIndex++]) {
-                    case '0': result = false; break;
-                    case '1': result = true; break;
+                    case '0':
+                        return false;
+                    case '1':
+                        return true;
                     default:
                         renderError(`At position ${parseIndex}: '0' or '1' expected`);
-                        result = false;
-                        break;
+                        return false;
                 }
-
-                return result;
             }
         }
 

@@ -2214,24 +2214,23 @@ var ArgumentA = /*#__PURE__*/ function() {
                     var result = value.toString();
                     if (value.greaterThan(0)) {
                         if (value.lessThan(1)) {
-                            result = result.substring(1); // remove leading ' 0'
-                            if (!lastHasDot) result = " ".concat(result) // add space
-                            ;
+                            result = result.substring(1); // remove leading '0'
+                            if (!lastHasDot) result = " ".concat(result); // add space
                         } else result = " ".concat(result); // add space
                     } else {
                         // is minus -> no space
-                        if (value.greaterThan(-1)) result = "-".concat(result.substring(2)) // remove second character: '0'
-                        ;
+                        if (value.greaterThan(-1)) result = "-".concat(result.substring(2)); // remove second character: '0'
                     }
                     lastHasDot = result.includes('.');
                     return result;
                 }
+                lastHasDot = last.hasDot;
                 var radiusX_minimized = ToMinimizedString(_class_private_field_get(this, _radius).x);
                 var radiusY_minimized = ToMinimizedString(_class_private_field_get(this, _radius).y);
                 var xAxisRotation_minimized = ToMinimizedString(_class_private_field_get(this, _xAxisRotation));
                 var largeArcFlagString = " ".concat(_class_private_field_get(this, _largeArcFlag) ? 1 : 0);
                 var sweepFlagString = " ".concat(_class_private_field_get(this, _sweepFlag) ? 1 : 0);
-                lastHasDot = last.hasDot;
+                last.hasDot = lastHasDot;
                 var resultBig = "";
                 {
                     if (last.argument !== 'A') resultBig += 'A';
@@ -2241,12 +2240,11 @@ var ArgumentA = /*#__PURE__*/ function() {
                     resultBig += xAxisRotation_minimized;
                     resultBig += largeArcFlagString;
                     resultBig += sweepFlagString;
-                    last.hasDot = false;
+                    lastHasDot = false;
                     resultBig += ToMinimizedString(_class_private_field_get(this, _position).x);
                     resultBig += ToMinimizedString(_class_private_field_get(this, _position).y);
                 }
                 var lastHasDotBig = lastHasDot;
-                lastHasDot = last.hasDot;
                 var resultSmall = "";
                 {
                     if (last.argument !== 'a') resultSmall += 'a';
@@ -2256,7 +2254,7 @@ var ArgumentA = /*#__PURE__*/ function() {
                     resultSmall += xAxisRotation_minimized;
                     resultSmall += largeArcFlagString;
                     resultSmall += sweepFlagString;
-                    last.hasDot = false;
+                    lastHasDot = false;
                     resultSmall += ToMinimizedString(_class_private_field_get(this, _position).x.minus(current.x));
                     resultSmall += ToMinimizedString(_class_private_field_get(this, _position).y.minus(current.y));
                 }
@@ -2789,7 +2787,7 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                     var result = value.toString();
                     if (value.greaterThan(0)) {
                         if (value.lessThan(1)) {
-                            result = result.substring(1); // remove leading ' 0'
+                            result = result.substring(1); // remove leading '0'
                             if (!lastHasDot) result = " ".concat(result); // add space
                         } else result = " ".concat(result); // add space
                     } else {
@@ -3811,7 +3809,7 @@ var SvgPathEditor = function SvgPathEditor() {
                 };
                 var parseNumber = function parseNumber() {
                     while(true){
-                        if (input.length <= parseIndex || input[parseIndex] == '"') {
+                        if (input.length <= parseIndex || input[parseIndex] === '"') {
                             renderError("Failed parsing number at position ".concat(parseIndex + 1));
                             return new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0);
                         }
@@ -3845,7 +3843,7 @@ var SvgPathEditor = function SvgPathEditor() {
                 };
                 var parseFlag = function parseFlag() {
                     while(true){
-                        if (input.length <= parseIndex || input[parseIndex] == '"') {
+                        if (input.length <= parseIndex || input[parseIndex] === '"') {
                             renderError("Failed parsing number at position ".concat(parseIndex + 1));
                             return false;
                         }
@@ -3856,20 +3854,15 @@ var SvgPathEditor = function SvgPathEditor() {
                         renderError("At position ".concat(parseIndex, ": '0' or '1' expected"));
                         return false;
                     }
-                    var result;
                     switch(input[parseIndex++]){
                         case '0':
-                            result = false;
-                            break;
+                            return false;
                         case '1':
-                            result = true;
-                            break;
+                            return true;
                         default:
                             renderError("At position ".concat(parseIndex, ": '0' or '1' expected"));
-                            result = false;
-                            break;
+                            return false;
                     }
-                    return result;
                 };
                 switch(input[parseIndex++]){
                     case ' ':
@@ -4738,7 +4731,6 @@ function addStyle(style) {
     _class_private_field_get(this, _styleListDiv).appendChild(inputValue);
 }
 function removeStyle() {
-    if (_class_private_field_get(this, _styleList).length === 0) return;
     _class_private_field_get(this, _styleList).pop();
     _class_private_field_get(this, _styleCountLabel).textContent = _class_private_field_get(this, _styleList).length.toString();
     for(var i = 0; i < 2; i++)_class_private_field_get(this, _styleListDiv).removeChild(_class_private_field_get(this, _styleListDiv).lastChild);

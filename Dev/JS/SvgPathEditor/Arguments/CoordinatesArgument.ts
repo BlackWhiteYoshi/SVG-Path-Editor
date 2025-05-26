@@ -97,7 +97,7 @@ export class CoordinatesArgument {
             }
 
             if (this.#coordinates[0].x.equals(current.x)) {
-                const result = `v ${this.#coordinates[0].y.minus(current.y)} `
+                const result = `v ${this.#coordinates[0].y.minus(current.y)} `;
                 current.y = this.#coordinates[0].y;
                 return result;
             }
@@ -131,7 +131,7 @@ export class CoordinatesArgument {
             let result = value.toString();
             if (value.greaterThan(0)) {
                 if (value.lessThan(1)) {
-                    result = result.substring(1);   // remove leading ' 0'
+                    result = result.substring(1);   // remove leading '0'
                     if (!lastHasDot)
                         result = ` ${result}`; // add space
                 }

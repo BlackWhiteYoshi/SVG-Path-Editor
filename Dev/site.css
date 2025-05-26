@@ -303,7 +303,7 @@ select {
                 gap: 0.4em;
                 align-items: center;
 
-                button {
+                & > button {
                     width: 27px;
                     height: 22px;
                     font-size: 10px;
@@ -335,7 +335,7 @@ select {
                     }
                 }
                 
-                #decimal-point-round {
+                & > button:last-child {
                     width: 49px;
                     margin-left: 5px;
                     padding: 0;
@@ -420,6 +420,7 @@ select {
 
 #svg {
     max-height: 100vh;
+    background-color: var(--background-color-max);
 }
 
 

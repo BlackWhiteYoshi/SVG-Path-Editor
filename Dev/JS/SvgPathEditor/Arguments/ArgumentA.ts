@@ -67,9 +67,9 @@ export class ArgumentA {
             let result = value.toString();
             if (value.greaterThan(0)) {
                 if (value.lessThan(1)) {
-                    result = result.substring(1);   // remove leading ' 0'
+                    result = result.substring(1);   // remove leading '0'
                     if (!lastHasDot)
-                        result = ` ${result}` // add space
+                        result = ` ${result}`; // add space
                 }
                 else
                     result = ` ${result}`; // add space
@@ -77,21 +77,21 @@ export class ArgumentA {
             else {
                 // is minus -> no space
                 if (value.greaterThan(-1))
-                    result = `-${result.substring(2)}` // remove second character: '0'
+                    result = `-${result.substring(2)}`; // remove second character: '0'
             }
 
             lastHasDot = result.includes('.');
             return result;
         }
 
-
+        lastHasDot = last.hasDot;
         const radiusX_minimized = ToMinimizedString(this.#radius.x);
         const radiusY_minimized = ToMinimizedString(this.#radius.y);
-        const xAxisRotation_minimized = ToMinimizedString(this.#xAxisRotation);
+        const xAxisRotation_minimized = ToMinimizedString(this.#xAxisRotation);        
         const largeArcFlagString = ` ${this.#largeArcFlag ? 1 : 0}`;
         const sweepFlagString = ` ${this.#sweepFlag ? 1 : 0}`;
+        last.hasDot = lastHasDot;
 
-        lastHasDot = last.hasDot;
         let resultBig = "";
         {
             if (last.argument !== 'A')
@@ -108,14 +108,13 @@ export class ArgumentA {
 
             resultBig += largeArcFlagString;
             resultBig += sweepFlagString;
-            last.hasDot = false;
+            lastHasDot = false;
 
             resultBig += ToMinimizedString(this.#position.x);
             resultBig += ToMinimizedString(this.#position.y);
         }
         const lastHasDotBig = lastHasDot;
 
-        lastHasDot = last.hasDot;
         let resultSmall = "";
         {
             if (last.argument !== 'a')
@@ -132,7 +131,7 @@ export class ArgumentA {
 
             resultSmall += largeArcFlagString;
             resultSmall += sweepFlagString;
-            last.hasDot = false;
+            lastHasDot = false;
 
             resultSmall += ToMinimizedString(this.#position.x.minus(current.x));
             resultSmall += ToMinimizedString(this.#position.y.minus(current.y));

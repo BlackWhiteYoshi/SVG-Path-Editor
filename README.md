@@ -42,7 +42,7 @@ The script has some dependencies to run correctly:
 - python (obviously)
 - html-minifier-terser
 - css-minify
-- webpack
+- rspack
 
 It creates an optimized and minified js build, a minified css build, inlines both in the html and lastly minifies the html
 and saves it as "svg-path-editor.html".

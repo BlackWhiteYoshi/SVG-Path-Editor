@@ -17,7 +17,7 @@ export interface Argument {
 
     toRelativeCoordinates(current: Coordinate, start: Coordinate): string;
 
-    toMinCoordinates(current: Coordinate, start: Coordinate, last: {argument: string, hasDot: boolean})
+    toMinCoordinates(current: Coordinate, start: Coordinate, last: { argument: string, hasDot: boolean }): string;
 
     roundCoordinates(): void;
 
