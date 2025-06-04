@@ -1,12 +1,11 @@
-const path = require("path");
+import path from "path";
 
-module.exports = {
-    mode: "production",
-    devtool: false,
+export default {
+    mode: "development",
     entry: "./main.ts",
     output: {
-        path: path.resolve(__dirname, ".."),
-        filename: "temp.js"
+        path: path.resolve(import.meta.dirname, ".."),
+        filename: "site.js"
     },
     module: {
         rules: [
@@ -27,7 +26,8 @@ module.exports = {
     },
     resolve: {
         extensions: [".js", ".ts"]
-    }
+    },
+    watch: true
 };
 
-// npx rspack build --config webpack.config.prod.js
+// npx rspack build

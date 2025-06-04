@@ -23,7 +23,7 @@ process.chdir("JS");
 console.log("--> creating optimized JS...");
 
 // create js file
-const jsResult = execSync("npx rspack build --config rspack.config.prod.js", execSyncParameter);
+const jsResult = execSync("npx rspack build --config rspack.config.prod.mjs", execSyncParameter);
 console.log("Output:\n", jsResult);
 
 // read in js file
