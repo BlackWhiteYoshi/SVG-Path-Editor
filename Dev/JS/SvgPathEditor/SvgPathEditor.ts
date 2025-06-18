@@ -367,8 +367,8 @@ export class SvgPathEditor {
                 case ',':
                     break;
 
-                case 'M': parse_M(); lastArgument = 'M'; break;
-                case 'm': parse_m(); lastArgument = 'm'; break;
+                case 'M': parse_M(); lastArgument = 'L'; break;
+                case 'm': parse_m(); lastArgument = 'l'; break;
 
                 case 'H': parse_H(); lastArgument = 'H'; break;
                 case 'h': parse_h(); lastArgument = 'h'; break;
@@ -418,8 +418,8 @@ export class SvgPathEditor {
                     switch (lastArgument) {
                         case '': return renderError(`At position ${parseIndex}: unexpected '${input[parseIndex]}'`);
 
-                        case 'M': parse_M(); lastArgument = 'M'; break;
-                        case 'm': parse_m(); lastArgument = 'm'; break;
+                        case 'M': parse_M(); lastArgument = 'L'; break;
+                        case 'm': parse_m(); lastArgument = 'l'; break;
 
                         case 'H': parse_H(); lastArgument = 'H'; break;
                         case 'h': parse_h(); lastArgument = 'h'; break;

@@ -260,12 +260,12 @@ export class CoordinatesArgument {
         }
 
         if (resultBig.length <= resultSmall.length) {
-            last.argument = this.#capitalLetter;
+            last.argument = this.#capitalLetter === 'M' ? 'L' : this.#capitalLetter;
             last.hasDot = lastHasDotBig;
             return resultBig;
         }
         else {
-            last.argument = this.#smallLetter;
+            last.argument = this.#smallLetter === 'm' ? 'l' : this.#smallLetter;
             last.hasDot = lastHasDotSmall;
             return resultSmall;
         }

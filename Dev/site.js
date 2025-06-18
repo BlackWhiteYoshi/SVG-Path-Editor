@@ -2918,11 +2918,11 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                     start.y = current.y;
                 }
                 if (resultBig2.length <= resultSmall2.length) {
-                    last.argument = _class_private_field_get(this, _capitalLetter);
+                    last.argument = _class_private_field_get(this, _capitalLetter) === 'M' ? 'L' : _class_private_field_get(this, _capitalLetter);
                     last.hasDot = lastHasDotBig2;
                     return resultBig2;
                 } else {
-                    last.argument = _class_private_field_get(this, _smallLetter);
+                    last.argument = _class_private_field_get(this, _smallLetter) === 'm' ? 'l' : _class_private_field_get(this, _smallLetter);
                     last.hasDot = lastHasDotSmall2;
                     return resultSmall2;
                 }
@@ -3870,11 +3870,11 @@ var SvgPathEditor = function SvgPathEditor() {
                         break;
                     case 'M':
                         parse_M();
-                        lastArgument = 'M';
+                        lastArgument = 'L';
                         break;
                     case 'm':
                         parse_m();
-                        lastArgument = 'm';
+                        lastArgument = 'l';
                         break;
                     case 'H':
                         parse_H();
@@ -3966,11 +3966,11 @@ var SvgPathEditor = function SvgPathEditor() {
                                     return renderError("At position ".concat(parseIndex, ": unexpected '").concat(input[parseIndex], "'"));
                                 case 'M':
                                     parse_M();
-                                    lastArgument = 'M';
+                                    lastArgument = 'L';
                                     break;
                                 case 'm':
                                     parse_m();
-                                    lastArgument = 'm';
+                                    lastArgument = 'l';
                                     break;
                                 case 'H':
                                     parse_H();
