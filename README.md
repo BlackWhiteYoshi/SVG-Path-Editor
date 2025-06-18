@@ -35,11 +35,10 @@ The files for generating the js file are located in the "/Dev/JS/" folder.
 ### Production Build
 
 The production build is the file "svg-path-editor.html". It is self-contained.
-It is build using the "/Dev/build.py" script.
+It is build using the "/Dev/build.js" script.
 
 The script has some dependencies to run correctly:
 
-- python (obviously)
 - html-minifier-terser
 - css-minify
 - rspack
