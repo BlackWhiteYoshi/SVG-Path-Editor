@@ -28,7 +28,7 @@ The development build is located in the "/Dev/" folder. The build has 3 files:
 - site.css
 - site.js
 
-The html and css file are written directly without any extra tooling. The js file however is produced using *webpack*.
+The html and css file are written directly without any extra tooling. The js file however is produced using *rspack*.
 The files for generating the js file are located in the "/Dev/JS/" folder.
 
 

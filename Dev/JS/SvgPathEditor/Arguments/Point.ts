@@ -20,10 +20,10 @@ export class Point {
 
     round() {
         this.#p.x = this.#p.x.toDecimalPlaces(this.#editor.roundNumber + 1);
-        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
+        (<HTMLInputElement>this.#pDiv!.firstChild).value = this.#p.x.toString();
         this.#pDot?.setAttribute("cx", this.#p.x.toString());
         this.#p.y = this.#p.y.toDecimalPlaces(this.#editor.roundNumber + 1);
-        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
+        (<HTMLInputElement>this.#pDiv!.lastChild).value = this.#p.y.toString();
         this.#pDot?.setAttribute("cy", this.#p.y.toString());
     }
 
@@ -32,8 +32,8 @@ export class Point {
         this.#p.x = this.#p.x.plus(x);
         this.#p.y = this.#p.y.plus(y);
 
-        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
-        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
+        (<HTMLInputElement>this.#pDiv!.firstChild).value = this.#p.x.toString();
+        (<HTMLInputElement>this.#pDiv!.lastChild).value = this.#p.y.toString();
 
         this.#pDot?.setAttribute("cx", this.#p.x.toString());
         this.#pDot?.setAttribute("cy", this.#p.y.toString());
@@ -45,8 +45,8 @@ export class Point {
         this.#p.x = x;
         this.#p.y = y;
 
-        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
-        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
+        (<HTMLInputElement>this.#pDiv!.firstChild).value = this.#p.x.toString();
+        (<HTMLInputElement>this.#pDiv!.lastChild).value = this.#p.y.toString();
 
         this.#pDot?.setAttribute("cx", this.#p.x.toString());
         this.#pDot?.setAttribute("cy", this.#p.y.toString());
@@ -56,8 +56,8 @@ export class Point {
         this.#p.x = this.#p.x.mul(x);
         this.#p.y = this.#p.y.mul(y);
 
-        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
-        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
+        (<HTMLInputElement>this.#pDiv!.firstChild).value = this.#p.x.toString();
+        (<HTMLInputElement>this.#pDiv!.lastChild).value = this.#p.y.toString();
 
         this.#pDot?.setAttribute("cx", this.#p.x.toString());
         this.#pDot?.setAttribute("cy", this.#p.y.toString());
@@ -98,15 +98,15 @@ export class Point {
 
     /** */
     removeInputPair() {
-        const parantDiv = this.#pDiv!.parentElement as HTMLDivElement;
-        parantDiv.removeChild(parantDiv.lastChild as ChildNode);
+        const parantDiv = <HTMLDivElement>this.#pDiv!.parentElement;
+        parantDiv.lastChild!.remove();
         this.#pDiv = null;
     }
 
 
     #oninputX = (event: Event) => {
         try {
-            this.#p.x = new Decimal((event.target as HTMLInputElement).value);
+            this.#p.x = new Decimal((<HTMLInputElement>event.target).value);
             this.#pDot?.setAttribute("cx", this.#p.x.toString());
             this.#editor.renderPath();
         }
@@ -117,7 +117,7 @@ export class Point {
 
     #oninputY = (event: Event) => {
         try {
-            this.#p.y = new Decimal((event.target as HTMLInputElement).value);
+            this.#p.y = new Decimal((<HTMLInputElement>event.target).value);
             this.#pDot?.setAttribute("cy", this.#p.y.toString());
             this.#editor.renderPath();
         }
@@ -164,7 +164,7 @@ export class Point {
             return;
 
         const parantSvg = this.#pDot.parentElement!;
-        parantSvg.removeChild(this.#pDot);
+        this.#pDot.remove();
 
         this.#pDot = null;
     }
@@ -196,8 +196,8 @@ export class Point {
         
         this.#pDot!.setAttribute("cx", this.#p.x.toString());
         this.#pDot!.setAttribute("cy", this.#p.y.toString());
-        (this.#pDiv!.firstChild as HTMLInputElement).value = this.#p.x.toString();
-        (this.#pDiv!.lastChild as HTMLInputElement).value = this.#p.y.toString();
+        (<HTMLInputElement>this.#pDiv!.firstChild).value = this.#p.x.toString();
+        (<HTMLInputElement>this.#pDiv!.lastChild).value = this.#p.y.toString();
         this.#editor.renderPath();
     }
 

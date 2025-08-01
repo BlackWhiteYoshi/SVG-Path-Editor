@@ -5,52 +5,52 @@ import { ArgumentZ } from "./Arguments/ArgumentZ";
 import { CoordinatesArgument } from "./Arguments/CoordinatesArgument";
 
 export class SvgPathEditor {
-    #lightRadio = document.getElementById("light-radio") as HTMLInputElement;
-    #darkRadio = document.getElementById("dark-radio") as HTMLInputElement;
+    #lightRadio = <HTMLInputElement>document.getElementById("light-radio");
+    #darkRadio = <HTMLInputElement>document.getElementById("dark-radio");
 
 
-    #readInInput = document.getElementById("read-in-input") as HTMLInputElement;
-    #readInButton = document.getElementById("read-in-button") as HTMLButtonElement;
-    #parsingErrorLabel = document.getElementById("parsing-error") as HTMLDivElement;
+    #readInInput = <HTMLInputElement>document.getElementById("read-in-input");
+    #readInButton = <HTMLButtonElement>document.getElementById("read-in-button");
+    #parsingErrorLabel = <HTMLDivElement>document.getElementById("parsing-error");
 
-    #outputAbsoluteLabel = document.getElementById("output-absolute") as HTMLLabelElement;
-    #outputRelativeLabel = document.getElementById("output-relative") as HTMLLabelElement;
-    #outputMinLabel = document.getElementById("output-min") as HTMLLabelElement;
-    #copyAbsoluteButton = document.getElementById("output-absolute-button") as HTMLButtonElement;
-    #copyRelativeButton = document.getElementById("output-relative-button") as HTMLButtonElement;
-    #copyMinButton = document.getElementById("output-min-button") as HTMLButtonElement;
+    #outputAbsoluteLabel = <HTMLLabelElement>document.getElementById("output-absolute");
+    #outputRelativeLabel = <HTMLLabelElement>document.getElementById("output-relative");
+    #outputMinLabel = <HTMLLabelElement>document.getElementById("output-min");
+    #copyAbsoluteButton = <HTMLButtonElement>document.getElementById("output-absolute-button");
+    #copyRelativeButton = <HTMLButtonElement>document.getElementById("output-relative-button");
+    #copyMinButton = <HTMLButtonElement>document.getElementById("output-min-button");
 
-    #viewBoxXInput = document.getElementById("view-box-x") as HTMLInputElement;
-    #viewBoxYInput = document.getElementById("view-box-y") as HTMLInputElement;
-    #viewBoxWidthInput = document.getElementById("view-box-width") as HTMLInputElement;
-    #viewBoxHeightInput = document.getElementById("view-box-height") as HTMLInputElement;
+    #viewBoxXInput = <HTMLInputElement>document.getElementById("view-box-x");
+    #viewBoxYInput = <HTMLInputElement>document.getElementById("view-box-y");
+    #viewBoxWidthInput = <HTMLInputElement>document.getElementById("view-box-width");
+    #viewBoxHeightInput = <HTMLInputElement>document.getElementById("view-box-height");
 
-    #argumentListDiv = document.getElementById("argument-list") as HTMLDivElement;
-    #circleRadiusInput = document.getElementById("circle-radius-input") as HTMLInputElement;
-    #decimalPointUpButton = document.getElementById("decimal-point-up") as HTMLButtonElement;
-    #decimalPointDownButton = document.getElementById("decimal-point-down") as HTMLButtonElement;
-    #pointsRoundingLabel = document.getElementById("points-rounding") as HTMLLabelElement;
-    #pointsRoundingExecuteButton = document.getElementById("decimal-point-round") as HTMLButtonElement;
-    #argumentAddButton = document.getElementById("argument-add-button") as HTMLButtonElement;
-    #argumentCountLabel = document.getElementById("argument-count") as HTMLLabelElement;
-    #argumentRemoveButton = document.getElementById("argument-remove-button") as HTMLButtonElement;
+    #argumentListDiv = <HTMLDivElement>document.getElementById("argument-list");
+    #circleRadiusInput = <HTMLInputElement>document.getElementById("circle-radius-input");
+    #decimalPointUpButton = <HTMLButtonElement>document.getElementById("decimal-point-up");
+    #decimalPointDownButton = <HTMLButtonElement>document.getElementById("decimal-point-down");
+    #pointsRoundingLabel = <HTMLLabelElement>document.getElementById("points-rounding");
+    #pointsRoundingExecuteButton = <HTMLButtonElement>document.getElementById("decimal-point-round");
+    #argumentAddButton = <HTMLButtonElement>document.getElementById("argument-add-button");
+    #argumentCountLabel = <HTMLLabelElement>document.getElementById("argument-count");
+    #argumentRemoveButton = <HTMLButtonElement>document.getElementById("argument-remove-button");
 
-    #styleListDiv = document.getElementById("style-list") as HTMLDivElement;
-    #styleAddButton = document.getElementById("style-add-button") as HTMLButtonElement;
-    #styleCountLabel = document.getElementById("style-count") as HTMLLabelElement;
-    #styleRemoveButton = document.getElementById("style-remove-button") as HTMLButtonElement;
+    #styleListDiv = <HTMLDivElement>document.getElementById("style-list");
+    #styleAddButton = <HTMLButtonElement>document.getElementById("style-add-button");
+    #styleCountLabel = <HTMLLabelElement>document.getElementById("style-count");
+    #styleRemoveButton = <HTMLButtonElement>document.getElementById("style-remove-button");
 
-    #translateXInput = document.getElementById("translate-x") as HTMLInputElement;
-    #translateYInput = document.getElementById("translate-y") as HTMLInputElement;
-    #translateButton = document.getElementById("translate-button") as HTMLButtonElement;
-    #rotateInput = document.getElementById("rotate") as HTMLInputElement;
-    #rotateButton = document.getElementById("rotate-button") as HTMLButtonElement;
-    #scaleXInput = document.getElementById("scale-x") as HTMLInputElement;
-    #scaleYInput = document.getElementById("scale-y") as HTMLInputElement;
-    #scaleButton = document.getElementById("scale-button") as HTMLButtonElement;
+    #translateXInput = <HTMLInputElement>document.getElementById("translate-x");
+    #translateYInput = <HTMLInputElement>document.getElementById("translate-y");
+    #translateButton = <HTMLButtonElement>document.getElementById("translate-button");
+    #rotateInput = <HTMLInputElement>document.getElementById("rotate");
+    #rotateButton = <HTMLButtonElement>document.getElementById("rotate-button");
+    #scaleXInput = <HTMLInputElement>document.getElementById("scale-x");
+    #scaleYInput = <HTMLInputElement>document.getElementById("scale-y");
+    #scaleButton = <HTMLButtonElement>document.getElementById("scale-button");
 
-    svg = document.getElementById("svg") as unknown as SVGElement;
-    svgPath = document.getElementById("svg-path") as unknown as SVGPathElement;
+    svg = <SVGElement><unknown>document.getElementById("svg");
+    svgPath = <SVGPathElement><unknown>document.getElementById("svg-path");
 
 
     viewBoxX = -8;
@@ -198,7 +198,7 @@ export class SvgPathEditor {
         const argument = this.#argumentList.pop()!;
         this.#argumentCountLabel.textContent = this.#argumentList.length.toString();
 
-        this.#argumentListDiv.removeChild(this.#argumentListDiv.lastChild!);
+        this.#argumentListDiv.lastChild!.remove();
         argument.removeDots();
     }
 
@@ -212,7 +212,7 @@ export class SvgPathEditor {
         const inputKey = document.createElement("input");
         inputKey.value = style.key;
         inputKey.oninput = (event) => {
-            style.key = (event.target as HTMLInputElement).value;
+            style.key = (<HTMLInputElement>event.target).value;
             this.renderPath();
         }
         this.#styleListDiv.appendChild(inputKey);
@@ -220,7 +220,7 @@ export class SvgPathEditor {
         const inputValue = document.createElement("input");
         inputValue.value = style.value;
         inputValue.oninput = (event) => {
-            style.value = (event.target as HTMLInputElement).value;
+            style.value = (<HTMLInputElement>event.target).value;
             this.renderPath();
         }
         this.#styleListDiv.appendChild(inputValue);
@@ -231,7 +231,7 @@ export class SvgPathEditor {
         this.#styleCountLabel.textContent = this.#styleList.length.toString();
 
         for (let i = 0; i < 2; i++)
-            this.#styleListDiv.removeChild(this.#styleListDiv.lastChild!);
+            this.#styleListDiv.lastChild!.remove();
     }
 
 

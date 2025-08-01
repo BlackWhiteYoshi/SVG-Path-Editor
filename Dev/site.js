@@ -2317,7 +2317,7 @@ var ArgumentA = /*#__PURE__*/ function() {
             value: function removeInputs() {
                 _class_private_field_get(this, _position).removeInputPair();
                 var parantDiv = _class_private_field_get(this, _inputDiv).parentElement;
-                parantDiv.removeChild(parantDiv.lastChild);
+                parantDiv.lastChild.remove();
                 _class_private_field_set(this, _inputDiv, null);
                 _class_private_field_get(this, _radius).removeInputPair();
             }
@@ -3326,7 +3326,7 @@ var Point = /*#__PURE__*/ function() {
             /** */ key: "removeInputPair",
             value: function removeInputPair() {
                 var parantDiv = _class_private_field_get(this, _pDiv).parentElement;
-                parantDiv.removeChild(parantDiv.lastChild);
+                parantDiv.lastChild.remove();
                 _class_private_field_set(this, _pDiv, null);
             }
         },
@@ -3369,7 +3369,7 @@ var Point = /*#__PURE__*/ function() {
             value: function removeDot() {
                 if (_class_private_field_get(this, _pDot) === null) return;
                 var parantSvg = _class_private_field_get(this, _pDot).parentElement;
-                parantSvg.removeChild(_class_private_field_get(this, _pDot));
+                _class_private_field_get(this, _pDot).remove();
                 _class_private_field_set(this, _pDot, null);
             }
         }
@@ -4708,7 +4708,7 @@ function removeArgument() {
     if (_class_private_field_get(this, _argumentList).length === 0) return;
     var argument = _class_private_field_get(this, _argumentList).pop();
     _class_private_field_get(this, _argumentCountLabel).textContent = _class_private_field_get(this, _argumentList).length.toString();
-    _class_private_field_get(this, _argumentListDiv).removeChild(_class_private_field_get(this, _argumentListDiv).lastChild);
+    _class_private_field_get(this, _argumentListDiv).lastChild.remove();
     argument.removeDots();
 }
 function addStyle(style) {
@@ -4733,7 +4733,7 @@ function addStyle(style) {
 function removeStyle() {
     _class_private_field_get(this, _styleList).pop();
     _class_private_field_get(this, _styleCountLabel).textContent = _class_private_field_get(this, _styleList).length.toString();
-    for(var i = 0; i < 2; i++)_class_private_field_get(this, _styleListDiv).removeChild(_class_private_field_get(this, _styleListDiv).lastChild);
+    for(var i = 0; i < 2; i++)_class_private_field_get(this, _styleListDiv).lastChild.remove();
 }
 
 

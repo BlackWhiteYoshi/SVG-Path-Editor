@@ -156,7 +156,7 @@ export class ArgumentA {
     roundCoordinates() {
         this.#radius.round();
         this.#xAxisRotation = this.#xAxisRotation.toDecimalPlaces(this.#editor.roundNumber + 1);
-        (this.#inputDiv!.firstChild as HTMLInputElement).value = this.#xAxisRotation.toString();
+        (<HTMLInputElement>this.#inputDiv!.firstChild).value = this.#xAxisRotation.toString();
         this.#position.round();
     }
 
@@ -202,7 +202,7 @@ export class ArgumentA {
         this.#position.removeInputPair();
 
         const parantDiv = this.#inputDiv!.parentElement!;
-        parantDiv.removeChild(parantDiv.lastChild!);
+        parantDiv.lastChild!.remove();
         this.#inputDiv = null;
 
         this.#radius.removeInputPair();
@@ -210,7 +210,7 @@ export class ArgumentA {
 
     #onInputXAxisRotation = (event: Event) => {
         try {
-            this.#xAxisRotation = new Decimal((event.target as HTMLInputElement).value);
+            this.#xAxisRotation = new Decimal((<HTMLInputElement>event.target).value);
             this.#editor.renderPath();
         }
         catch {
@@ -219,12 +219,12 @@ export class ArgumentA {
     };
 
     #onInputLargeArcFlag = (event: Event) => {
-        this.#largeArcFlag = (event.target as HTMLInputElement).checked;
+        this.#largeArcFlag = (<HTMLInputElement>event.target).checked;
         this.#editor.renderPath();
     };
 
     #onInputSweepFlag = (event: Event) => {
-        this.#sweepFlag = (event.target as HTMLInputElement).checked;
+        this.#sweepFlag = (<HTMLInputElement>event.target).checked;
         this.#editor.renderPath();
     }
 

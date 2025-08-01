@@ -42,7 +42,7 @@ export class ArgumentZ {
     #dotsVisibleInput: HTMLInputElement | null;
 
     createInputs(argumentDiv: HTMLDivElement) {
-        this.#dotsVisibleInput = argumentDiv.lastChild as HTMLInputElement;
+        this.#dotsVisibleInput = <HTMLInputElement>argumentDiv.lastChild;
         this.#dotsVisibleInput.style.display = "none";
     }
 
