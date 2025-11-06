@@ -5,68 +5,68 @@ import { ArgumentZ } from "./Arguments/ArgumentZ";
 import { CoordinatesArgument } from "./Arguments/CoordinatesArgument";
 
 export class SvgPathEditor {
-    #lightRadio = <HTMLInputElement>document.getElementById("light-radio");
-    #darkRadio = <HTMLInputElement>document.getElementById("dark-radio");
+    private lightRadio = <HTMLInputElement>document.getElementById("light-radio");
+    private darkRadio = <HTMLInputElement>document.getElementById("dark-radio");
 
 
-    #readInInput = <HTMLInputElement>document.getElementById("read-in-input");
-    #readInButton = <HTMLButtonElement>document.getElementById("read-in-button");
-    #parsingErrorLabel = <HTMLDivElement>document.getElementById("parsing-error");
+    private readInInput = <HTMLInputElement>document.getElementById("read-in-input");
+    private readInButton = <HTMLButtonElement>document.getElementById("read-in-button");
+    private parsingErrorLabel = <HTMLDivElement>document.getElementById("parsing-error");
 
-    #outputAbsoluteLabel = <HTMLLabelElement>document.getElementById("output-absolute");
-    #outputRelativeLabel = <HTMLLabelElement>document.getElementById("output-relative");
-    #outputMinLabel = <HTMLLabelElement>document.getElementById("output-min");
-    #copyAbsoluteButton = <HTMLButtonElement>document.getElementById("output-absolute-button");
-    #copyRelativeButton = <HTMLButtonElement>document.getElementById("output-relative-button");
-    #copyMinButton = <HTMLButtonElement>document.getElementById("output-min-button");
+    private outputAbsoluteLabel = <HTMLLabelElement>document.getElementById("output-absolute");
+    private outputRelativeLabel = <HTMLLabelElement>document.getElementById("output-relative");
+    private outputMinLabel = <HTMLLabelElement>document.getElementById("output-min");
+    private copyAbsoluteButton = <HTMLButtonElement>document.getElementById("output-absolute-button");
+    private copyRelativeButton = <HTMLButtonElement>document.getElementById("output-relative-button");
+    private copyMinButton = <HTMLButtonElement>document.getElementById("output-min-button");
 
-    #viewBoxXInput = <HTMLInputElement>document.getElementById("view-box-x");
-    #viewBoxYInput = <HTMLInputElement>document.getElementById("view-box-y");
-    #viewBoxWidthInput = <HTMLInputElement>document.getElementById("view-box-width");
-    #viewBoxHeightInput = <HTMLInputElement>document.getElementById("view-box-height");
+    private viewBoxXInput = <HTMLInputElement>document.getElementById("view-box-x");
+    private viewBoxYInput = <HTMLInputElement>document.getElementById("view-box-y");
+    private viewBoxWidthInput = <HTMLInputElement>document.getElementById("view-box-width");
+    private viewBoxHeightInput = <HTMLInputElement>document.getElementById("view-box-height");
 
-    #argumentListDiv = <HTMLDivElement>document.getElementById("argument-list");
-    #circleRadiusInput = <HTMLInputElement>document.getElementById("circle-radius-input");
-    #decimalPointUpButton = <HTMLButtonElement>document.getElementById("decimal-point-up");
-    #decimalPointDownButton = <HTMLButtonElement>document.getElementById("decimal-point-down");
-    #pointsRoundingLabel = <HTMLLabelElement>document.getElementById("points-rounding");
-    #pointsRoundingExecuteButton = <HTMLButtonElement>document.getElementById("decimal-point-round");
-    #argumentAddButton = <HTMLButtonElement>document.getElementById("argument-add-button");
-    #argumentCountLabel = <HTMLLabelElement>document.getElementById("argument-count");
-    #argumentRemoveButton = <HTMLButtonElement>document.getElementById("argument-remove-button");
+    private argumentListDiv = <HTMLDivElement>document.getElementById("argument-list");
+    private circleRadiusInput = <HTMLInputElement>document.getElementById("circle-radius-input");
+    private decimalPointUpButton = <HTMLButtonElement>document.getElementById("decimal-point-up");
+    private decimalPointDownButton = <HTMLButtonElement>document.getElementById("decimal-point-down");
+    private pointsRoundingLabel = <HTMLLabelElement>document.getElementById("points-rounding");
+    private pointsRoundingExecuteButton = <HTMLButtonElement>document.getElementById("decimal-point-round");
+    private argumentAddButton = <HTMLButtonElement>document.getElementById("argument-add-button");
+    private argumentCountLabel = <HTMLLabelElement>document.getElementById("argument-count");
+    private argumentRemoveButton = <HTMLButtonElement>document.getElementById("argument-remove-button");
 
-    #styleListDiv = <HTMLDivElement>document.getElementById("style-list");
-    #styleAddButton = <HTMLButtonElement>document.getElementById("style-add-button");
-    #styleCountLabel = <HTMLLabelElement>document.getElementById("style-count");
-    #styleRemoveButton = <HTMLButtonElement>document.getElementById("style-remove-button");
+    private styleListDiv = <HTMLDivElement>document.getElementById("style-list");
+    private styleAddButton = <HTMLButtonElement>document.getElementById("style-add-button");
+    private styleCountLabel = <HTMLLabelElement>document.getElementById("style-count");
+    private styleRemoveButton = <HTMLButtonElement>document.getElementById("style-remove-button");
 
-    #translateXInput = <HTMLInputElement>document.getElementById("translate-x");
-    #translateYInput = <HTMLInputElement>document.getElementById("translate-y");
-    #translateButton = <HTMLButtonElement>document.getElementById("translate-button");
-    #rotateInput = <HTMLInputElement>document.getElementById("rotate");
-    #rotateButton = <HTMLButtonElement>document.getElementById("rotate-button");
-    #scaleXInput = <HTMLInputElement>document.getElementById("scale-x");
-    #scaleYInput = <HTMLInputElement>document.getElementById("scale-y");
-    #scaleButton = <HTMLButtonElement>document.getElementById("scale-button");
+    private translateXInput = <HTMLInputElement>document.getElementById("translate-x");
+    private translateYInput = <HTMLInputElement>document.getElementById("translate-y");
+    private translateButton = <HTMLButtonElement>document.getElementById("translate-button");
+    private rotateInput = <HTMLInputElement>document.getElementById("rotate");
+    private rotateButton = <HTMLButtonElement>document.getElementById("rotate-button");
+    private scaleXInput = <HTMLInputElement>document.getElementById("scale-x");
+    private scaleYInput = <HTMLInputElement>document.getElementById("scale-y");
+    private scaleButton = <HTMLButtonElement>document.getElementById("scale-button");
 
-    svg = <SVGElement><unknown>document.getElementById("svg");
-    svgPath = <SVGPathElement><unknown>document.getElementById("svg-path");
-
-
-    viewBoxX = -8;
-    viewBoxY = -8;
-    viewBoxWidth = 16;
-    viewBoxHeight = 16;
-
-    circleRadius = new Decimal(0.2);
-    roundNumber = 2;
+    public svg = <SVGElement><unknown>document.getElementById("svg");
+    public svgPath = <SVGPathElement><unknown>document.getElementById("svg-path");
 
 
-    #argumentList: Argument[] = [];
+    public viewBoxX = -8;
+    public viewBoxY = -8;
+    public viewBoxWidth = 16;
+    public viewBoxHeight = 16;
 
-    #addArgument(argument: Argument) {
-        this.#argumentList.push(argument);
-        this.#argumentCountLabel.textContent = this.#argumentList.length.toString();
+    public circleRadius = new Decimal(0.2);
+    public roundNumber = 2;
+
+
+    private argumentList: Argument[] = [];
+
+    private addArgument(argument: Argument) {
+        this.argumentList.push(argument);
+        this.argumentCountLabel.textContent = this.argumentList.length.toString();
 
         /*
             <div>
@@ -150,10 +150,10 @@ export class SvgPathEditor {
                 select.value = argument.capitalLetter;
 
                 select.onchange = () => {
-                    const index = this.#argumentList.indexOf(argument);
+                    const index = this.argumentList.indexOf(argument);
 
-                    this.#argumentList[index].removeDots();
-                    this.#argumentList[index].removeInputs();
+                    this.argumentList[index].removeDots();
+                    this.argumentList[index].removeInputs();
                     input.checked = false;
 
                     switch (select.value) {
@@ -168,7 +168,7 @@ export class SvgPathEditor {
                     };
                     argument.createInputs(div);
 
-                    this.#argumentList[index] = argument;
+                    this.argumentList[index] = argument;
                     this.renderPath();
                 };
             }
@@ -188,26 +188,26 @@ export class SvgPathEditor {
 
             argument.createInputs(div);
         }
-        this.#argumentListDiv.appendChild(div);
+        this.argumentListDiv.appendChild(div);
     }
 
-    #removeArgument() {
-        if (this.#argumentList.length === 0)
+    private removeArgument() {
+        if (this.argumentList.length === 0)
             return;
 
-        const argument = this.#argumentList.pop()!;
-        this.#argumentCountLabel.textContent = this.#argumentList.length.toString();
+        const argument = this.argumentList.pop()!;
+        this.argumentCountLabel.textContent = this.argumentList.length.toString();
 
-        this.#argumentListDiv.lastChild!.remove();
+        this.argumentListDiv.lastChild!.remove();
         argument.removeDots();
     }
 
 
-    #styleList: { key: string, value: string; }[] = [];
+    private styleList: { key: string, value: string; }[] = [];
 
-    #addStyle(style: { key: string, value: string; }) {
-        this.#styleList.push(style);
-        this.#styleCountLabel.textContent = this.#styleList.length.toString();
+    private addStyle(style: { key: string, value: string; }) {
+        this.styleList.push(style);
+        this.styleCountLabel.textContent = this.styleList.length.toString();
 
         const inputKey = document.createElement("input");
         inputKey.value = style.key;
@@ -215,7 +215,7 @@ export class SvgPathEditor {
             style.key = (<HTMLInputElement>event.target).value;
             this.renderPath();
         }
-        this.#styleListDiv.appendChild(inputKey);
+        this.styleListDiv.appendChild(inputKey);
 
         const inputValue = document.createElement("input");
         inputValue.value = style.value;
@@ -223,71 +223,71 @@ export class SvgPathEditor {
             style.value = (<HTMLInputElement>event.target).value;
             this.renderPath();
         }
-        this.#styleListDiv.appendChild(inputValue);
+        this.styleListDiv.appendChild(inputValue);
     }
 
-    #removeStyle() {
-        this.#styleList.pop();
-        this.#styleCountLabel.textContent = this.#styleList.length.toString();
+    private removeStyle() {
+        this.styleList.pop();
+        this.styleCountLabel.textContent = this.styleList.length.toString();
 
         for (let i = 0; i < 2; i++)
-            this.#styleListDiv.lastChild!.remove();
+            this.styleListDiv.lastChild!.remove();
     }
 
 
-    constructor() {
+    public constructor() {
         const theme = localStorage.getItem("theme");
         if (theme !== null)
             if (theme === "light")
-                this.#lightRadio.checked = true;
+                this.lightRadio.checked = true;
             else
-                this.#darkRadio.checked = true;
+                this.darkRadio.checked = true;
 
-        this.#lightRadio.onclick = () => localStorage.setItem("theme", "light");
-        this.#darkRadio.onclick = () => localStorage.setItem("theme", "dark");
-
-
-        this.#viewBoxXInput.value = this.viewBoxX.toString();
-        this.#viewBoxYInput.value = this.viewBoxY.toString();
-        this.#viewBoxWidthInput.value = this.viewBoxWidth.toString();
-        this.#viewBoxHeightInput.value = this.viewBoxHeight.toString();
-        this.#circleRadiusInput.value = this.circleRadius.toString();
-        this.#pointsRoundingLabel.textContent = this.roundNumber.toString();
+        this.lightRadio.onclick = () => localStorage.setItem("theme", "light");
+        this.darkRadio.onclick = () => localStorage.setItem("theme", "dark");
 
 
-        this.#readInButton.onclick = this.#onReadInPath;
-        this.#copyAbsoluteButton.onclick = this.#onCopyToClipboardAbsolute;
-        this.#copyRelativeButton.onclick = this.#onCopyToClipboardRelative;
-        this.#copyMinButton.onclick = this.#onCopyToClipboardMin;
-
-        this.#viewBoxXInput.oninput = this.#onViewBoxX;
-        this.#viewBoxYInput.oninput = this.#onViewBoxY;
-        this.#viewBoxWidthInput.oninput = this.#onViewBoxWidth;
-        this.#viewBoxHeightInput.oninput = this.#onViewBoxHeight;
-
-        this.#circleRadiusInput.oninput = this.#onCircleRadius;
-        this.#decimalPointUpButton.onclick = this.#onDecimalPointUp;
-        this.#decimalPointDownButton.onclick = this.#onDecimalPointDown;
-        this.#pointsRoundingExecuteButton.onclick = this.#onPointsRoundingExecute;
-        this.#argumentAddButton.onclick = this.#onArgumentAdd;
-        this.#argumentRemoveButton.onclick = this.#onArgumentRemove;
-
-        this.#styleAddButton.onclick = this.#onStyleAdd;
-        this.#styleRemoveButton.onclick = this.#onStyleRemove;
-
-        this.#translateButton.onclick = this.#onTranslate;
-        this.#rotateButton.onclick = this.#onRotate;
-        this.#scaleButton.onclick = this.#onScale;
+        this.viewBoxXInput.value = this.viewBoxX.toString();
+        this.viewBoxYInput.value = this.viewBoxY.toString();
+        this.viewBoxWidthInput.value = this.viewBoxWidth.toString();
+        this.viewBoxHeightInput.value = this.viewBoxHeight.toString();
+        this.circleRadiusInput.value = this.circleRadius.toString();
+        this.pointsRoundingLabel.textContent = this.roundNumber.toString();
 
 
-        this.#addArgument(CoordinatesArgument.newM({ x: new Decimal(-5), y: new Decimal(-5) }, this));
-        this.#addArgument(CoordinatesArgument.newL({ x: new Decimal(5), y: new Decimal(-5) }, this));
-        this.#addArgument(CoordinatesArgument.newQ({ x: new Decimal(0), y: new Decimal(6) }, { x: new Decimal(-5), y: new Decimal(-5) }, this));
-        this.#addArgument(new ArgumentZ());
+        this.readInButton.onclick = this.onReadInPath;
+        this.copyAbsoluteButton.onclick = this.onCopyToClipboardAbsolute;
+        this.copyRelativeButton.onclick = this.onCopyToClipboardRelative;
+        this.copyMinButton.onclick = this.onCopyToClipboardMin;
 
-        this.#addStyle({ key: "stroke", value: "#AAA" });
-        this.#addStyle({ key: "stroke-width", value: "0.5" });
-        this.#addStyle({ key: "fill", value: "none" });
+        this.viewBoxXInput.oninput = this.onViewBoxX;
+        this.viewBoxYInput.oninput = this.onViewBoxY;
+        this.viewBoxWidthInput.oninput = this.onViewBoxWidth;
+        this.viewBoxHeightInput.oninput = this.onViewBoxHeight;
+
+        this.circleRadiusInput.oninput = this.onCircleRadius;
+        this.decimalPointUpButton.onclick = this.onDecimalPointUp;
+        this.decimalPointDownButton.onclick = this.onDecimalPointDown;
+        this.pointsRoundingExecuteButton.onclick = this.onPointsRoundingExecute;
+        this.argumentAddButton.onclick = this.onArgumentAdd;
+        this.argumentRemoveButton.onclick = this.onArgumentRemove;
+
+        this.styleAddButton.onclick = this.onStyleAdd;
+        this.styleRemoveButton.onclick = this.onStyleRemove;
+
+        this.translateButton.onclick = this.onTranslate;
+        this.rotateButton.onclick = this.onRotate;
+        this.scaleButton.onclick = this.onScale;
+
+
+        this.addArgument(CoordinatesArgument.newM({ x: new Decimal(-5), y: new Decimal(-5) }, this));
+        this.addArgument(CoordinatesArgument.newL({ x: new Decimal(5), y: new Decimal(-5) }, this));
+        this.addArgument(CoordinatesArgument.newQ({ x: new Decimal(0), y: new Decimal(6) }, { x: new Decimal(-5), y: new Decimal(-5) }, this));
+        this.addArgument(new ArgumentZ());
+
+        this.addStyle({ key: "stroke", value: "#AAA" });
+        this.addStyle({ key: "stroke-width", value: "0.5" });
+        this.addStyle({ key: "fill", value: "none" });
 
 
         this.renderSvgViewBox();
@@ -296,12 +296,12 @@ export class SvgPathEditor {
 
 
 
-    #onReadInPath = () => {
-        this.#parsingErrorLabel.style.display = "none";
-        this.#parsingErrorLabel.textContent = "";
+    private onReadInPath = () => {
+        this.parsingErrorLabel.style.display = "none";
+        this.parsingErrorLabel.textContent = "";
 
         const me = this;
-        const input = this.#readInInput.value;
+        const input = this.readInInput.value;
         if (input.length === 0)
             return;
 
@@ -452,7 +452,7 @@ export class SvgPathEditor {
                     return renderError(`At position ${parseIndex - 1}: unexpected '${input[parseIndex - 1]}'`);
             }
 
-            if (this.#parsingErrorLabel.style.display === "block")
+            if (this.parsingErrorLabel.style.display === "block")
                 return;
 
 
@@ -656,37 +656,37 @@ export class SvgPathEditor {
             return renderError(`At position ${input.length + 1}: ending " expected`);
 
 
-        while (this.#argumentList.length > 0)
-            this.#removeArgument();
+        while (this.argumentList.length > 0)
+            this.removeArgument();
         for (const argument of result)
-            this.#addArgument(argument);
+            this.addArgument(argument);
 
         this.renderPath();
 
 
         function renderError(errorMessage: string) {
-            if (me.#parsingErrorLabel.style.display === "block")
+            if (me.parsingErrorLabel.style.display === "block")
                 return;
-            me.#parsingErrorLabel.style.display = "block";
-            me.#parsingErrorLabel.textContent = errorMessage;
+            me.parsingErrorLabel.style.display = "block";
+            me.parsingErrorLabel.textContent = errorMessage;
         }
     }
 
-    #onCopyToClipboardAbsolute = () => {
-        navigator.clipboard.writeText(this.#outputAbsoluteLabel.textContent!);
+    private onCopyToClipboardAbsolute = () => {
+        navigator.clipboard.writeText(this.outputAbsoluteLabel.textContent!);
     }
 
-    #onCopyToClipboardRelative = () => {
-        navigator.clipboard.writeText(this.#outputRelativeLabel.textContent!);
+    private onCopyToClipboardRelative = () => {
+        navigator.clipboard.writeText(this.outputRelativeLabel.textContent!);
     }
 
-    #onCopyToClipboardMin = () => {
-        navigator.clipboard.writeText(this.#outputMinLabel.textContent!);
+    private onCopyToClipboardMin = () => {
+        navigator.clipboard.writeText(this.outputMinLabel.textContent!);
     }
 
 
-    #onViewBoxX = () => {
-        const viewBoxValue = parseFloat(this.#viewBoxXInput.value);
+    private onViewBoxX = () => {
+        const viewBoxValue = parseFloat(this.viewBoxXInput.value);
         if (isNaN(viewBoxValue))
             return;
 
@@ -694,8 +694,8 @@ export class SvgPathEditor {
         this.renderSvgViewBox();
     }
 
-    #onViewBoxY = () => {
-        const viewBoxValue = parseFloat(this.#viewBoxYInput.value);
+    private onViewBoxY = () => {
+        const viewBoxValue = parseFloat(this.viewBoxYInput.value);
         if (isNaN(viewBoxValue))
             return;
 
@@ -703,8 +703,8 @@ export class SvgPathEditor {
         this.renderSvgViewBox();
     }
 
-    #onViewBoxWidth = () => {
-        const viewBoxValue = parseFloat(this.#viewBoxWidthInput.value);
+    private onViewBoxWidth = () => {
+        const viewBoxValue = parseFloat(this.viewBoxWidthInput.value);
         if (isNaN(viewBoxValue))
             return;
 
@@ -712,8 +712,8 @@ export class SvgPathEditor {
         this.renderSvgViewBox();
     }
 
-    #onViewBoxHeight = () => {
-        const viewBoxValue = parseFloat(this.#viewBoxHeightInput.value);
+    private onViewBoxHeight = () => {
+        const viewBoxValue = parseFloat(this.viewBoxHeightInput.value);
         if (isNaN(viewBoxValue))
             return;
 
@@ -722,10 +722,10 @@ export class SvgPathEditor {
     }
 
 
-    #onCircleRadius = () => {
+    private onCircleRadius = () => {
         try {
-            this.circleRadius = new Decimal(this.#circleRadiusInput.value);
-            for (const argument of this.#argumentList)
+            this.circleRadius = new Decimal(this.circleRadiusInput.value);
+            for (const argument of this.argumentList)
                 argument.updateDotsRadius();
         }
         catch {
@@ -734,63 +734,63 @@ export class SvgPathEditor {
     }
 
 
-    #onDecimalPointUp = () => {
+    private onDecimalPointUp = () => {
         if (this.roundNumber >= 6)
             return;
 
         this.roundNumber++;
-        this.#pointsRoundingLabel.textContent = this.roundNumber.toString();
+        this.pointsRoundingLabel.textContent = this.roundNumber.toString();
     }
 
-    #onDecimalPointDown = () => {
+    private onDecimalPointDown = () => {
         if (this.roundNumber <= 1)
             return;
 
         this.roundNumber--;
-        this.#pointsRoundingLabel.textContent = this.roundNumber.toString();
+        this.pointsRoundingLabel.textContent = this.roundNumber.toString();
     }
-    
-    #onPointsRoundingExecute = () => {
-        for (const argument of this.#argumentList)
+
+    private onPointsRoundingExecute = () => {
+        for (const argument of this.argumentList)
             argument.roundCoordinates();
 
         this.renderPath();
     }
 
 
-    #onArgumentAdd = () => {
-        this.#addArgument(CoordinatesArgument.newM({ x: new Decimal(0), y: new Decimal(0) }, this));
+    private onArgumentAdd = () => {
+        this.addArgument(CoordinatesArgument.newM({ x: new Decimal(0), y: new Decimal(0) }, this));
         this.renderPath();
     }
 
-    #onArgumentRemove = () => {
-        if (this.#argumentList.length === 0)
+    private onArgumentRemove = () => {
+        if (this.argumentList.length === 0)
             return;
 
-        this.#removeArgument();
+        this.removeArgument();
         this.renderPath();
     }
 
 
-    #onStyleAdd = () => {
-        this.#addStyle({ key: "", value: "" });
+    private onStyleAdd = () => {
+        this.addStyle({ key: "", value: "" });
     }
 
-    #onStyleRemove = () => {
-        if (this.#styleList.length === 0)
+    private onStyleRemove = () => {
+        if (this.styleList.length === 0)
             return;
 
-        this.#removeStyle();
+        this.removeStyle();
         this.renderPath();
     }
 
 
-    #onTranslate = () => {
+    private onTranslate = () => {
         try {
-            const x = new Decimal(this.#translateXInput.value);
-            const y = new Decimal(this.#translateYInput.value);
+            const x = new Decimal(this.translateXInput.value);
+            const y = new Decimal(this.translateYInput.value);
 
-            for (const argument of this.#argumentList)
+            for (const argument of this.argumentList)
                 argument.translate(x, y);
         }
         catch {
@@ -800,8 +800,8 @@ export class SvgPathEditor {
         this.renderPath();
     }
 
-    #onRotate = () => {
-        const rotation = parseFloat(this.#rotateInput.value);
+    private onRotate = () => {
+        const rotation = parseFloat(this.rotateInput.value);
         if (isNaN(rotation))
             return;
 
@@ -810,9 +810,9 @@ export class SvgPathEditor {
          *
          * | cos a  -sin a | * | x |
          * | sin a   cos a |   | y |
-         * 
-         * => 
-         * 
+         *
+         * =>
+         *
          * x = cos a * x - sin a * y
          * y = sin a * x + cos a * y
          **/
@@ -820,18 +820,18 @@ export class SvgPathEditor {
         const cos = new Decimal(Math.cos(radian));
         const sin = new Decimal(Math.sin(radian));
 
-        for (const argument of this.#argumentList)
+        for (const argument of this.argumentList)
             argument.rotate(cos, sin);
 
         this.renderPath();
     }
 
-    #onScale = () => {
+    private onScale = () => {
         try {
-            const x = new Decimal(this.#scaleXInput.value);
-            const y = new Decimal(this.#scaleYInput.value);
+            const x = new Decimal(this.scaleXInput.value);
+            const y = new Decimal(this.scaleYInput.value);
 
-            for (const argument of this.#argumentList)
+            for (const argument of this.argumentList)
                 argument.scale(x, y);
         }
         catch {
@@ -844,23 +844,23 @@ export class SvgPathEditor {
 
 
     /** updates the "viewBox" attribute of the "svg" element */
-    renderSvgViewBox = () => {
+    public renderSvgViewBox = () => {
         this.svg.setAttribute("viewBox", `${this.viewBoxX.toString()} ${this.viewBoxY.toString()} ${this.viewBoxWidth.toString()} ${this.viewBoxHeight.toString()}`);
     }
 
     /** updates all attributes of the "path" element and updates the output labels */
-    renderPath = () => {
+    public renderPath = () => {
         const createPath = (argumentToString: (argument: Argument) => string): string => {
             let path = `<path d="`;
 
-            for (const argument of this.#argumentList)
+            for (const argument of this.argumentList)
                 path += argumentToString(argument);
             if (path[path.length - 1] === ' ')
                 path = path.substring(0, path.length - 1);
 
             path += `" `;
 
-            for (const style of this.#styleList)
+            for (const style of this.styleList)
                 if (style.key !== "")
                     path += `${style.key}="${style.value}" `;
 
@@ -873,14 +873,14 @@ export class SvgPathEditor {
         {
             const current = { x: new Decimal(0), y: new Decimal(0) };
             const start = { x: new Decimal(0), y: new Decimal(0) };
-            this.#outputAbsoluteLabel.textContent = createPath((argument) => argument.toAbsoluteCoordinates(current, start));
+            this.outputAbsoluteLabel.textContent = createPath((argument) => argument.toAbsoluteCoordinates(current, start));
         }
 
         // relative path
         {
             const current = { x: new Decimal(0), y: new Decimal(0) };
             const start = { x: new Decimal(0), y: new Decimal(0) };
-            this.#outputRelativeLabel.textContent = createPath((argument) => argument.toRelativeCoordinates(current, start));
+            this.outputRelativeLabel.textContent = createPath((argument) => argument.toRelativeCoordinates(current, start));
         }
 
         // min path
@@ -888,7 +888,7 @@ export class SvgPathEditor {
             const current = { x: new Decimal(0), y: new Decimal(0) };
             const start = { x: new Decimal(0), y: new Decimal(0) };
             const last = { argument: '', hasDot: false };
-            this.#outputMinLabel.textContent = createPath((argument) => argument.toMinCoordinates(current, start, last));
+            this.outputMinLabel.textContent = createPath((argument) => argument.toMinCoordinates(current, start, last));
         }
 
 
@@ -896,9 +896,9 @@ export class SvgPathEditor {
         for (const attribute of this.svgPath.attributes)
             this.svgPath.removeAttribute(attribute.name);
         // set attribute "d" with absolutePath
-        this.svgPath.setAttribute("d", this.#outputAbsoluteLabel.textContent.substring(9, this.#outputAbsoluteLabel.textContent.indexOf('"', 9)));
+        this.svgPath.setAttribute("d", this.outputAbsoluteLabel.textContent.substring(9, this.outputAbsoluteLabel.textContent.indexOf('"', 9)));
         // add other attributes
-        for (const style of this.#styleList)
+        for (const style of this.styleList)
             if (style.key !== "")
                 this.svgPath.setAttribute(style.key, style.value);
     }

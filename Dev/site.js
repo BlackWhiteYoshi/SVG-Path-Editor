@@ -1,6 +1,10 @@
 (() => { // webpackBootstrap
 var __webpack_modules__ = ({
-"./Decimal/Decimal.js": (function (module) {
+"./Decimal/Decimal.js": 
+/*!****************************!*\
+  !*** ./Decimal/Decimal.js ***!
+  \****************************/
+(function (module) {
 (function (globalScope) {
     'use strict';
 
@@ -2016,7 +2020,11 @@ var __webpack_modules__ = ({
 })(this);
 
 }),
-"./SvgPathEditor/Arguments/ArgumentA.ts": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+"./SvgPathEditor/Arguments/ArgumentA.ts": 
+/*!**********************************************!*\
+  !*** ./SvgPathEditor/Arguments/ArgumentA.ts ***!
+  \**********************************************/
+(function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
@@ -2025,50 +2033,10 @@ __webpack_require__.d(__webpack_exports__, {
 /* ESM import */var _Point__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Point */ "./SvgPathEditor/Arguments/Point.ts");
 /* ESM import */var _Decimal_Decimal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Decimal/Decimal */ "./Decimal/Decimal.js");
 /* ESM import */var _Decimal_Decimal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_1__);
-function _check_private_redeclaration(obj, privateCollection) {
-    if (privateCollection.has(obj)) {
-        throw new TypeError("Cannot initialize the same private elements twice on an object");
-    }
-}
-function _class_apply_descriptor_get(receiver, descriptor) {
-    if (descriptor.get) {
-        return descriptor.get.call(receiver);
-    }
-    return descriptor.value;
-}
-function _class_apply_descriptor_set(receiver, descriptor, value) {
-    if (descriptor.set) {
-        descriptor.set.call(receiver, value);
-    } else {
-        if (!descriptor.writable) {
-            throw new TypeError("attempted to set read only private field");
-        }
-        descriptor.value = value;
-    }
-}
 function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
-}
-function _class_extract_field_descriptor(receiver, privateMap, action) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to " + action + " private field on non-instance");
-    }
-    return privateMap.get(receiver);
-}
-function _class_private_field_get(receiver, privateMap) {
-    var descriptor = _class_extract_field_descriptor(receiver, privateMap, "get");
-    return _class_apply_descriptor_get(receiver, descriptor);
-}
-function _class_private_field_init(obj, privateMap, value) {
-    _check_private_redeclaration(obj, privateMap);
-    privateMap.set(obj, value);
-}
-function _class_private_field_set(receiver, privateMap, value) {
-    var descriptor = _class_extract_field_descriptor(receiver, privateMap, "set");
-    _class_apply_descriptor_set(receiver, descriptor, value);
-    return value;
 }
 function _defineProperties(target, props) {
     for(var i = 0; i < props.length; i++){
@@ -2084,74 +2052,56 @@ function _create_class(Constructor, protoProps, staticProps) {
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
 }
+function _define_property(obj, key, value) {
+    if (key in obj) {
+        Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+        });
+    } else {
+        obj[key] = value;
+    }
+    return obj;
+}
 
 
-var _radius = /*#__PURE__*/ new WeakMap(), _xAxisRotation = /*#__PURE__*/ new WeakMap(), _largeArcFlag = /*#__PURE__*/ new WeakMap(), _sweepFlag = /*#__PURE__*/ new WeakMap(), _position = /*#__PURE__*/ new WeakMap(), _editor = /*#__PURE__*/ new WeakMap(), // input elements
-_inputDiv = /*#__PURE__*/ new WeakMap(), _onInputXAxisRotation = /*#__PURE__*/ new WeakMap(), _onInputLargeArcFlag = /*#__PURE__*/ new WeakMap(), _onInputSweepFlag = /*#__PURE__*/ new WeakMap();
 var ArgumentA = /*#__PURE__*/ function() {
     "use strict";
     function ArgumentA(radius, xAxisRotation, largeArcFlag, sweepFlag, position, editor) {
         var _this = this;
         _class_call_check(this, ArgumentA);
-        _class_private_field_init(this, _radius, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _xAxisRotation, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _largeArcFlag, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _sweepFlag, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _position, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _editor, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _inputDiv, {
-            writable: true,
-            value: null
-        });
-        _class_private_field_init(this, _onInputXAxisRotation, {
-            writable: true,
-            value: function(event) {
-                try {
-                    _class_private_field_set(_this, _xAxisRotation, new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_1___default())(event.target.value));
-                    _class_private_field_get(_this, _editor).renderPath();
-                } catch (e) {
-                // ignore invalid user input
-                }
+        _define_property(this, "radius", void 0);
+        _define_property(this, "xAxisRotation", void 0);
+        _define_property(this, "largeArcFlag", void 0);
+        _define_property(this, "sweepFlag", void 0);
+        _define_property(this, "position", void 0);
+        _define_property(this, "editor", void 0);
+        // input elements
+        _define_property(this, "inputDiv", null);
+        _define_property(this, "onInputXAxisRotation", function(event) {
+            try {
+                _this.xAxisRotation = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_1___default())(event.target.value);
+                _this.editor.renderPath();
+            } catch (e) {
+            // ignore invalid user input
             }
         });
-        _class_private_field_init(this, _onInputLargeArcFlag, {
-            writable: true,
-            value: function(event) {
-                _class_private_field_set(_this, _largeArcFlag, event.target.checked);
-                _class_private_field_get(_this, _editor).renderPath();
-            }
+        _define_property(this, "onInputLargeArcFlag", function(event) {
+            _this.largeArcFlag = event.target.checked;
+            _this.editor.renderPath();
         });
-        _class_private_field_init(this, _onInputSweepFlag, {
-            writable: true,
-            value: function(event) {
-                _class_private_field_set(_this, _sweepFlag, event.target.checked);
-                _class_private_field_get(_this, _editor).renderPath();
-            }
+        _define_property(this, "onInputSweepFlag", function(event) {
+            _this.sweepFlag = event.target.checked;
+            _this.editor.renderPath();
         });
-        _class_private_field_set(this, _radius, new _Point__WEBPACK_IMPORTED_MODULE_0__.Point(radius, editor));
-        _class_private_field_set(this, _xAxisRotation, xAxisRotation);
-        _class_private_field_set(this, _largeArcFlag, largeArcFlag);
-        _class_private_field_set(this, _sweepFlag, sweepFlag);
-        _class_private_field_set(this, _position, new _Point__WEBPACK_IMPORTED_MODULE_0__.Point(position, editor));
-        _class_private_field_set(this, _editor, editor);
+        this.radius = new _Point__WEBPACK_IMPORTED_MODULE_0__.Point(radius, editor);
+        this.xAxisRotation = xAxisRotation;
+        this.largeArcFlag = largeArcFlag;
+        this.sweepFlag = sweepFlag;
+        this.position = new _Point__WEBPACK_IMPORTED_MODULE_0__.Point(position, editor);
+        this.editor = editor;
     }
     _create_class(ArgumentA, [
         {
@@ -2169,36 +2119,36 @@ var ArgumentA = /*#__PURE__*/ function() {
         {
             key: "translate",
             value: function translate(x, y) {
-                _class_private_field_get(this, _position).translate(x, y);
+                this.position.translate(x, y);
             }
         },
         {
             key: "rotate",
             value: function rotate(cos, sin) {
-                _class_private_field_get(this, _position).rotate(cos, sin);
+                this.position.rotate(cos, sin);
             }
         },
         {
             key: "scale",
             value: function scale(x, y) {
-                _class_private_field_get(this, _radius).scale(x, y);
-                _class_private_field_get(this, _position).scale(x, y);
+                this.radius.scale(x, y);
+                this.position.scale(x, y);
             }
         },
         {
             key: "toAbsoluteCoordinates",
             value: function toAbsoluteCoordinates(current, start) {
-                current.x = _class_private_field_get(this, _position).x;
-                current.y = _class_private_field_get(this, _position).y;
-                return "A ".concat(_class_private_field_get(this, _radius).x, " ").concat(_class_private_field_get(this, _radius).y, " ").concat(_class_private_field_get(this, _xAxisRotation), " ").concat(_class_private_field_get(this, _largeArcFlag) ? 1 : 0, " ").concat(_class_private_field_get(this, _sweepFlag) ? 1 : 0, " ").concat(_class_private_field_get(this, _position).x, " ").concat(_class_private_field_get(this, _position).y, " ");
+                current.x = this.position.x;
+                current.y = this.position.y;
+                return "A ".concat(this.radius.x, " ").concat(this.radius.y, " ").concat(this.xAxisRotation, " ").concat(this.largeArcFlag ? 1 : 0, " ").concat(this.sweepFlag ? 1 : 0, " ").concat(this.position.x, " ").concat(this.position.y, " ");
             }
         },
         {
             key: "toRelativeCoordinates",
             value: function toRelativeCoordinates(current, start) {
-                var result = "a ".concat(_class_private_field_get(this, _radius).x, " ").concat(_class_private_field_get(this, _radius).y, " ").concat(_class_private_field_get(this, _xAxisRotation), " ").concat(_class_private_field_get(this, _largeArcFlag) ? 1 : 0, " ").concat(_class_private_field_get(this, _sweepFlag) ? 1 : 0, " ").concat(_class_private_field_get(this, _position).x.minus(current.x), " ").concat(_class_private_field_get(this, _position).y.minus(current.y), " ");
-                current.x = _class_private_field_get(this, _position).x;
-                current.y = _class_private_field_get(this, _position).y;
+                var result = "a ".concat(this.radius.x, " ").concat(this.radius.y, " ").concat(this.xAxisRotation, " ").concat(this.largeArcFlag ? 1 : 0, " ").concat(this.sweepFlag ? 1 : 0, " ").concat(this.position.x.minus(current.x), " ").concat(this.position.y.minus(current.y), " ");
+                current.x = this.position.x;
+                current.y = this.position.y;
                 return result;
             }
         },
@@ -2225,11 +2175,11 @@ var ArgumentA = /*#__PURE__*/ function() {
                     return result;
                 }
                 lastHasDot = last.hasDot;
-                var radiusX_minimized = ToMinimizedString(_class_private_field_get(this, _radius).x);
-                var radiusY_minimized = ToMinimizedString(_class_private_field_get(this, _radius).y);
-                var xAxisRotation_minimized = ToMinimizedString(_class_private_field_get(this, _xAxisRotation));
-                var largeArcFlagString = " ".concat(_class_private_field_get(this, _largeArcFlag) ? 1 : 0);
-                var sweepFlagString = " ".concat(_class_private_field_get(this, _sweepFlag) ? 1 : 0);
+                var radiusX_minimized = ToMinimizedString(this.radius.x);
+                var radiusY_minimized = ToMinimizedString(this.radius.y);
+                var xAxisRotation_minimized = ToMinimizedString(this.xAxisRotation);
+                var largeArcFlagString = " ".concat(this.largeArcFlag ? 1 : 0);
+                var sweepFlagString = " ".concat(this.sweepFlag ? 1 : 0);
                 last.hasDot = lastHasDot;
                 var resultBig = "";
                 {
@@ -2241,8 +2191,8 @@ var ArgumentA = /*#__PURE__*/ function() {
                     resultBig += largeArcFlagString;
                     resultBig += sweepFlagString;
                     lastHasDot = false;
-                    resultBig += ToMinimizedString(_class_private_field_get(this, _position).x);
-                    resultBig += ToMinimizedString(_class_private_field_get(this, _position).y);
+                    resultBig += ToMinimizedString(this.position.x);
+                    resultBig += ToMinimizedString(this.position.y);
                 }
                 var lastHasDotBig = lastHasDot;
                 var resultSmall = "";
@@ -2255,12 +2205,12 @@ var ArgumentA = /*#__PURE__*/ function() {
                     resultSmall += largeArcFlagString;
                     resultSmall += sweepFlagString;
                     lastHasDot = false;
-                    resultSmall += ToMinimizedString(_class_private_field_get(this, _position).x.minus(current.x));
-                    resultSmall += ToMinimizedString(_class_private_field_get(this, _position).y.minus(current.y));
+                    resultSmall += ToMinimizedString(this.position.x.minus(current.x));
+                    resultSmall += ToMinimizedString(this.position.y.minus(current.y));
                 }
                 var lastHasDotSmall = lastHasDot;
-                current.x = _class_private_field_get(this, _position).x;
-                current.y = _class_private_field_get(this, _position).y;
+                current.x = this.position.x;
+                current.y = this.position.y;
                 if (resultBig.length <= resultSmall.length) {
                     last.argument = 'A';
                     last.hasDot = lastHasDotBig;
@@ -2275,72 +2225,72 @@ var ArgumentA = /*#__PURE__*/ function() {
         {
             key: "roundCoordinates",
             value: function roundCoordinates() {
-                _class_private_field_get(this, _radius).round();
-                _class_private_field_set(this, _xAxisRotation, _class_private_field_get(this, _xAxisRotation).toDecimalPlaces(_class_private_field_get(this, _editor).roundNumber + 1));
-                _class_private_field_get(this, _inputDiv).firstChild.value = _class_private_field_get(this, _xAxisRotation).toString();
-                _class_private_field_get(this, _position).round();
+                this.radius.round();
+                this.xAxisRotation = this.xAxisRotation.toDecimalPlaces(this.editor.roundNumber + 1);
+                this.inputDiv.firstChild.value = this.xAxisRotation.toString();
+                this.position.round();
             }
         },
         {
             key: "createInputs",
             value: function createInputs(argumentDiv) {
-                _class_private_field_get(this, _radius).createInputPair(argumentDiv);
-                _class_private_field_set(this, _inputDiv, document.createElement("div"));
+                this.radius.createInputPair(argumentDiv);
+                this.inputDiv = document.createElement("div");
                 {
                     var inputXAxisRotation = document.createElement("input");
                     {
-                        inputXAxisRotation.value = _class_private_field_get(this, _xAxisRotation).toString();
-                        inputXAxisRotation.oninput = _class_private_field_get(this, _onInputXAxisRotation);
+                        inputXAxisRotation.value = this.xAxisRotation.toString();
+                        inputXAxisRotation.oninput = this.onInputXAxisRotation;
                     }
-                    _class_private_field_get(this, _inputDiv).appendChild(inputXAxisRotation);
+                    this.inputDiv.appendChild(inputXAxisRotation);
                     var inputLargeArcFlag = document.createElement("input");
                     {
                         inputLargeArcFlag.type = "checkbox";
-                        inputLargeArcFlag.checked = _class_private_field_get(this, _largeArcFlag);
-                        inputLargeArcFlag.oninput = _class_private_field_get(this, _onInputLargeArcFlag);
+                        inputLargeArcFlag.checked = this.largeArcFlag;
+                        inputLargeArcFlag.oninput = this.onInputLargeArcFlag;
                     }
-                    _class_private_field_get(this, _inputDiv).appendChild(inputLargeArcFlag);
+                    this.inputDiv.appendChild(inputLargeArcFlag);
                     var inputSweepFlag = document.createElement("input");
                     {
                         inputSweepFlag.type = "checkbox";
-                        inputSweepFlag.checked = _class_private_field_get(this, _sweepFlag);
-                        inputSweepFlag.oninput = _class_private_field_get(this, _onInputSweepFlag);
+                        inputSweepFlag.checked = this.sweepFlag;
+                        inputSweepFlag.oninput = this.onInputSweepFlag;
                     }
-                    _class_private_field_get(this, _inputDiv).appendChild(inputSweepFlag);
+                    this.inputDiv.appendChild(inputSweepFlag);
                 }
-                argumentDiv.appendChild(_class_private_field_get(this, _inputDiv));
-                _class_private_field_get(this, _position).createInputPair(argumentDiv);
+                argumentDiv.appendChild(this.inputDiv);
+                this.position.createInputPair(argumentDiv);
             }
         },
         {
             key: "removeInputs",
             value: function removeInputs() {
-                _class_private_field_get(this, _position).removeInputPair();
-                var parantDiv = _class_private_field_get(this, _inputDiv).parentElement;
+                this.position.removeInputPair();
+                var parantDiv = this.inputDiv.parentElement;
                 parantDiv.lastChild.remove();
-                _class_private_field_set(this, _inputDiv, null);
-                _class_private_field_get(this, _radius).removeInputPair();
+                this.inputDiv = null;
+                this.radius.removeInputPair();
             }
         },
         {
             key: "createDots",
             value: function createDots() {
-                _class_private_field_get(this, _radius).createDot(1);
-                _class_private_field_get(this, _position).createDot(0);
+                this.radius.createDot(1);
+                this.position.createDot(0);
             }
         },
         {
             key: "updateDotsRadius",
             value: function updateDotsRadius() {
-                _class_private_field_get(this, _radius).updateDotRadius();
-                _class_private_field_get(this, _position).updateDotRadius();
+                this.radius.updateDotRadius();
+                this.position.updateDotRadius();
             }
         },
         {
             key: "removeDots",
             value: function removeDots() {
-                _class_private_field_get(this, _position).removeDot();
-                _class_private_field_get(this, _radius).removeDot();
+                this.position.removeDot();
+                this.radius.removeDot();
             }
         }
     ]);
@@ -2349,56 +2299,20 @@ var ArgumentA = /*#__PURE__*/ function() {
 
 
 }),
-"./SvgPathEditor/Arguments/ArgumentZ.ts": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+"./SvgPathEditor/Arguments/ArgumentZ.ts": 
+/*!**********************************************!*\
+  !*** ./SvgPathEditor/Arguments/ArgumentZ.ts ***!
+  \**********************************************/
+(function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
   ArgumentZ: () => (ArgumentZ)
 });
-function _check_private_redeclaration(obj, privateCollection) {
-    if (privateCollection.has(obj)) {
-        throw new TypeError("Cannot initialize the same private elements twice on an object");
-    }
-}
-function _class_apply_descriptor_get(receiver, descriptor) {
-    if (descriptor.get) {
-        return descriptor.get.call(receiver);
-    }
-    return descriptor.value;
-}
-function _class_apply_descriptor_set(receiver, descriptor, value) {
-    if (descriptor.set) {
-        descriptor.set.call(receiver, value);
-    } else {
-        if (!descriptor.writable) {
-            throw new TypeError("attempted to set read only private field");
-        }
-        descriptor.value = value;
-    }
-}
 function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
-}
-function _class_extract_field_descriptor(receiver, privateMap, action) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to " + action + " private field on non-instance");
-    }
-    return privateMap.get(receiver);
-}
-function _class_private_field_get(receiver, privateMap) {
-    var descriptor = _class_extract_field_descriptor(receiver, privateMap, "get");
-    return _class_apply_descriptor_get(receiver, descriptor);
-}
-function _class_private_field_init(obj, privateMap, value) {
-    _check_private_redeclaration(obj, privateMap);
-    privateMap.set(obj, value);
-}
-function _class_private_field_set(receiver, privateMap, value) {
-    var descriptor = _class_extract_field_descriptor(receiver, privateMap, "set");
-    _class_apply_descriptor_set(receiver, descriptor, value);
-    return value;
 }
 function _defineProperties(target, props) {
     for(var i = 0; i < props.length; i++){
@@ -2414,15 +2328,24 @@ function _create_class(Constructor, protoProps, staticProps) {
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
 }
-var _dotsVisibleInput = /*#__PURE__*/ new WeakMap();
+function _define_property(obj, key, value) {
+    if (key in obj) {
+        Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+        });
+    } else {
+        obj[key] = value;
+    }
+    return obj;
+}
 var ArgumentZ = /*#__PURE__*/ function() {
     "use strict";
     function ArgumentZ() {
         _class_call_check(this, ArgumentZ);
-        _class_private_field_init(this, _dotsVisibleInput, {
-            writable: true,
-            value: void 0
-        });
+        _define_property(this, "dotsVisibleInput", void 0);
     }
     _create_class(ArgumentZ, [
         {
@@ -2483,14 +2406,14 @@ var ArgumentZ = /*#__PURE__*/ function() {
         {
             key: "createInputs",
             value: function createInputs(argumentDiv) {
-                _class_private_field_set(this, _dotsVisibleInput, argumentDiv.lastChild);
-                _class_private_field_get(this, _dotsVisibleInput).style.display = "none";
+                this.dotsVisibleInput = argumentDiv.lastChild;
+                this.dotsVisibleInput.style.display = "none";
             }
         },
         {
             key: "removeInputs",
             value: function removeInputs() {
-                _class_private_field_get(this, _dotsVisibleInput).style.removeProperty("display");
+                this.dotsVisibleInput.style.removeProperty("display");
             }
         },
         {
@@ -2511,57 +2434,21 @@ var ArgumentZ = /*#__PURE__*/ function() {
 
 
 }),
-"./SvgPathEditor/Arguments/CoordinatesArgument.ts": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+"./SvgPathEditor/Arguments/CoordinatesArgument.ts": 
+/*!********************************************************!*\
+  !*** ./SvgPathEditor/Arguments/CoordinatesArgument.ts ***!
+  \********************************************************/
+(function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
   CoordinatesArgument: () => (CoordinatesArgument)
 });
 /* ESM import */var _Point__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Point */ "./SvgPathEditor/Arguments/Point.ts");
-function _check_private_redeclaration(obj, privateCollection) {
-    if (privateCollection.has(obj)) {
-        throw new TypeError("Cannot initialize the same private elements twice on an object");
-    }
-}
-function _class_apply_descriptor_get(receiver, descriptor) {
-    if (descriptor.get) {
-        return descriptor.get.call(receiver);
-    }
-    return descriptor.value;
-}
-function _class_apply_descriptor_set(receiver, descriptor, value) {
-    if (descriptor.set) {
-        descriptor.set.call(receiver, value);
-    } else {
-        if (!descriptor.writable) {
-            throw new TypeError("attempted to set read only private field");
-        }
-        descriptor.value = value;
-    }
-}
 function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
-}
-function _class_extract_field_descriptor(receiver, privateMap, action) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to " + action + " private field on non-instance");
-    }
-    return privateMap.get(receiver);
-}
-function _class_private_field_get(receiver, privateMap) {
-    var descriptor = _class_extract_field_descriptor(receiver, privateMap, "get");
-    return _class_apply_descriptor_get(receiver, descriptor);
-}
-function _class_private_field_init(obj, privateMap, value) {
-    _check_private_redeclaration(obj, privateMap);
-    privateMap.set(obj, value);
-}
-function _class_private_field_set(receiver, privateMap, value) {
-    var descriptor = _class_extract_field_descriptor(receiver, privateMap, "set");
-    _class_apply_descriptor_set(receiver, descriptor, value);
-    return value;
 }
 function _defineProperties(target, props) {
     for(var i = 0; i < props.length; i++){
@@ -2577,41 +2464,44 @@ function _create_class(Constructor, protoProps, staticProps) {
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
 }
+function _define_property(obj, key, value) {
+    if (key in obj) {
+        Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+        });
+    } else {
+        obj[key] = value;
+    }
+    return obj;
+}
 
-var _coordinates = /*#__PURE__*/ new WeakMap(), _capitalLetter = /*#__PURE__*/ new WeakMap(), _smallLetter = /*#__PURE__*/ new WeakMap();
 var CoordinatesArgument = /*#__PURE__*/ function() {
     "use strict";
     function CoordinatesArgument(capitalLetter, smallLetter, coordinates, editor) {
         _class_call_check(this, CoordinatesArgument);
-        _class_private_field_init(this, _coordinates, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _capitalLetter, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _smallLetter, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_set(this, _capitalLetter, capitalLetter);
-        _class_private_field_set(this, _smallLetter, smallLetter);
-        _class_private_field_set(this, _coordinates, coordinates.map(function(coordinate) {
+        _define_property(this, "coordinates", void 0);
+        _define_property(this, "_capitalLetter", void 0);
+        _define_property(this, "_smallLetter", void 0);
+        this._capitalLetter = capitalLetter;
+        this._smallLetter = smallLetter;
+        this.coordinates = coordinates.map(function(coordinate) {
             return new _Point__WEBPACK_IMPORTED_MODULE_0__.Point(coordinate, editor);
-        }));
+        });
     }
     _create_class(CoordinatesArgument, [
         {
             key: "capitalLetter",
             get: function get() {
-                return _class_private_field_get(this, _capitalLetter);
+                return this._capitalLetter;
             }
         },
         {
             key: "smallLetter",
             get: function get() {
-                return _class_private_field_get(this, _smallLetter);
+                return this._smallLetter;
             }
         },
         {
@@ -2619,7 +2509,7 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
             value: function translate(x, y) {
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(this, _coordinates)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = this.coordinates[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var coordinate = _step.value;
                         coordinate.translate(x, y);
                     }
@@ -2644,7 +2534,7 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
             value: function rotate(cos, sin) {
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(this, _coordinates)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = this.coordinates[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var coordinate = _step.value;
                         coordinate.rotate(cos, sin);
                     }
@@ -2669,7 +2559,7 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
             value: function scale(x, y) {
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(this, _coordinates)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = this.coordinates[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var coordinate = _step.value;
                         coordinate.scale(x, y);
                     }
@@ -2692,18 +2582,18 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
         {
             key: "toAbsoluteCoordinates",
             value: function toAbsoluteCoordinates(current, start) {
-                if (_class_private_field_get(this, _capitalLetter) === 'L' && _class_private_field_get(this, _coordinates)[0].y.equals(current.y)) {
-                    current.x = _class_private_field_get(this, _coordinates)[0].x;
-                    return "H ".concat(_class_private_field_get(this, _coordinates)[0].x, " ");
+                if (this.capitalLetter === 'L' && this.coordinates[0].y.equals(current.y)) {
+                    current.x = this.coordinates[0].x;
+                    return "H ".concat(this.coordinates[0].x, " ");
                 }
-                if (_class_private_field_get(this, _capitalLetter) === 'L' && _class_private_field_get(this, _coordinates)[0].x.equals(current.x)) {
-                    current.y = _class_private_field_get(this, _coordinates)[0].y;
-                    return "V ".concat(_class_private_field_get(this, _coordinates)[0].y, " ");
+                if (this.capitalLetter === 'L' && this.coordinates[0].x.equals(current.x)) {
+                    current.y = this.coordinates[0].y;
+                    return "V ".concat(this.coordinates[0].y, " ");
                 }
-                var result = "".concat(_class_private_field_get(this, _capitalLetter), " ");
+                var result = "".concat(this.capitalLetter, " ");
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(this, _coordinates)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = this.coordinates[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var coordinate = _step.value;
                         result += "".concat(coordinate.x, " ").concat(coordinate.y, " ");
                     }
@@ -2721,9 +2611,9 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                         }
                     }
                 }
-                current.x = _class_private_field_get(this, _coordinates)[_class_private_field_get(this, _coordinates).length - 1].x;
-                current.y = _class_private_field_get(this, _coordinates)[_class_private_field_get(this, _coordinates).length - 1].y;
-                if (_class_private_field_get(this, _capitalLetter) === 'M') {
+                current.x = this.coordinates[this.coordinates.length - 1].x;
+                current.y = this.coordinates[this.coordinates.length - 1].y;
+                if (this.capitalLetter === 'M') {
                     start.x = current.x;
                     start.y = current.y;
                 }
@@ -2733,22 +2623,22 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
         {
             key: "toRelativeCoordinates",
             value: function toRelativeCoordinates(current, start) {
-                if (_class_private_field_get(this, _capitalLetter) === 'L') {
-                    if (_class_private_field_get(this, _coordinates)[0].y.equals(current.y)) {
-                        var result = "h ".concat(_class_private_field_get(this, _coordinates)[0].x.minus(current.x), " ");
-                        current.x = _class_private_field_get(this, _coordinates)[0].x;
+                if (this.capitalLetter === 'L') {
+                    if (this.coordinates[0].y.equals(current.y)) {
+                        var result = "h ".concat(this.coordinates[0].x.minus(current.x), " ");
+                        current.x = this.coordinates[0].x;
                         return result;
                     }
-                    if (_class_private_field_get(this, _coordinates)[0].x.equals(current.x)) {
-                        var result1 = "v ".concat(_class_private_field_get(this, _coordinates)[0].y.minus(current.y), " ");
-                        current.y = _class_private_field_get(this, _coordinates)[0].y;
+                    if (this.coordinates[0].x.equals(current.x)) {
+                        var result1 = "v ".concat(this.coordinates[0].y.minus(current.y), " ");
+                        current.y = this.coordinates[0].y;
                         return result1;
                     }
                 }
-                var result2 = "".concat(_class_private_field_get(this, _smallLetter), " ");
+                var result2 = "".concat(this.smallLetter, " ");
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(this, _coordinates)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = this.coordinates[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var coordinate = _step.value;
                         result2 += "".concat(coordinate.x.minus(current.x), " ").concat(coordinate.y.minus(current.y), " ");
                     }
@@ -2766,9 +2656,9 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                         }
                     }
                 }
-                current.x = _class_private_field_get(this, _coordinates)[_class_private_field_get(this, _coordinates).length - 1].x;
-                current.y = _class_private_field_get(this, _coordinates)[_class_private_field_get(this, _coordinates).length - 1].y;
-                if (_class_private_field_get(this, _capitalLetter) === 'M') {
+                current.x = this.coordinates[this.coordinates.length - 1].x;
+                current.y = this.coordinates[this.coordinates.length - 1].y;
+                if (this.capitalLetter === 'M') {
                     start.x = current.x;
                     start.y = current.y;
                 }
@@ -2797,23 +2687,23 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                     lastHasDot = result.includes('.');
                     return result;
                 }
-                if (_class_private_field_get(this, _capitalLetter) === 'L') {
-                    if (_class_private_field_get(this, _coordinates)[0].y.equals(current.y)) {
+                if (this.capitalLetter === 'L') {
+                    if (this.coordinates[0].y.equals(current.y)) {
                         lastHasDot = last.hasDot;
-                        var resultBig = ToMinimizedString(_class_private_field_get(this, _coordinates)[0].x);
+                        var resultBig = ToMinimizedString(this.coordinates[0].x);
                         if (last.argument !== 'H') {
                             if (resultBig.charAt(0) === ' ') resultBig = resultBig.substring(1); // remove ' '
                             resultBig = "H".concat(resultBig);
                         }
                         var lastHasDotBig = lastHasDot;
                         lastHasDot = last.hasDot;
-                        var resultSmall = ToMinimizedString(_class_private_field_get(this, _coordinates)[0].x.minus(current.x));
+                        var resultSmall = ToMinimizedString(this.coordinates[0].x.minus(current.x));
                         if (last.argument !== 'h') {
                             if (resultSmall.charAt(0) === ' ') resultSmall = resultSmall.substring(1); // remove ' '
                             resultSmall = "h".concat(resultSmall);
                         }
                         var lastHasDotSmall = lastHasDot;
-                        current.x = _class_private_field_get(this, _coordinates)[0].x;
+                        current.x = this.coordinates[0].x;
                         if (resultBig.length <= resultSmall.length) {
                             last.argument = 'H';
                             last.hasDot = lastHasDotBig;
@@ -2824,22 +2714,22 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                             return resultSmall;
                         }
                     }
-                    if (_class_private_field_get(this, _coordinates)[0].x.equals(current.x)) {
+                    if (this.coordinates[0].x.equals(current.x)) {
                         lastHasDot = last.hasDot;
-                        var resultBig1 = ToMinimizedString(_class_private_field_get(this, _coordinates)[0].y);
+                        var resultBig1 = ToMinimizedString(this.coordinates[0].y);
                         if (last.argument !== 'V') {
                             if (resultBig1.charAt(0) === ' ') resultBig1 = resultBig1.substring(1); // remove ' '
                             resultBig1 = "V".concat(resultBig1);
                         }
                         var lastHasDotBig1 = lastHasDot;
                         lastHasDot = last.hasDot;
-                        var resultSmall1 = ToMinimizedString(_class_private_field_get(this, _coordinates)[0].y.minus(current.y));
+                        var resultSmall1 = ToMinimizedString(this.coordinates[0].y.minus(current.y));
                         if (last.argument !== 'v') {
                             if (resultSmall1.charAt(0) === ' ') resultSmall1 = resultSmall1.substring(1); // remove ' '
                             resultSmall1 = "v".concat(resultSmall1);
                         }
                         var lastHasDotSmall1 = lastHasDot;
-                        current.y = _class_private_field_get(this, _coordinates)[0].y;
+                        current.y = this.coordinates[0].y;
                         if (resultBig1.length <= resultSmall1.length) {
                             last.argument = 'V';
                             last.hasDot = lastHasDotBig1;
@@ -2856,7 +2746,7 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                 {
                     var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                     try {
-                        for(var _iterator = _class_private_field_get(this, _coordinates)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                        for(var _iterator = this.coordinates[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                             var coordinate = _step.value;
                             resultBig2 += ToMinimizedString(coordinate.x);
                             resultBig2 += ToMinimizedString(coordinate.y);
@@ -2875,9 +2765,9 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                             }
                         }
                     }
-                    if (last.argument !== _class_private_field_get(this, _capitalLetter)) {
+                    if (last.argument !== this.capitalLetter) {
                         if (resultBig2.charAt(0) === ' ') resultBig2 = resultBig2.substring(1); // remove ' '
-                        resultBig2 = "".concat(_class_private_field_get(this, _capitalLetter)).concat(resultBig2);
+                        resultBig2 = "".concat(this.capitalLetter).concat(resultBig2);
                     }
                 }
                 var lastHasDotBig2 = lastHasDot;
@@ -2886,7 +2776,7 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                 {
                     var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
                     try {
-                        for(var _iterator1 = _class_private_field_get(this, _coordinates)[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
+                        for(var _iterator1 = this.coordinates[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
                             var coordinate1 = _step1.value;
                             resultSmall2 += ToMinimizedString(coordinate1.x.minus(current.x));
                             resultSmall2 += ToMinimizedString(coordinate1.y.minus(current.y));
@@ -2905,24 +2795,24 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
                             }
                         }
                     }
-                    if (last.argument !== _class_private_field_get(this, _smallLetter)) {
+                    if (last.argument !== this.smallLetter) {
                         if (resultSmall2.charAt(0) === ' ') resultSmall2 = resultSmall2.substring(1); // remove ' '
-                        resultSmall2 = "".concat(_class_private_field_get(this, _smallLetter)).concat(resultSmall2);
+                        resultSmall2 = "".concat(this.smallLetter).concat(resultSmall2);
                     }
                 }
                 var lastHasDotSmall2 = lastHasDot;
-                current.x = _class_private_field_get(this, _coordinates)[_class_private_field_get(this, _coordinates).length - 1].x;
-                current.y = _class_private_field_get(this, _coordinates)[_class_private_field_get(this, _coordinates).length - 1].y;
-                if (_class_private_field_get(this, _capitalLetter) === 'M') {
+                current.x = this.coordinates[this.coordinates.length - 1].x;
+                current.y = this.coordinates[this.coordinates.length - 1].y;
+                if (this.capitalLetter === 'M') {
                     start.x = current.x;
                     start.y = current.y;
                 }
                 if (resultBig2.length <= resultSmall2.length) {
-                    last.argument = _class_private_field_get(this, _capitalLetter) === 'M' ? 'L' : _class_private_field_get(this, _capitalLetter);
+                    last.argument = this.capitalLetter === 'M' ? 'L' : this.capitalLetter;
                     last.hasDot = lastHasDotBig2;
                     return resultBig2;
                 } else {
-                    last.argument = _class_private_field_get(this, _smallLetter) === 'm' ? 'l' : _class_private_field_get(this, _smallLetter);
+                    last.argument = this.smallLetter === 'm' ? 'l' : this.smallLetter;
                     last.hasDot = lastHasDotSmall2;
                     return resultSmall2;
                 }
@@ -2933,7 +2823,7 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
             value: function roundCoordinates() {
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(this, _coordinates)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = this.coordinates[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var coordinate = _step.value;
                         coordinate.round();
                     }
@@ -2956,19 +2846,19 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
         {
             key: "createInputs",
             value: function createInputs(argumentDiv) {
-                for(var i = 0; i < _class_private_field_get(this, _coordinates).length; i++)_class_private_field_get(this, _coordinates)[i].createInputPair(argumentDiv);
+                for(var i = 0; i < this.coordinates.length; i++)this.coordinates[i].createInputPair(argumentDiv);
             }
         },
         {
             key: "removeInputs",
             value: function removeInputs() {
-                for(var i = _class_private_field_get(this, _coordinates).length - 1; i >= 0; i--)_class_private_field_get(this, _coordinates)[i].removeInputPair();
+                for(var i = this.coordinates.length - 1; i >= 0; i--)this.coordinates[i].removeInputPair();
             }
         },
         {
             key: "createDots",
             value: function createDots() {
-                for(var i = _class_private_field_get(this, _coordinates).length - 1, j = 0; i >= 0; i--, j++)_class_private_field_get(this, _coordinates)[i].createDot(j);
+                for(var i = this.coordinates.length - 1, j = 0; i >= 0; i--, j++)this.coordinates[i].createDot(j);
             }
         },
         {
@@ -2976,7 +2866,7 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
             value: function updateDotsRadius() {
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(this, _coordinates)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = this.coordinates[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var coordinate = _step.value;
                         coordinate.updateDotRadius();
                     }
@@ -2999,7 +2889,7 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
         {
             key: "removeDots",
             value: function removeDots() {
-                for(var i = 0; i < _class_private_field_get(this, _coordinates).length; i++)_class_private_field_get(this, _coordinates)[i].removeDot();
+                for(var i = 0; i < this.coordinates.length; i++)this.coordinates[i].removeDot();
             }
         }
     ], [
@@ -3061,7 +2951,11 @@ var CoordinatesArgument = /*#__PURE__*/ function() {
 
 
 }),
-"./SvgPathEditor/Arguments/Point.ts": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+"./SvgPathEditor/Arguments/Point.ts": 
+/*!******************************************!*\
+  !*** ./SvgPathEditor/Arguments/Point.ts ***!
+  \******************************************/
+(function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
@@ -3069,50 +2963,10 @@ __webpack_require__.d(__webpack_exports__, {
 });
 /* ESM import */var _Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Decimal/Decimal */ "./Decimal/Decimal.js");
 /* ESM import */var _Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0__);
-function _check_private_redeclaration(obj, privateCollection) {
-    if (privateCollection.has(obj)) {
-        throw new TypeError("Cannot initialize the same private elements twice on an object");
-    }
-}
-function _class_apply_descriptor_get(receiver, descriptor) {
-    if (descriptor.get) {
-        return descriptor.get.call(receiver);
-    }
-    return descriptor.value;
-}
-function _class_apply_descriptor_set(receiver, descriptor, value) {
-    if (descriptor.set) {
-        descriptor.set.call(receiver, value);
-    } else {
-        if (!descriptor.writable) {
-            throw new TypeError("attempted to set read only private field");
-        }
-        descriptor.value = value;
-    }
-}
 function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
-}
-function _class_extract_field_descriptor(receiver, privateMap, action) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to " + action + " private field on non-instance");
-    }
-    return privateMap.get(receiver);
-}
-function _class_private_field_get(receiver, privateMap) {
-    var descriptor = _class_extract_field_descriptor(receiver, privateMap, "get");
-    return _class_apply_descriptor_get(receiver, descriptor);
-}
-function _class_private_field_init(obj, privateMap, value) {
-    _check_private_redeclaration(obj, privateMap);
-    privateMap.set(obj, value);
-}
-function _class_private_field_set(receiver, privateMap, value) {
-    var descriptor = _class_extract_field_descriptor(receiver, privateMap, "set");
-    _class_apply_descriptor_set(receiver, descriptor, value);
-    return value;
 }
 function _defineProperties(target, props) {
     for(var i = 0; i < props.length; i++){
@@ -3128,213 +2982,189 @@ function _create_class(Constructor, protoProps, staticProps) {
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
 }
+function _define_property(obj, key, value) {
+    if (key in obj) {
+        Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+        });
+    } else {
+        obj[key] = value;
+    }
+    return obj;
+}
 
-var /** "p" is shorthand for point */ _p = /*#__PURE__*/ new WeakMap(), _editor = /*#__PURE__*/ new WeakMap(), // input elements
-_pDiv = /*#__PURE__*/ new WeakMap(), _oninputX = /*#__PURE__*/ new WeakMap(), _oninputY = /*#__PURE__*/ new WeakMap(), // circle dots
-_pDot = /*#__PURE__*/ new WeakMap(), _dragCoordinateX = /*#__PURE__*/ new WeakMap(), _dragCoordinateY = /*#__PURE__*/ new WeakMap(), _dragPoint = /*#__PURE__*/ new WeakMap(), _dotPointerDown = /*#__PURE__*/ new WeakMap(), _dotPointerMove = /*#__PURE__*/ new WeakMap(), _dotPointerUp = /*#__PURE__*/ new WeakMap();
 var Point = /*#__PURE__*/ function() {
     "use strict";
     function Point(p, editor) {
         var _this = this;
         _class_call_check(this, Point);
-        _class_private_field_init(this, _p, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _editor, {
-            writable: true,
-            value: void 0
-        });
-        _class_private_field_init(this, _pDiv, {
-            writable: true,
-            value: null
-        });
-        _class_private_field_init(this, _oninputX, {
-            writable: true,
-            value: function(event) {
-                try {
-                    var _$_class_private_field_get;
-                    _class_private_field_get(_this, _p).x = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(event.target.value);
-                    (_$_class_private_field_get = _class_private_field_get(_this, _pDot)) === null || _$_class_private_field_get === void 0 ? void 0 : _$_class_private_field_get.setAttribute("cx", _class_private_field_get(_this, _p).x.toString());
-                    _class_private_field_get(_this, _editor).renderPath();
-                } catch (e) {
-                // ignore invalid user input
-                }
+        /** "p" is shorthand for point */ _define_property(this, "p", void 0);
+        _define_property(this, "editor", void 0);
+        // input elements
+        _define_property(this, "pDiv", null);
+        _define_property(this, "oninputX", function(event) {
+            try {
+                var _this_pDot;
+                _this.p.x = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(event.target.value);
+                (_this_pDot = _this.pDot) === null || _this_pDot === void 0 ? void 0 : _this_pDot.setAttribute("cx", _this.p.x.toString());
+                _this.editor.renderPath();
+            } catch (e) {
+            // ignore invalid user input
             }
         });
-        _class_private_field_init(this, _oninputY, {
-            writable: true,
-            value: function(event) {
-                try {
-                    var _$_class_private_field_get;
-                    _class_private_field_get(_this, _p).y = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(event.target.value);
-                    (_$_class_private_field_get = _class_private_field_get(_this, _pDot)) === null || _$_class_private_field_get === void 0 ? void 0 : _$_class_private_field_get.setAttribute("cy", _class_private_field_get(_this, _p).y.toString());
-                    _class_private_field_get(_this, _editor).renderPath();
-                } catch (e) {
-                // ignore invalid user input
-                }
+        _define_property(this, "oninputY", function(event) {
+            try {
+                var _this_pDot;
+                _this.p.y = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(event.target.value);
+                (_this_pDot = _this.pDot) === null || _this_pDot === void 0 ? void 0 : _this_pDot.setAttribute("cy", _this.p.y.toString());
+                _this.editor.renderPath();
+            } catch (e) {
+            // ignore invalid user input
             }
         });
-        _class_private_field_init(this, _pDot, {
-            writable: true,
-            value: null
+        // circle dots
+        _define_property(this, "pDot", null);
+        _define_property(this, "dragCoordinateX", 0);
+        _define_property(this, "dragCoordinateY", 0);
+        _define_property(this, "dragPoint", {
+            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
         });
-        _class_private_field_init(this, _dragCoordinateX, {
-            writable: true,
-            value: 0
+        _define_property(this, "dotPointerDown", function(event) {
+            _this.pDot.style.cursor = "grabbing";
+            _this.pDot.setPointerCapture(event.pointerId);
+            _this.dragCoordinateX = event.clientX;
+            _this.dragPoint.x = _this.p.x;
+            _this.dragCoordinateY = event.clientY;
+            _this.dragPoint.y = _this.p.y;
+            _this.pDot.onpointermove = _this.dotPointerMove;
+            _this.pDot.onpointerup = _this.dotPointerUp;
         });
-        _class_private_field_init(this, _dragCoordinateY, {
-            writable: true,
-            value: 0
+        _define_property(this, "dotPointerMove", function(event) {
+            var dx = event.clientX - _this.dragCoordinateX;
+            var dy = event.clientY - _this.dragCoordinateY;
+            _this.p.x = _this.dragPoint.x.plus(new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(dx / _this.editor.svg.clientWidth * _this.editor.viewBoxWidth)).toDecimalPlaces(_this.editor.roundNumber + 1);
+            _this.p.y = _this.dragPoint.y.plus(new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(dy / _this.editor.svg.clientHeight * _this.editor.viewBoxHeight)).toDecimalPlaces(_this.editor.roundNumber + 1);
+            _this.pDot.setAttribute("cx", _this.p.x.toString());
+            _this.pDot.setAttribute("cy", _this.p.y.toString());
+            _this.pDiv.firstChild.value = _this.p.x.toString();
+            _this.pDiv.lastChild.value = _this.p.y.toString();
+            _this.editor.renderPath();
         });
-        _class_private_field_init(this, _dragPoint, {
-            writable: true,
-            value: {
-                x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-            }
+        _define_property(this, "dotPointerUp", function(event) {
+            _this.pDot.style.cursor = "grab";
+            _this.pDot.releasePointerCapture(event.pointerId);
+            _this.pDot.onpointermove = null;
+            _this.pDot.onpointerup = null;
         });
-        _class_private_field_init(this, _dotPointerDown, {
-            writable: true,
-            value: function(event) {
-                _class_private_field_get(_this, _pDot).style.cursor = "grabbing";
-                _class_private_field_get(_this, _pDot).setPointerCapture(event.pointerId);
-                _class_private_field_set(_this, _dragCoordinateX, event.clientX);
-                _class_private_field_get(_this, _dragPoint).x = _class_private_field_get(_this, _p).x;
-                _class_private_field_set(_this, _dragCoordinateY, event.clientY);
-                _class_private_field_get(_this, _dragPoint).y = _class_private_field_get(_this, _p).y;
-                _class_private_field_get(_this, _pDot).onpointermove = _class_private_field_get(_this, _dotPointerMove);
-                _class_private_field_get(_this, _pDot).onpointerup = _class_private_field_get(_this, _dotPointerUp);
-            }
-        });
-        _class_private_field_init(this, _dotPointerMove, {
-            writable: true,
-            value: function(event) {
-                var dx = event.clientX - _class_private_field_get(_this, _dragCoordinateX);
-                var dy = event.clientY - _class_private_field_get(_this, _dragCoordinateY);
-                _class_private_field_get(_this, _p).x = _class_private_field_get(_this, _dragPoint).x.plus(new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(dx / _class_private_field_get(_this, _editor).svg.clientWidth * _class_private_field_get(_this, _editor).viewBoxWidth)).toDecimalPlaces(_class_private_field_get(_this, _editor).roundNumber + 1);
-                _class_private_field_get(_this, _p).y = _class_private_field_get(_this, _dragPoint).y.plus(new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(dy / _class_private_field_get(_this, _editor).svg.clientHeight * _class_private_field_get(_this, _editor).viewBoxHeight)).toDecimalPlaces(_class_private_field_get(_this, _editor).roundNumber + 1);
-                _class_private_field_get(_this, _pDot).setAttribute("cx", _class_private_field_get(_this, _p).x.toString());
-                _class_private_field_get(_this, _pDot).setAttribute("cy", _class_private_field_get(_this, _p).y.toString());
-                _class_private_field_get(_this, _pDiv).firstChild.value = _class_private_field_get(_this, _p).x.toString();
-                _class_private_field_get(_this, _pDiv).lastChild.value = _class_private_field_get(_this, _p).y.toString();
-                _class_private_field_get(_this, _editor).renderPath();
-            }
-        });
-        _class_private_field_init(this, _dotPointerUp, {
-            writable: true,
-            value: function(event) {
-                _class_private_field_get(_this, _pDot).style.cursor = "grab";
-                _class_private_field_get(_this, _pDot).releasePointerCapture(event.pointerId);
-                _class_private_field_get(_this, _pDot).onpointermove = null;
-                _class_private_field_get(_this, _pDot).onpointerup = null;
-            }
-        });
-        _class_private_field_set(this, _p, p);
-        _class_private_field_set(this, _editor, editor);
+        this.p = p;
+        this.editor = editor;
     }
     _create_class(Point, [
         {
             key: "x",
             get: function get() {
-                return _class_private_field_get(this, _p).x;
+                return this.p.x;
             }
         },
         {
             key: "y",
             get: function get() {
-                return _class_private_field_get(this, _p).y;
+                return this.p.y;
             }
         },
         {
             key: "round",
             value: function round() {
-                var _$_class_private_field_get, _$_class_private_field_get1;
-                _class_private_field_get(this, _p).x = _class_private_field_get(this, _p).x.toDecimalPlaces(_class_private_field_get(this, _editor).roundNumber + 1);
-                _class_private_field_get(this, _pDiv).firstChild.value = _class_private_field_get(this, _p).x.toString();
-                (_$_class_private_field_get = _class_private_field_get(this, _pDot)) === null || _$_class_private_field_get === void 0 ? void 0 : _$_class_private_field_get.setAttribute("cx", _class_private_field_get(this, _p).x.toString());
-                _class_private_field_get(this, _p).y = _class_private_field_get(this, _p).y.toDecimalPlaces(_class_private_field_get(this, _editor).roundNumber + 1);
-                _class_private_field_get(this, _pDiv).lastChild.value = _class_private_field_get(this, _p).y.toString();
-                (_$_class_private_field_get1 = _class_private_field_get(this, _pDot)) === null || _$_class_private_field_get1 === void 0 ? void 0 : _$_class_private_field_get1.setAttribute("cy", _class_private_field_get(this, _p).y.toString());
+                var _this_pDot, _this_pDot1;
+                this.p.x = this.p.x.toDecimalPlaces(this.editor.roundNumber + 1);
+                this.pDiv.firstChild.value = this.p.x.toString();
+                (_this_pDot = this.pDot) === null || _this_pDot === void 0 ? void 0 : _this_pDot.setAttribute("cx", this.p.x.toString());
+                this.p.y = this.p.y.toDecimalPlaces(this.editor.roundNumber + 1);
+                this.pDiv.lastChild.value = this.p.y.toString();
+                (_this_pDot1 = this.pDot) === null || _this_pDot1 === void 0 ? void 0 : _this_pDot1.setAttribute("cy", this.p.y.toString());
             }
         },
         {
             key: "translate",
             value: function translate(x, y) {
-                var _$_class_private_field_get, _$_class_private_field_get1;
-                _class_private_field_get(this, _p).x = _class_private_field_get(this, _p).x.plus(x);
-                _class_private_field_get(this, _p).y = _class_private_field_get(this, _p).y.plus(y);
-                _class_private_field_get(this, _pDiv).firstChild.value = _class_private_field_get(this, _p).x.toString();
-                _class_private_field_get(this, _pDiv).lastChild.value = _class_private_field_get(this, _p).y.toString();
-                (_$_class_private_field_get = _class_private_field_get(this, _pDot)) === null || _$_class_private_field_get === void 0 ? void 0 : _$_class_private_field_get.setAttribute("cx", _class_private_field_get(this, _p).x.toString());
-                (_$_class_private_field_get1 = _class_private_field_get(this, _pDot)) === null || _$_class_private_field_get1 === void 0 ? void 0 : _$_class_private_field_get1.setAttribute("cy", _class_private_field_get(this, _p).y.toString());
+                var _this_pDot, _this_pDot1;
+                this.p.x = this.p.x.plus(x);
+                this.p.y = this.p.y.plus(y);
+                this.pDiv.firstChild.value = this.p.x.toString();
+                this.pDiv.lastChild.value = this.p.y.toString();
+                (_this_pDot = this.pDot) === null || _this_pDot === void 0 ? void 0 : _this_pDot.setAttribute("cx", this.p.x.toString());
+                (_this_pDot1 = this.pDot) === null || _this_pDot1 === void 0 ? void 0 : _this_pDot1.setAttribute("cy", this.p.y.toString());
             }
         },
         {
             key: "rotate",
             value: function rotate(cos, sin) {
-                var _$_class_private_field_get, _$_class_private_field_get1;
-                var x = cos.mul(_class_private_field_get(this, _p).x).minus(sin.mul(_class_private_field_get(this, _p).y)).toDecimalPlaces(_class_private_field_get(this, _editor).roundNumber + 1);
-                var y = sin.mul(_class_private_field_get(this, _p).x).plus(cos.mul(_class_private_field_get(this, _p).y)).toDecimalPlaces(_class_private_field_get(this, _editor).roundNumber + 1);
-                _class_private_field_get(this, _p).x = x;
-                _class_private_field_get(this, _p).y = y;
-                _class_private_field_get(this, _pDiv).firstChild.value = _class_private_field_get(this, _p).x.toString();
-                _class_private_field_get(this, _pDiv).lastChild.value = _class_private_field_get(this, _p).y.toString();
-                (_$_class_private_field_get = _class_private_field_get(this, _pDot)) === null || _$_class_private_field_get === void 0 ? void 0 : _$_class_private_field_get.setAttribute("cx", _class_private_field_get(this, _p).x.toString());
-                (_$_class_private_field_get1 = _class_private_field_get(this, _pDot)) === null || _$_class_private_field_get1 === void 0 ? void 0 : _$_class_private_field_get1.setAttribute("cy", _class_private_field_get(this, _p).y.toString());
+                var _this_pDot, _this_pDot1;
+                var x = cos.mul(this.p.x).minus(sin.mul(this.p.y)).toDecimalPlaces(this.editor.roundNumber + 1);
+                var y = sin.mul(this.p.x).plus(cos.mul(this.p.y)).toDecimalPlaces(this.editor.roundNumber + 1);
+                this.p.x = x;
+                this.p.y = y;
+                this.pDiv.firstChild.value = this.p.x.toString();
+                this.pDiv.lastChild.value = this.p.y.toString();
+                (_this_pDot = this.pDot) === null || _this_pDot === void 0 ? void 0 : _this_pDot.setAttribute("cx", this.p.x.toString());
+                (_this_pDot1 = this.pDot) === null || _this_pDot1 === void 0 ? void 0 : _this_pDot1.setAttribute("cy", this.p.y.toString());
             }
         },
         {
             key: "scale",
             value: function scale(x, y) {
-                var _$_class_private_field_get, _$_class_private_field_get1;
-                _class_private_field_get(this, _p).x = _class_private_field_get(this, _p).x.mul(x);
-                _class_private_field_get(this, _p).y = _class_private_field_get(this, _p).y.mul(y);
-                _class_private_field_get(this, _pDiv).firstChild.value = _class_private_field_get(this, _p).x.toString();
-                _class_private_field_get(this, _pDiv).lastChild.value = _class_private_field_get(this, _p).y.toString();
-                (_$_class_private_field_get = _class_private_field_get(this, _pDot)) === null || _$_class_private_field_get === void 0 ? void 0 : _$_class_private_field_get.setAttribute("cx", _class_private_field_get(this, _p).x.toString());
-                (_$_class_private_field_get1 = _class_private_field_get(this, _pDot)) === null || _$_class_private_field_get1 === void 0 ? void 0 : _$_class_private_field_get1.setAttribute("cy", _class_private_field_get(this, _p).y.toString());
+                var _this_pDot, _this_pDot1;
+                this.p.x = this.p.x.mul(x);
+                this.p.y = this.p.y.mul(y);
+                this.pDiv.firstChild.value = this.p.x.toString();
+                this.pDiv.lastChild.value = this.p.y.toString();
+                (_this_pDot = this.pDot) === null || _this_pDot === void 0 ? void 0 : _this_pDot.setAttribute("cx", this.p.x.toString());
+                (_this_pDot1 = this.pDot) === null || _this_pDot1 === void 0 ? void 0 : _this_pDot1.setAttribute("cy", this.p.y.toString());
             }
         },
         {
-            /** component:
+            key: "createInputPair",
+            value: /** component:
      * <div>
      *     <input>
      *     <input>
      * </div>
-     */ key: "createInputPair",
-            value: function createInputPair(argumentDiv) {
-                _class_private_field_set(this, _pDiv, document.createElement("div"));
+     */ function createInputPair(argumentDiv) {
+                this.pDiv = document.createElement("div");
                 {
                     var inputX = document.createElement("input");
                     {
-                        inputX.value = _class_private_field_get(this, _p).x.toString();
-                        inputX.oninput = _class_private_field_get(this, _oninputX);
+                        inputX.value = this.p.x.toString();
+                        inputX.oninput = this.oninputX;
                     }
-                    _class_private_field_get(this, _pDiv).appendChild(inputX);
+                    this.pDiv.appendChild(inputX);
                     var inputY = document.createElement("input");
                     {
-                        inputY.value = _class_private_field_get(this, _p).y.toString();
-                        inputY.oninput = _class_private_field_get(this, _oninputY);
+                        inputY.value = this.p.y.toString();
+                        inputY.oninput = this.oninputY;
                     }
-                    _class_private_field_get(this, _pDiv).appendChild(inputY);
+                    this.pDiv.appendChild(inputY);
                 }
-                argumentDiv.appendChild(_class_private_field_get(this, _pDiv));
+                argumentDiv.appendChild(this.pDiv);
             }
         },
         {
-            /** */ key: "removeInputPair",
-            value: function removeInputPair() {
-                var parantDiv = _class_private_field_get(this, _pDiv).parentElement;
+            key: "removeInputPair",
+            value: /** */ function removeInputPair() {
+                var parantDiv = this.pDiv.parentElement;
                 parantDiv.lastChild.remove();
-                _class_private_field_set(this, _pDiv, null);
+                this.pDiv = null;
             }
         },
         {
-            /** component:
+            key: "createDot",
+            value: /** component:
      * <circle cx="p.x" cy="p.y" r="circleRadius" fill="color" stroke-width="0" style="cursor: grab|grabbing;" />
-     */ key: "createDot",
-            value: function createDot(colorIndex) {
+     */ function createDot(colorIndex) {
                 var colors = [
                     "blue",
                     "green",
@@ -3344,33 +3174,33 @@ var Point = /*#__PURE__*/ function() {
                     "brown"
                 ];
                 var color = colors[colorIndex % colors.length];
-                _class_private_field_set(this, _pDot, document.createElementNS("http://www.w3.org/2000/svg", "circle"));
+                this.pDot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
                 {
-                    _class_private_field_get(this, _pDot).setAttribute("cx", _class_private_field_get(this, _p).x.toString());
-                    _class_private_field_get(this, _pDot).setAttribute("cy", _class_private_field_get(this, _p).y.toString());
-                    _class_private_field_get(this, _pDot).setAttribute("r", _class_private_field_get(this, _editor).circleRadius.toString());
-                    _class_private_field_get(this, _pDot).setAttribute("fill", color);
-                    _class_private_field_get(this, _pDot).setAttribute("stroke-width", "0");
-                    _class_private_field_get(this, _pDot).style.cursor = "grab";
-                    _class_private_field_get(this, _pDot).onpointerdown = _class_private_field_get(this, _dotPointerDown);
+                    this.pDot.setAttribute("cx", this.p.x.toString());
+                    this.pDot.setAttribute("cy", this.p.y.toString());
+                    this.pDot.setAttribute("r", this.editor.circleRadius.toString());
+                    this.pDot.setAttribute("fill", color);
+                    this.pDot.setAttribute("stroke-width", "0");
+                    this.pDot.style.cursor = "grab";
+                    this.pDot.onpointerdown = this.dotPointerDown;
                 }
-                _class_private_field_get(this, _editor).svg.appendChild(_class_private_field_get(this, _pDot));
+                this.editor.svg.appendChild(this.pDot);
             }
         },
         {
             key: "updateDotRadius",
             value: function updateDotRadius() {
-                var _$_class_private_field_get;
-                (_$_class_private_field_get = _class_private_field_get(this, _pDot)) === null || _$_class_private_field_get === void 0 ? void 0 : _$_class_private_field_get.setAttribute("r", _class_private_field_get(this, _editor).circleRadius.toString());
+                var _this_pDot;
+                (_this_pDot = this.pDot) === null || _this_pDot === void 0 ? void 0 : _this_pDot.setAttribute("r", this.editor.circleRadius.toString());
             }
         },
         {
             key: "removeDot",
             value: function removeDot() {
-                if (_class_private_field_get(this, _pDot) === null) return;
-                var parantSvg = _class_private_field_get(this, _pDot).parentElement;
-                _class_private_field_get(this, _pDot).remove();
-                _class_private_field_set(this, _pDot, null);
+                if (this.pDot === null) return;
+                var parantSvg = this.pDot.parentElement;
+                this.pDot.remove();
+                this.pDot = null;
             }
         }
     ]);
@@ -3379,7 +3209,11 @@ var Point = /*#__PURE__*/ function() {
 
 
 }),
-"./SvgPathEditor/SvgPathEditor.ts": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+"./SvgPathEditor/SvgPathEditor.ts": 
+/*!****************************************!*\
+  !*** ./SvgPathEditor/SvgPathEditor.ts ***!
+  \****************************************/
+(function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
@@ -3390,45 +3224,24 @@ __webpack_require__.d(__webpack_exports__, {
 /* ESM import */var _Arguments_ArgumentA__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Arguments/ArgumentA */ "./SvgPathEditor/Arguments/ArgumentA.ts");
 /* ESM import */var _Arguments_ArgumentZ__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Arguments/ArgumentZ */ "./SvgPathEditor/Arguments/ArgumentZ.ts");
 /* ESM import */var _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Arguments/CoordinatesArgument */ "./SvgPathEditor/Arguments/CoordinatesArgument.ts");
-function _check_private_redeclaration(obj, privateCollection) {
-    if (privateCollection.has(obj)) {
-        throw new TypeError("Cannot initialize the same private elements twice on an object");
-    }
-}
-function _class_apply_descriptor_get(receiver, descriptor) {
-    if (descriptor.get) {
-        return descriptor.get.call(receiver);
-    }
-    return descriptor.value;
-}
 function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
 }
-function _class_extract_field_descriptor(receiver, privateMap, action) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to " + action + " private field on non-instance");
+function _defineProperties(target, props) {
+    for(var i = 0; i < props.length; i++){
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
     }
-    return privateMap.get(receiver);
 }
-function _class_private_field_get(receiver, privateMap) {
-    var descriptor = _class_extract_field_descriptor(receiver, privateMap, "get");
-    return _class_apply_descriptor_get(receiver, descriptor);
-}
-function _class_private_field_init(obj, privateMap, value) {
-    _check_private_redeclaration(obj, privateMap);
-    privateMap.set(obj, value);
-}
-function _class_private_method_get(receiver, privateSet, fn) {
-    if (!privateSet.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return fn;
-}
-function _class_private_method_init(obj, privateSet) {
-    _check_private_redeclaration(obj, privateSet);
-    privateSet.add(obj);
+function _create_class(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
 }
 function _define_property(obj, key, value) {
     if (key in obj) {
@@ -3447,187 +3260,67 @@ function _define_property(obj, key, value) {
 
 
 
-var _lightRadio = /*#__PURE__*/ new WeakMap(), _darkRadio = /*#__PURE__*/ new WeakMap(), _readInInput = /*#__PURE__*/ new WeakMap(), _readInButton = /*#__PURE__*/ new WeakMap(), _parsingErrorLabel = /*#__PURE__*/ new WeakMap(), _outputAbsoluteLabel = /*#__PURE__*/ new WeakMap(), _outputRelativeLabel = /*#__PURE__*/ new WeakMap(), _outputMinLabel = /*#__PURE__*/ new WeakMap(), _copyAbsoluteButton = /*#__PURE__*/ new WeakMap(), _copyRelativeButton = /*#__PURE__*/ new WeakMap(), _copyMinButton = /*#__PURE__*/ new WeakMap(), _viewBoxXInput = /*#__PURE__*/ new WeakMap(), _viewBoxYInput = /*#__PURE__*/ new WeakMap(), _viewBoxWidthInput = /*#__PURE__*/ new WeakMap(), _viewBoxHeightInput = /*#__PURE__*/ new WeakMap(), _argumentListDiv = /*#__PURE__*/ new WeakMap(), _circleRadiusInput = /*#__PURE__*/ new WeakMap(), _decimalPointUpButton = /*#__PURE__*/ new WeakMap(), _decimalPointDownButton = /*#__PURE__*/ new WeakMap(), _pointsRoundingLabel = /*#__PURE__*/ new WeakMap(), _pointsRoundingExecuteButton = /*#__PURE__*/ new WeakMap(), _argumentAddButton = /*#__PURE__*/ new WeakMap(), _argumentCountLabel = /*#__PURE__*/ new WeakMap(), _argumentRemoveButton = /*#__PURE__*/ new WeakMap(), _styleListDiv = /*#__PURE__*/ new WeakMap(), _styleAddButton = /*#__PURE__*/ new WeakMap(), _styleCountLabel = /*#__PURE__*/ new WeakMap(), _styleRemoveButton = /*#__PURE__*/ new WeakMap(), _translateXInput = /*#__PURE__*/ new WeakMap(), _translateYInput = /*#__PURE__*/ new WeakMap(), _translateButton = /*#__PURE__*/ new WeakMap(), _rotateInput = /*#__PURE__*/ new WeakMap(), _rotateButton = /*#__PURE__*/ new WeakMap(), _scaleXInput = /*#__PURE__*/ new WeakMap(), _scaleYInput = /*#__PURE__*/ new WeakMap(), _scaleButton = /*#__PURE__*/ new WeakMap(), _argumentList = /*#__PURE__*/ new WeakMap(), _addArgument = /*#__PURE__*/ new WeakSet(), _removeArgument = /*#__PURE__*/ new WeakSet(), _styleList = /*#__PURE__*/ new WeakMap(), _addStyle = /*#__PURE__*/ new WeakSet(), _removeStyle = /*#__PURE__*/ new WeakSet(), _onReadInPath = /*#__PURE__*/ new WeakMap(), _onCopyToClipboardAbsolute = /*#__PURE__*/ new WeakMap(), _onCopyToClipboardRelative = /*#__PURE__*/ new WeakMap(), _onCopyToClipboardMin = /*#__PURE__*/ new WeakMap(), _onViewBoxX = /*#__PURE__*/ new WeakMap(), _onViewBoxY = /*#__PURE__*/ new WeakMap(), _onViewBoxWidth = /*#__PURE__*/ new WeakMap(), _onViewBoxHeight = /*#__PURE__*/ new WeakMap(), _onCircleRadius = /*#__PURE__*/ new WeakMap(), _onDecimalPointUp = /*#__PURE__*/ new WeakMap(), _onDecimalPointDown = /*#__PURE__*/ new WeakMap(), _onPointsRoundingExecute = /*#__PURE__*/ new WeakMap(), _onArgumentAdd = /*#__PURE__*/ new WeakMap(), _onArgumentRemove = /*#__PURE__*/ new WeakMap(), _onStyleAdd = /*#__PURE__*/ new WeakMap(), _onStyleRemove = /*#__PURE__*/ new WeakMap(), _onTranslate = /*#__PURE__*/ new WeakMap(), _onRotate = /*#__PURE__*/ new WeakMap(), _onScale = /*#__PURE__*/ new WeakMap();
-var SvgPathEditor = function SvgPathEditor() {
+var SvgPathEditor = /*#__PURE__*/ function() {
     "use strict";
-    var _this = this;
-    _class_call_check(this, SvgPathEditor);
-    _class_private_method_init(this, _addArgument);
-    _class_private_method_init(this, _removeArgument);
-    _class_private_method_init(this, _addStyle);
-    _class_private_method_init(this, _removeStyle);
-    _class_private_field_init(this, _lightRadio, {
-        writable: true,
-        value: document.getElementById("light-radio")
-    });
-    _class_private_field_init(this, _darkRadio, {
-        writable: true,
-        value: document.getElementById("dark-radio")
-    });
-    _class_private_field_init(this, _readInInput, {
-        writable: true,
-        value: document.getElementById("read-in-input")
-    });
-    _class_private_field_init(this, _readInButton, {
-        writable: true,
-        value: document.getElementById("read-in-button")
-    });
-    _class_private_field_init(this, _parsingErrorLabel, {
-        writable: true,
-        value: document.getElementById("parsing-error")
-    });
-    _class_private_field_init(this, _outputAbsoluteLabel, {
-        writable: true,
-        value: document.getElementById("output-absolute")
-    });
-    _class_private_field_init(this, _outputRelativeLabel, {
-        writable: true,
-        value: document.getElementById("output-relative")
-    });
-    _class_private_field_init(this, _outputMinLabel, {
-        writable: true,
-        value: document.getElementById("output-min")
-    });
-    _class_private_field_init(this, _copyAbsoluteButton, {
-        writable: true,
-        value: document.getElementById("output-absolute-button")
-    });
-    _class_private_field_init(this, _copyRelativeButton, {
-        writable: true,
-        value: document.getElementById("output-relative-button")
-    });
-    _class_private_field_init(this, _copyMinButton, {
-        writable: true,
-        value: document.getElementById("output-min-button")
-    });
-    _class_private_field_init(this, _viewBoxXInput, {
-        writable: true,
-        value: document.getElementById("view-box-x")
-    });
-    _class_private_field_init(this, _viewBoxYInput, {
-        writable: true,
-        value: document.getElementById("view-box-y")
-    });
-    _class_private_field_init(this, _viewBoxWidthInput, {
-        writable: true,
-        value: document.getElementById("view-box-width")
-    });
-    _class_private_field_init(this, _viewBoxHeightInput, {
-        writable: true,
-        value: document.getElementById("view-box-height")
-    });
-    _class_private_field_init(this, _argumentListDiv, {
-        writable: true,
-        value: document.getElementById("argument-list")
-    });
-    _class_private_field_init(this, _circleRadiusInput, {
-        writable: true,
-        value: document.getElementById("circle-radius-input")
-    });
-    _class_private_field_init(this, _decimalPointUpButton, {
-        writable: true,
-        value: document.getElementById("decimal-point-up")
-    });
-    _class_private_field_init(this, _decimalPointDownButton, {
-        writable: true,
-        value: document.getElementById("decimal-point-down")
-    });
-    _class_private_field_init(this, _pointsRoundingLabel, {
-        writable: true,
-        value: document.getElementById("points-rounding")
-    });
-    _class_private_field_init(this, _pointsRoundingExecuteButton, {
-        writable: true,
-        value: document.getElementById("decimal-point-round")
-    });
-    _class_private_field_init(this, _argumentAddButton, {
-        writable: true,
-        value: document.getElementById("argument-add-button")
-    });
-    _class_private_field_init(this, _argumentCountLabel, {
-        writable: true,
-        value: document.getElementById("argument-count")
-    });
-    _class_private_field_init(this, _argumentRemoveButton, {
-        writable: true,
-        value: document.getElementById("argument-remove-button")
-    });
-    _class_private_field_init(this, _styleListDiv, {
-        writable: true,
-        value: document.getElementById("style-list")
-    });
-    _class_private_field_init(this, _styleAddButton, {
-        writable: true,
-        value: document.getElementById("style-add-button")
-    });
-    _class_private_field_init(this, _styleCountLabel, {
-        writable: true,
-        value: document.getElementById("style-count")
-    });
-    _class_private_field_init(this, _styleRemoveButton, {
-        writable: true,
-        value: document.getElementById("style-remove-button")
-    });
-    _class_private_field_init(this, _translateXInput, {
-        writable: true,
-        value: document.getElementById("translate-x")
-    });
-    _class_private_field_init(this, _translateYInput, {
-        writable: true,
-        value: document.getElementById("translate-y")
-    });
-    _class_private_field_init(this, _translateButton, {
-        writable: true,
-        value: document.getElementById("translate-button")
-    });
-    _class_private_field_init(this, _rotateInput, {
-        writable: true,
-        value: document.getElementById("rotate")
-    });
-    _class_private_field_init(this, _rotateButton, {
-        writable: true,
-        value: document.getElementById("rotate-button")
-    });
-    _class_private_field_init(this, _scaleXInput, {
-        writable: true,
-        value: document.getElementById("scale-x")
-    });
-    _class_private_field_init(this, _scaleYInput, {
-        writable: true,
-        value: document.getElementById("scale-y")
-    });
-    _class_private_field_init(this, _scaleButton, {
-        writable: true,
-        value: document.getElementById("scale-button")
-    });
-    _define_property(this, "svg", document.getElementById("svg"));
-    _define_property(this, "svgPath", document.getElementById("svg-path"));
-    _define_property(this, "viewBoxX", -8);
-    _define_property(this, "viewBoxY", -8);
-    _define_property(this, "viewBoxWidth", 16);
-    _define_property(this, "viewBoxHeight", 16);
-    _define_property(this, "circleRadius", new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0.2));
-    _define_property(this, "roundNumber", 2);
-    _class_private_field_init(this, _argumentList, {
-        writable: true,
-        value: []
-    });
-    _class_private_field_init(this, _styleList, {
-        writable: true,
-        value: []
-    });
-    _class_private_field_init(this, _onReadInPath, {
-        writable: true,
-        value: function() {
+    function SvgPathEditor() {
+        var _this = this;
+        _class_call_check(this, SvgPathEditor);
+        _define_property(this, "lightRadio", document.getElementById("light-radio"));
+        _define_property(this, "darkRadio", document.getElementById("dark-radio"));
+        _define_property(this, "readInInput", document.getElementById("read-in-input"));
+        _define_property(this, "readInButton", document.getElementById("read-in-button"));
+        _define_property(this, "parsingErrorLabel", document.getElementById("parsing-error"));
+        _define_property(this, "outputAbsoluteLabel", document.getElementById("output-absolute"));
+        _define_property(this, "outputRelativeLabel", document.getElementById("output-relative"));
+        _define_property(this, "outputMinLabel", document.getElementById("output-min"));
+        _define_property(this, "copyAbsoluteButton", document.getElementById("output-absolute-button"));
+        _define_property(this, "copyRelativeButton", document.getElementById("output-relative-button"));
+        _define_property(this, "copyMinButton", document.getElementById("output-min-button"));
+        _define_property(this, "viewBoxXInput", document.getElementById("view-box-x"));
+        _define_property(this, "viewBoxYInput", document.getElementById("view-box-y"));
+        _define_property(this, "viewBoxWidthInput", document.getElementById("view-box-width"));
+        _define_property(this, "viewBoxHeightInput", document.getElementById("view-box-height"));
+        _define_property(this, "argumentListDiv", document.getElementById("argument-list"));
+        _define_property(this, "circleRadiusInput", document.getElementById("circle-radius-input"));
+        _define_property(this, "decimalPointUpButton", document.getElementById("decimal-point-up"));
+        _define_property(this, "decimalPointDownButton", document.getElementById("decimal-point-down"));
+        _define_property(this, "pointsRoundingLabel", document.getElementById("points-rounding"));
+        _define_property(this, "pointsRoundingExecuteButton", document.getElementById("decimal-point-round"));
+        _define_property(this, "argumentAddButton", document.getElementById("argument-add-button"));
+        _define_property(this, "argumentCountLabel", document.getElementById("argument-count"));
+        _define_property(this, "argumentRemoveButton", document.getElementById("argument-remove-button"));
+        _define_property(this, "styleListDiv", document.getElementById("style-list"));
+        _define_property(this, "styleAddButton", document.getElementById("style-add-button"));
+        _define_property(this, "styleCountLabel", document.getElementById("style-count"));
+        _define_property(this, "styleRemoveButton", document.getElementById("style-remove-button"));
+        _define_property(this, "translateXInput", document.getElementById("translate-x"));
+        _define_property(this, "translateYInput", document.getElementById("translate-y"));
+        _define_property(this, "translateButton", document.getElementById("translate-button"));
+        _define_property(this, "rotateInput", document.getElementById("rotate"));
+        _define_property(this, "rotateButton", document.getElementById("rotate-button"));
+        _define_property(this, "scaleXInput", document.getElementById("scale-x"));
+        _define_property(this, "scaleYInput", document.getElementById("scale-y"));
+        _define_property(this, "scaleButton", document.getElementById("scale-button"));
+        _define_property(this, "svg", document.getElementById("svg"));
+        _define_property(this, "svgPath", document.getElementById("svg-path"));
+        _define_property(this, "viewBoxX", -8);
+        _define_property(this, "viewBoxY", -8);
+        _define_property(this, "viewBoxWidth", 16);
+        _define_property(this, "viewBoxHeight", 16);
+        _define_property(this, "circleRadius", new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0.2));
+        _define_property(this, "roundNumber", 2);
+        _define_property(this, "argumentList", []);
+        _define_property(this, "styleList", []);
+        _define_property(this, "onReadInPath", function() {
             var renderError = function renderError(errorMessage) {
-                if (_class_private_field_get(me, _parsingErrorLabel).style.display === "block") return;
-                _class_private_field_get(me, _parsingErrorLabel).style.display = "block";
-                _class_private_field_get(me, _parsingErrorLabel).textContent = errorMessage;
+                if (me.parsingErrorLabel.style.display === "block") return;
+                me.parsingErrorLabel.style.display = "block";
+                me.parsingErrorLabel.textContent = errorMessage;
             };
-            _class_private_field_get(_this, _parsingErrorLabel).style.display = "none";
-            _class_private_field_get(_this, _parsingErrorLabel).textContent = "";
+            _this.parsingErrorLabel.style.display = "none";
+            _this.parsingErrorLabel.textContent = "";
             var me = _this;
-            var input = _class_private_field_get(_this, _readInInput).value;
+            var input = _this.readInInput.value;
             if (input.length === 0) return;
             // '<path '
             if (input.length <= 0 || input[0] !== '<') return renderError("At position 1: '<' expected");
@@ -4042,15 +3735,15 @@ var SvgPathEditor = function SvgPathEditor() {
                     default:
                         return renderError("At position ".concat(parseIndex - 1, ": unexpected '").concat(input[parseIndex - 1], "'"));
                 }
-                if (_class_private_field_get(_this, _parsingErrorLabel).style.display === "block") return;
+                if (_this.parsingErrorLabel.style.display === "block") return;
             }
             if (input.length <= parseIndex) return renderError("At position ".concat(input.length + 1, ': ending " expected'));
-            while(_class_private_field_get(_this, _argumentList).length > 0)_class_private_method_get(_this, _removeArgument, removeArgument).call(_this);
+            while(_this.argumentList.length > 0)_this.removeArgument();
             var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
             try {
                 for(var _iterator = result[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                     var argument = _step.value;
-                    _class_private_method_get(_this, _addArgument, addArgument).call(_this, argument);
+                    _this.addArgument(argument);
                 }
             } catch (err) {
                 _didIteratorError = true;
@@ -4067,70 +3760,46 @@ var SvgPathEditor = function SvgPathEditor() {
                 }
             }
             _this.renderPath();
-        }
-    });
-    _class_private_field_init(this, _onCopyToClipboardAbsolute, {
-        writable: true,
-        value: function() {
-            navigator.clipboard.writeText(_class_private_field_get(_this, _outputAbsoluteLabel).textContent);
-        }
-    });
-    _class_private_field_init(this, _onCopyToClipboardRelative, {
-        writable: true,
-        value: function() {
-            navigator.clipboard.writeText(_class_private_field_get(_this, _outputRelativeLabel).textContent);
-        }
-    });
-    _class_private_field_init(this, _onCopyToClipboardMin, {
-        writable: true,
-        value: function() {
-            navigator.clipboard.writeText(_class_private_field_get(_this, _outputMinLabel).textContent);
-        }
-    });
-    _class_private_field_init(this, _onViewBoxX, {
-        writable: true,
-        value: function() {
-            var viewBoxValue = parseFloat(_class_private_field_get(_this, _viewBoxXInput).value);
+        });
+        _define_property(this, "onCopyToClipboardAbsolute", function() {
+            navigator.clipboard.writeText(_this.outputAbsoluteLabel.textContent);
+        });
+        _define_property(this, "onCopyToClipboardRelative", function() {
+            navigator.clipboard.writeText(_this.outputRelativeLabel.textContent);
+        });
+        _define_property(this, "onCopyToClipboardMin", function() {
+            navigator.clipboard.writeText(_this.outputMinLabel.textContent);
+        });
+        _define_property(this, "onViewBoxX", function() {
+            var viewBoxValue = parseFloat(_this.viewBoxXInput.value);
             if (isNaN(viewBoxValue)) return;
             _this.viewBoxX = viewBoxValue;
             _this.renderSvgViewBox();
-        }
-    });
-    _class_private_field_init(this, _onViewBoxY, {
-        writable: true,
-        value: function() {
-            var viewBoxValue = parseFloat(_class_private_field_get(_this, _viewBoxYInput).value);
+        });
+        _define_property(this, "onViewBoxY", function() {
+            var viewBoxValue = parseFloat(_this.viewBoxYInput.value);
             if (isNaN(viewBoxValue)) return;
             _this.viewBoxY = viewBoxValue;
             _this.renderSvgViewBox();
-        }
-    });
-    _class_private_field_init(this, _onViewBoxWidth, {
-        writable: true,
-        value: function() {
-            var viewBoxValue = parseFloat(_class_private_field_get(_this, _viewBoxWidthInput).value);
+        });
+        _define_property(this, "onViewBoxWidth", function() {
+            var viewBoxValue = parseFloat(_this.viewBoxWidthInput.value);
             if (isNaN(viewBoxValue)) return;
             _this.viewBoxWidth = viewBoxValue;
             _this.renderSvgViewBox();
-        }
-    });
-    _class_private_field_init(this, _onViewBoxHeight, {
-        writable: true,
-        value: function() {
-            var viewBoxValue = parseFloat(_class_private_field_get(_this, _viewBoxHeightInput).value);
+        });
+        _define_property(this, "onViewBoxHeight", function() {
+            var viewBoxValue = parseFloat(_this.viewBoxHeightInput.value);
             if (isNaN(viewBoxValue)) return;
             _this.viewBoxHeight = viewBoxValue;
             _this.renderSvgViewBox();
-        }
-    });
-    _class_private_field_init(this, _onCircleRadius, {
-        writable: true,
-        value: function() {
+        });
+        _define_property(this, "onCircleRadius", function() {
             try {
-                _this.circleRadius = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_class_private_field_get(_this, _circleRadiusInput).value);
+                _this.circleRadius = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_this.circleRadiusInput.value);
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(_this, _argumentList)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = _this.argumentList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var argument = _step.value;
                         argument.updateDotsRadius();
                     }
@@ -4151,30 +3820,21 @@ var SvgPathEditor = function SvgPathEditor() {
             } catch (e) {
             // ignore invalid user input
             }
-        }
-    });
-    _class_private_field_init(this, _onDecimalPointUp, {
-        writable: true,
-        value: function() {
+        });
+        _define_property(this, "onDecimalPointUp", function() {
             if (_this.roundNumber >= 6) return;
             _this.roundNumber++;
-            _class_private_field_get(_this, _pointsRoundingLabel).textContent = _this.roundNumber.toString();
-        }
-    });
-    _class_private_field_init(this, _onDecimalPointDown, {
-        writable: true,
-        value: function() {
+            _this.pointsRoundingLabel.textContent = _this.roundNumber.toString();
+        });
+        _define_property(this, "onDecimalPointDown", function() {
             if (_this.roundNumber <= 1) return;
             _this.roundNumber--;
-            _class_private_field_get(_this, _pointsRoundingLabel).textContent = _this.roundNumber.toString();
-        }
-    });
-    _class_private_field_init(this, _onPointsRoundingExecute, {
-        writable: true,
-        value: function() {
+            _this.pointsRoundingLabel.textContent = _this.roundNumber.toString();
+        });
+        _define_property(this, "onPointsRoundingExecute", function() {
             var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
             try {
-                for(var _iterator = _class_private_field_get(_this, _argumentList)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                for(var _iterator = _this.argumentList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                     var argument = _step.value;
                     argument.roundCoordinates();
                 }
@@ -4193,52 +3853,37 @@ var SvgPathEditor = function SvgPathEditor() {
                 }
             }
             _this.renderPath();
-        }
-    });
-    _class_private_field_init(this, _onArgumentAdd, {
-        writable: true,
-        value: function() {
-            _class_private_method_get(_this, _addArgument, addArgument).call(_this, _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newM({
+        });
+        _define_property(this, "onArgumentAdd", function() {
+            _this.addArgument(_Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newM({
                 x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
                 y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
             }, _this));
             _this.renderPath();
-        }
-    });
-    _class_private_field_init(this, _onArgumentRemove, {
-        writable: true,
-        value: function() {
-            if (_class_private_field_get(_this, _argumentList).length === 0) return;
-            _class_private_method_get(_this, _removeArgument, removeArgument).call(_this);
+        });
+        _define_property(this, "onArgumentRemove", function() {
+            if (_this.argumentList.length === 0) return;
+            _this.removeArgument();
             _this.renderPath();
-        }
-    });
-    _class_private_field_init(this, _onStyleAdd, {
-        writable: true,
-        value: function() {
-            _class_private_method_get(_this, _addStyle, addStyle).call(_this, {
+        });
+        _define_property(this, "onStyleAdd", function() {
+            _this.addStyle({
                 key: "",
                 value: ""
             });
-        }
-    });
-    _class_private_field_init(this, _onStyleRemove, {
-        writable: true,
-        value: function() {
-            if (_class_private_field_get(_this, _styleList).length === 0) return;
-            _class_private_method_get(_this, _removeStyle, removeStyle).call(_this);
+        });
+        _define_property(this, "onStyleRemove", function() {
+            if (_this.styleList.length === 0) return;
+            _this.removeStyle();
             _this.renderPath();
-        }
-    });
-    _class_private_field_init(this, _onTranslate, {
-        writable: true,
-        value: function() {
+        });
+        _define_property(this, "onTranslate", function() {
             try {
-                var x = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_class_private_field_get(_this, _translateXInput).value);
-                var y = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_class_private_field_get(_this, _translateYInput).value);
+                var x = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_this.translateXInput.value);
+                var y = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_this.translateYInput.value);
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(_this, _argumentList)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = _this.argumentList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var argument = _step.value;
                         argument.translate(x, y);
                     }
@@ -4260,21 +3905,18 @@ var SvgPathEditor = function SvgPathEditor() {
             // ignore invalid user input
             }
             _this.renderPath();
-        }
-    });
-    _class_private_field_init(this, _onRotate, {
-        writable: true,
-        value: function() {
-            var rotation = parseFloat(_class_private_field_get(_this, _rotateInput).value);
+        });
+        _define_property(this, "onRotate", function() {
+            var rotation = parseFloat(_this.rotateInput.value);
             if (isNaN(rotation)) return;
             /**
          * rotate matrix
          *
          * | cos a  -sin a | * | x |
          * | sin a   cos a |   | y |
-         * 
-         * => 
-         * 
+         *
+         * =>
+         *
          * x = cos a * x - sin a * y
          * y = sin a * x + cos a * y
          **/ var radian = rotation * Math.PI / 180;
@@ -4282,7 +3924,7 @@ var SvgPathEditor = function SvgPathEditor() {
             var sin = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(Math.sin(radian));
             var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
             try {
-                for(var _iterator = _class_private_field_get(_this, _argumentList)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                for(var _iterator = _this.argumentList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                     var argument = _step.value;
                     argument.rotate(cos, sin);
                 }
@@ -4301,17 +3943,14 @@ var SvgPathEditor = function SvgPathEditor() {
                 }
             }
             _this.renderPath();
-        }
-    });
-    _class_private_field_init(this, _onScale, {
-        writable: true,
-        value: function() {
+        });
+        _define_property(this, "onScale", function() {
             try {
-                var x = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_class_private_field_get(_this, _scaleXInput).value);
-                var y = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_class_private_field_get(_this, _scaleYInput).value);
+                var x = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_this.scaleXInput.value);
+                var y = new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(_this.scaleYInput.value);
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
-                    for(var _iterator = _class_private_field_get(_this, _argumentList)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    for(var _iterator = _this.argumentList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var argument = _step.value;
                         argument.scale(x, y);
                     }
@@ -4333,19 +3972,110 @@ var SvgPathEditor = function SvgPathEditor() {
             // ignore invalid user input
             }
             _this.renderPath();
-        }
-    });
-    /** updates the "viewBox" attribute of the "svg" element */ _define_property(this, "renderSvgViewBox", function() {
-        _this.svg.setAttribute("viewBox", "".concat(_this.viewBoxX.toString(), " ").concat(_this.viewBoxY.toString(), " ").concat(_this.viewBoxWidth.toString(), " ").concat(_this.viewBoxHeight.toString()));
-    });
-    /** updates all attributes of the "path" element and updates the output labels */ _define_property(this, "renderPath", function() {
-        var createPath = function(argumentToString) {
-            var path = '<path d="';
+        });
+        /** updates the "viewBox" attribute of the "svg" element */ _define_property(this, "renderSvgViewBox", function() {
+            _this.svg.setAttribute("viewBox", "".concat(_this.viewBoxX.toString(), " ").concat(_this.viewBoxY.toString(), " ").concat(_this.viewBoxWidth.toString(), " ").concat(_this.viewBoxHeight.toString()));
+        });
+        /** updates all attributes of the "path" element and updates the output labels */ _define_property(this, "renderPath", function() {
+            var createPath = function(argumentToString) {
+                var path = '<path d="';
+                var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+                try {
+                    for(var _iterator = _this.argumentList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                        var argument = _step.value;
+                        path += argumentToString(argument);
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally{
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return != null) {
+                            _iterator.return();
+                        }
+                    } finally{
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+                if (path[path.length - 1] === ' ') path = path.substring(0, path.length - 1);
+                path += '" ';
+                var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
+                try {
+                    for(var _iterator1 = _this.styleList[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
+                        var style = _step1.value;
+                        if (style.key !== "") path += "".concat(style.key, '="').concat(style.value, '" ');
+                    }
+                } catch (err) {
+                    _didIteratorError1 = true;
+                    _iteratorError1 = err;
+                } finally{
+                    try {
+                        if (!_iteratorNormalCompletion1 && _iterator1.return != null) {
+                            _iterator1.return();
+                        }
+                    } finally{
+                        if (_didIteratorError1) {
+                            throw _iteratorError1;
+                        }
+                    }
+                }
+                path += "/>";
+                return path;
+            };
+            // absolute path
+            {
+                var current = {
+                    x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                    y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                };
+                var start = {
+                    x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                    y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                };
+                _this.outputAbsoluteLabel.textContent = createPath(function(argument) {
+                    return argument.toAbsoluteCoordinates(current, start);
+                });
+            }
+            // relative path
+            {
+                var current1 = {
+                    x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                    y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                };
+                var start1 = {
+                    x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                    y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                };
+                _this.outputRelativeLabel.textContent = createPath(function(argument) {
+                    return argument.toRelativeCoordinates(current1, start1);
+                });
+            }
+            // min path
+            {
+                var current2 = {
+                    x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                    y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                };
+                var start2 = {
+                    x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                    y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                };
+                var last = {
+                    argument: '',
+                    hasDot: false
+                };
+                _this.outputMinLabel.textContent = createPath(function(argument) {
+                    return argument.toMinCoordinates(current2, start2, last);
+                });
+            }
             var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
             try {
-                for(var _iterator = _class_private_field_get(_this, _argumentList)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
-                    var argument = _step.value;
-                    path += argumentToString(argument);
+                // remove all attributes
+                for(var _iterator = _this.svgPath.attributes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    var attribute = _step.value;
+                    _this.svgPath.removeAttribute(attribute.name);
                 }
             } catch (err) {
                 _didIteratorError = true;
@@ -4361,13 +4091,14 @@ var SvgPathEditor = function SvgPathEditor() {
                     }
                 }
             }
-            if (path[path.length - 1] === ' ') path = path.substring(0, path.length - 1);
-            path += '" ';
+            // set attribute "d" with absolutePath
+            _this.svgPath.setAttribute("d", _this.outputAbsoluteLabel.textContent.substring(9, _this.outputAbsoluteLabel.textContent.indexOf('"', 9)));
             var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
             try {
-                for(var _iterator1 = _class_private_field_get(_this, _styleList)[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
+                // add other attributes
+                for(var _iterator1 = _this.styleList[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
                     var style = _step1.value;
-                    if (style.key !== "") path += "".concat(style.key, '="').concat(style.value, '" ');
+                    if (style.key !== "") _this.svgPath.setAttribute(style.key, style.value);
                 }
             } catch (err) {
                 _didIteratorError1 = true;
@@ -4383,170 +4114,80 @@ var SvgPathEditor = function SvgPathEditor() {
                     }
                 }
             }
-            path += "/>";
-            return path;
+        });
+        var theme = localStorage.getItem("theme");
+        if (theme !== null) if (theme === "light") this.lightRadio.checked = true;
+        else this.darkRadio.checked = true;
+        this.lightRadio.onclick = function() {
+            return localStorage.setItem("theme", "light");
         };
-        // absolute path
+        this.darkRadio.onclick = function() {
+            return localStorage.setItem("theme", "dark");
+        };
+        this.viewBoxXInput.value = this.viewBoxX.toString();
+        this.viewBoxYInput.value = this.viewBoxY.toString();
+        this.viewBoxWidthInput.value = this.viewBoxWidth.toString();
+        this.viewBoxHeightInput.value = this.viewBoxHeight.toString();
+        this.circleRadiusInput.value = this.circleRadius.toString();
+        this.pointsRoundingLabel.textContent = this.roundNumber.toString();
+        this.readInButton.onclick = this.onReadInPath;
+        this.copyAbsoluteButton.onclick = this.onCopyToClipboardAbsolute;
+        this.copyRelativeButton.onclick = this.onCopyToClipboardRelative;
+        this.copyMinButton.onclick = this.onCopyToClipboardMin;
+        this.viewBoxXInput.oninput = this.onViewBoxX;
+        this.viewBoxYInput.oninput = this.onViewBoxY;
+        this.viewBoxWidthInput.oninput = this.onViewBoxWidth;
+        this.viewBoxHeightInput.oninput = this.onViewBoxHeight;
+        this.circleRadiusInput.oninput = this.onCircleRadius;
+        this.decimalPointUpButton.onclick = this.onDecimalPointUp;
+        this.decimalPointDownButton.onclick = this.onDecimalPointDown;
+        this.pointsRoundingExecuteButton.onclick = this.onPointsRoundingExecute;
+        this.argumentAddButton.onclick = this.onArgumentAdd;
+        this.argumentRemoveButton.onclick = this.onArgumentRemove;
+        this.styleAddButton.onclick = this.onStyleAdd;
+        this.styleRemoveButton.onclick = this.onStyleRemove;
+        this.translateButton.onclick = this.onTranslate;
+        this.rotateButton.onclick = this.onRotate;
+        this.scaleButton.onclick = this.onScale;
+        this.addArgument(_Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newM({
+            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5),
+            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5)
+        }, this));
+        this.addArgument(_Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newL({
+            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(5),
+            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5)
+        }, this));
+        this.addArgument(_Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newQ({
+            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(6)
+        }, {
+            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5),
+            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5)
+        }, this));
+        this.addArgument(new _Arguments_ArgumentZ__WEBPACK_IMPORTED_MODULE_2__.ArgumentZ());
+        this.addStyle({
+            key: "stroke",
+            value: "#AAA"
+        });
+        this.addStyle({
+            key: "stroke-width",
+            value: "0.5"
+        });
+        this.addStyle({
+            key: "fill",
+            value: "none"
+        });
+        this.renderSvgViewBox();
+        this.renderPath();
+    }
+    _create_class(SvgPathEditor, [
         {
-            var current = {
-                x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-            };
-            var start = {
-                x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-            };
-            _class_private_field_get(_this, _outputAbsoluteLabel).textContent = createPath(function(argument) {
-                return argument.toAbsoluteCoordinates(current, start);
-            });
-        }
-        // relative path
-        {
-            var current1 = {
-                x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-            };
-            var start1 = {
-                x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-            };
-            _class_private_field_get(_this, _outputRelativeLabel).textContent = createPath(function(argument) {
-                return argument.toRelativeCoordinates(current1, start1);
-            });
-        }
-        // min path
-        {
-            var current2 = {
-                x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-            };
-            var start2 = {
-                x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-            };
-            var last = {
-                argument: '',
-                hasDot: false
-            };
-            _class_private_field_get(_this, _outputMinLabel).textContent = createPath(function(argument) {
-                return argument.toMinCoordinates(current2, start2, last);
-            });
-        }
-        var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
-        try {
-            // remove all attributes
-            for(var _iterator = _this.svgPath.attributes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
-                var attribute = _step.value;
-                _this.svgPath.removeAttribute(attribute.name);
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally{
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                    _iterator.return();
-                }
-            } finally{
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-        // set attribute "d" with absolutePath
-        _this.svgPath.setAttribute("d", _class_private_field_get(_this, _outputAbsoluteLabel).textContent.substring(9, _class_private_field_get(_this, _outputAbsoluteLabel).textContent.indexOf('"', 9)));
-        var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
-        try {
-            // add other attributes
-            for(var _iterator1 = _class_private_field_get(_this, _styleList)[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
-                var style = _step1.value;
-                if (style.key !== "") _this.svgPath.setAttribute(style.key, style.value);
-            }
-        } catch (err) {
-            _didIteratorError1 = true;
-            _iteratorError1 = err;
-        } finally{
-            try {
-                if (!_iteratorNormalCompletion1 && _iterator1.return != null) {
-                    _iterator1.return();
-                }
-            } finally{
-                if (_didIteratorError1) {
-                    throw _iteratorError1;
-                }
-            }
-        }
-    });
-    var theme = localStorage.getItem("theme");
-    if (theme !== null) if (theme === "light") _class_private_field_get(this, _lightRadio).checked = true;
-    else _class_private_field_get(this, _darkRadio).checked = true;
-    _class_private_field_get(this, _lightRadio).onclick = function() {
-        return localStorage.setItem("theme", "light");
-    };
-    _class_private_field_get(this, _darkRadio).onclick = function() {
-        return localStorage.setItem("theme", "dark");
-    };
-    _class_private_field_get(this, _viewBoxXInput).value = this.viewBoxX.toString();
-    _class_private_field_get(this, _viewBoxYInput).value = this.viewBoxY.toString();
-    _class_private_field_get(this, _viewBoxWidthInput).value = this.viewBoxWidth.toString();
-    _class_private_field_get(this, _viewBoxHeightInput).value = this.viewBoxHeight.toString();
-    _class_private_field_get(this, _circleRadiusInput).value = this.circleRadius.toString();
-    _class_private_field_get(this, _pointsRoundingLabel).textContent = this.roundNumber.toString();
-    _class_private_field_get(this, _readInButton).onclick = _class_private_field_get(this, _onReadInPath);
-    _class_private_field_get(this, _copyAbsoluteButton).onclick = _class_private_field_get(this, _onCopyToClipboardAbsolute);
-    _class_private_field_get(this, _copyRelativeButton).onclick = _class_private_field_get(this, _onCopyToClipboardRelative);
-    _class_private_field_get(this, _copyMinButton).onclick = _class_private_field_get(this, _onCopyToClipboardMin);
-    _class_private_field_get(this, _viewBoxXInput).oninput = _class_private_field_get(this, _onViewBoxX);
-    _class_private_field_get(this, _viewBoxYInput).oninput = _class_private_field_get(this, _onViewBoxY);
-    _class_private_field_get(this, _viewBoxWidthInput).oninput = _class_private_field_get(this, _onViewBoxWidth);
-    _class_private_field_get(this, _viewBoxHeightInput).oninput = _class_private_field_get(this, _onViewBoxHeight);
-    _class_private_field_get(this, _circleRadiusInput).oninput = _class_private_field_get(this, _onCircleRadius);
-    _class_private_field_get(this, _decimalPointUpButton).onclick = _class_private_field_get(this, _onDecimalPointUp);
-    _class_private_field_get(this, _decimalPointDownButton).onclick = _class_private_field_get(this, _onDecimalPointDown);
-    _class_private_field_get(this, _pointsRoundingExecuteButton).onclick = _class_private_field_get(this, _onPointsRoundingExecute);
-    _class_private_field_get(this, _argumentAddButton).onclick = _class_private_field_get(this, _onArgumentAdd);
-    _class_private_field_get(this, _argumentRemoveButton).onclick = _class_private_field_get(this, _onArgumentRemove);
-    _class_private_field_get(this, _styleAddButton).onclick = _class_private_field_get(this, _onStyleAdd);
-    _class_private_field_get(this, _styleRemoveButton).onclick = _class_private_field_get(this, _onStyleRemove);
-    _class_private_field_get(this, _translateButton).onclick = _class_private_field_get(this, _onTranslate);
-    _class_private_field_get(this, _rotateButton).onclick = _class_private_field_get(this, _onRotate);
-    _class_private_field_get(this, _scaleButton).onclick = _class_private_field_get(this, _onScale);
-    _class_private_method_get(this, _addArgument, addArgument).call(this, _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newM({
-        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5),
-        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5)
-    }, this));
-    _class_private_method_get(this, _addArgument, addArgument).call(this, _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newL({
-        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(5),
-        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5)
-    }, this));
-    _class_private_method_get(this, _addArgument, addArgument).call(this, _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newQ({
-        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(6)
-    }, {
-        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5),
-        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(-5)
-    }, this));
-    _class_private_method_get(this, _addArgument, addArgument).call(this, new _Arguments_ArgumentZ__WEBPACK_IMPORTED_MODULE_2__.ArgumentZ());
-    _class_private_method_get(this, _addStyle, addStyle).call(this, {
-        key: "stroke",
-        value: "#AAA"
-    });
-    _class_private_method_get(this, _addStyle, addStyle).call(this, {
-        key: "stroke-width",
-        value: "0.5"
-    });
-    _class_private_method_get(this, _addStyle, addStyle).call(this, {
-        key: "fill",
-        value: "none"
-    });
-    this.renderSvgViewBox();
-    this.renderPath();
-};
-function addArgument(argument) {
-    var _this = this;
-    _class_private_field_get(this, _argumentList).push(argument);
-    _class_private_field_get(this, _argumentCountLabel).textContent = _class_private_field_get(this, _argumentList).length.toString();
-    /*
+            key: "addArgument",
+            value: function addArgument(argument) {
+                var _this = this;
+                this.argumentList.push(argument);
+                this.argumentCountLabel.textContent = this.argumentList.length.toString();
+                /*
             <div>
                 <select onchange="">
                     <option>M</option>
@@ -4565,176 +4206,189 @@ function addArgument(argument) {
                 {end for}
             </div>
         */ var div = document.createElement("div");
-    {
-        var select = document.createElement("select");
-        {
-            var optionM = document.createElement("option");
-            {
-                optionM.text = "M";
-                optionM.value = "M";
-            }
-            select.appendChild(optionM);
-            var optionL = document.createElement("option");
-            {
-                optionL.text = "L";
-                optionL.value = "L";
-            }
-            select.appendChild(optionL);
-            var optionQ = document.createElement("option");
-            {
-                optionQ.text = "Q";
-                optionQ.value = "Q";
-            }
-            select.appendChild(optionQ);
-            var optionT = document.createElement("option");
-            {
-                optionT.text = "T";
-                optionT.value = "T";
-            }
-            select.appendChild(optionT);
-            var optionC = document.createElement("option");
-            {
-                optionC.text = "C";
-                optionC.value = "C";
-            }
-            select.appendChild(optionC);
-            var optionS = document.createElement("option");
-            {
-                optionS.text = "S";
-                optionS.value = "S";
-            }
-            select.appendChild(optionS);
-            var optionA = document.createElement("option");
-            {
-                optionA.text = "A";
-                optionA.value = "A";
-            }
-            select.appendChild(optionA);
-            var optionZ = document.createElement("option");
-            {
-                optionZ.text = "Z";
-                optionZ.value = "Z";
-            }
-            select.appendChild(optionZ);
-            select.value = argument.capitalLetter;
-            select.onchange = function() {
-                var index = _class_private_field_get(_this, _argumentList).indexOf(argument);
-                _class_private_field_get(_this, _argumentList)[index].removeDots();
-                _class_private_field_get(_this, _argumentList)[index].removeInputs();
-                input.checked = false;
-                switch(select.value){
-                    case 'M':
-                        argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newM({
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, _this);
-                        break;
-                    case 'L':
-                        argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newL({
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, _this);
-                        break;
-                    case 'Q':
-                        argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newQ({
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, {
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, _this);
-                        break;
-                    case 'T':
-                        argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newT({
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, _this);
-                        break;
-                    case 'C':
-                        argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newC({
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, {
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, {
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, _this);
-                        break;
-                    case 'S':
-                        argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newS({
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, {
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, _this);
-                        break;
-                    case 'A':
-                        argument = new _Arguments_ArgumentA__WEBPACK_IMPORTED_MODULE_1__.ArgumentA({
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0), false, false, {
-                            x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
-                            y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
-                        }, _this);
-                        break;
-                    case 'Z':
-                        argument = new _Arguments_ArgumentZ__WEBPACK_IMPORTED_MODULE_2__.ArgumentZ();
-                        break;
+                {
+                    var select = document.createElement("select");
+                    {
+                        var optionM = document.createElement("option");
+                        {
+                            optionM.text = "M";
+                            optionM.value = "M";
+                        }
+                        select.appendChild(optionM);
+                        var optionL = document.createElement("option");
+                        {
+                            optionL.text = "L";
+                            optionL.value = "L";
+                        }
+                        select.appendChild(optionL);
+                        var optionQ = document.createElement("option");
+                        {
+                            optionQ.text = "Q";
+                            optionQ.value = "Q";
+                        }
+                        select.appendChild(optionQ);
+                        var optionT = document.createElement("option");
+                        {
+                            optionT.text = "T";
+                            optionT.value = "T";
+                        }
+                        select.appendChild(optionT);
+                        var optionC = document.createElement("option");
+                        {
+                            optionC.text = "C";
+                            optionC.value = "C";
+                        }
+                        select.appendChild(optionC);
+                        var optionS = document.createElement("option");
+                        {
+                            optionS.text = "S";
+                            optionS.value = "S";
+                        }
+                        select.appendChild(optionS);
+                        var optionA = document.createElement("option");
+                        {
+                            optionA.text = "A";
+                            optionA.value = "A";
+                        }
+                        select.appendChild(optionA);
+                        var optionZ = document.createElement("option");
+                        {
+                            optionZ.text = "Z";
+                            optionZ.value = "Z";
+                        }
+                        select.appendChild(optionZ);
+                        select.value = argument.capitalLetter;
+                        select.onchange = function() {
+                            var index = _this.argumentList.indexOf(argument);
+                            _this.argumentList[index].removeDots();
+                            _this.argumentList[index].removeInputs();
+                            input.checked = false;
+                            switch(select.value){
+                                case 'M':
+                                    argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newM({
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, _this);
+                                    break;
+                                case 'L':
+                                    argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newL({
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, _this);
+                                    break;
+                                case 'Q':
+                                    argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newQ({
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, {
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, _this);
+                                    break;
+                                case 'T':
+                                    argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newT({
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, _this);
+                                    break;
+                                case 'C':
+                                    argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newC({
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, {
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, {
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, _this);
+                                    break;
+                                case 'S':
+                                    argument = _Arguments_CoordinatesArgument__WEBPACK_IMPORTED_MODULE_3__.CoordinatesArgument.newS({
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, {
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, _this);
+                                    break;
+                                case 'A':
+                                    argument = new _Arguments_ArgumentA__WEBPACK_IMPORTED_MODULE_1__.ArgumentA({
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0), false, false, {
+                                        x: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0),
+                                        y: new (_Decimal_Decimal__WEBPACK_IMPORTED_MODULE_0___default())(0)
+                                    }, _this);
+                                    break;
+                                case 'Z':
+                                    argument = new _Arguments_ArgumentZ__WEBPACK_IMPORTED_MODULE_2__.ArgumentZ();
+                                    break;
+                            }
+                            ;
+                            argument.createInputs(div);
+                            _this.argumentList[index] = argument;
+                            _this.renderPath();
+                        };
+                    }
+                    div.appendChild(select);
+                    var input = document.createElement("input");
+                    {
+                        input.setAttribute("type", "checkbox");
+                        input.onchange = function() {
+                            if (input.checked) argument.createDots();
+                            else argument.removeDots();
+                        };
+                    }
+                    div.appendChild(input);
+                    argument.createInputs(div);
                 }
-                ;
-                argument.createInputs(div);
-                _class_private_field_get(_this, _argumentList)[index] = argument;
-                _this.renderPath();
-            };
-        }
-        div.appendChild(select);
-        var input = document.createElement("input");
+                this.argumentListDiv.appendChild(div);
+            }
+        },
         {
-            input.setAttribute("type", "checkbox");
-            input.onchange = function() {
-                if (input.checked) argument.createDots();
-                else argument.removeDots();
-            };
+            key: "removeArgument",
+            value: function removeArgument() {
+                if (this.argumentList.length === 0) return;
+                var argument = this.argumentList.pop();
+                this.argumentCountLabel.textContent = this.argumentList.length.toString();
+                this.argumentListDiv.lastChild.remove();
+                argument.removeDots();
+            }
+        },
+        {
+            key: "addStyle",
+            value: function addStyle(style) {
+                var _this = this;
+                this.styleList.push(style);
+                this.styleCountLabel.textContent = this.styleList.length.toString();
+                var inputKey = document.createElement("input");
+                inputKey.value = style.key;
+                inputKey.oninput = function(event) {
+                    style.key = event.target.value;
+                    _this.renderPath();
+                };
+                this.styleListDiv.appendChild(inputKey);
+                var inputValue = document.createElement("input");
+                inputValue.value = style.value;
+                inputValue.oninput = function(event) {
+                    style.value = event.target.value;
+                    _this.renderPath();
+                };
+                this.styleListDiv.appendChild(inputValue);
+            }
+        },
+        {
+            key: "removeStyle",
+            value: function removeStyle() {
+                this.styleList.pop();
+                this.styleCountLabel.textContent = this.styleList.length.toString();
+                for(var i = 0; i < 2; i++)this.styleListDiv.lastChild.remove();
+            }
         }
-        div.appendChild(input);
-        argument.createInputs(div);
-    }
-    _class_private_field_get(this, _argumentListDiv).appendChild(div);
-}
-function removeArgument() {
-    if (_class_private_field_get(this, _argumentList).length === 0) return;
-    var argument = _class_private_field_get(this, _argumentList).pop();
-    _class_private_field_get(this, _argumentCountLabel).textContent = _class_private_field_get(this, _argumentList).length.toString();
-    _class_private_field_get(this, _argumentListDiv).lastChild.remove();
-    argument.removeDots();
-}
-function addStyle(style) {
-    var _this = this;
-    _class_private_field_get(this, _styleList).push(style);
-    _class_private_field_get(this, _styleCountLabel).textContent = _class_private_field_get(this, _styleList).length.toString();
-    var inputKey = document.createElement("input");
-    inputKey.value = style.key;
-    inputKey.oninput = function(event) {
-        style.key = event.target.value;
-        _this.renderPath();
-    };
-    _class_private_field_get(this, _styleListDiv).appendChild(inputKey);
-    var inputValue = document.createElement("input");
-    inputValue.value = style.value;
-    inputValue.oninput = function(event) {
-        style.value = event.target.value;
-        _this.renderPath();
-    };
-    _class_private_field_get(this, _styleListDiv).appendChild(inputValue);
-}
-function removeStyle() {
-    _class_private_field_get(this, _styleList).pop();
-    _class_private_field_get(this, _styleCountLabel).textContent = _class_private_field_get(this, _styleList).length.toString();
-    for(var i = 0; i < 2; i++)_class_private_field_get(this, _styleListDiv).lastChild.remove();
-}
+    ]);
+    return SvgPathEditor;
+}();
 
 
 }),
@@ -4794,21 +4448,20 @@ __webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj
 // webpack/runtime/make_namespace_object
 (() => {
 // define __esModule on exports
-__webpack_require__.r = function(exports) {
+__webpack_require__.r = (exports) => {
 	if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 		Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 	}
 	Object.defineProperty(exports, '__esModule', { value: true });
 };
-
 })();
 // webpack/runtime/rspack_version
 (() => {
-__webpack_require__.rv = () => ("1.2.7")
+__webpack_require__.rv = () => ("1.6.0")
 })();
 // webpack/runtime/rspack_unique_id
 (() => {
-__webpack_require__.ruid = "bundler=rspack@1.2.7";
+__webpack_require__.ruid = "bundler=rspack@1.6.0";
 
 })();
 /************************************************************************/
@@ -4816,6 +4469,10 @@ var __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
+
+/*!*****************!*\
+  !*** ./Main.ts ***!
+  \*****************/
 __webpack_require__.r(__webpack_exports__);
 /* ESM import */var _SvgPathEditor_SvgPathEditor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SvgPathEditor/SvgPathEditor */ "./SvgPathEditor/SvgPathEditor.ts");
 

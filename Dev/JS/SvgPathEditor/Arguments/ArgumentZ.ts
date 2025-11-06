@@ -1,31 +1,32 @@
+import { Argument } from "./Argument";
 import Decimal, { Coordinate } from "../../Decimal/Decimal";
 
-export class ArgumentZ {
-    get capitalLetter(): string { return 'Z'; }
+export class ArgumentZ implements Argument {
+    public get capitalLetter(): string { return 'Z'; }
 
-    get smallLetter(): string { return 'z'; }
-
-
-    translate(x: Decimal, y: Decimal) { }
-
-    rotate(cos: Decimal, sin: Decimal) { }
-
-    scale(x: Decimal, y: Decimal) { }
+    public get smallLetter(): string { return 'z'; }
 
 
-    toAbsoluteCoordinates(current: Coordinate, start: Coordinate): string {
+    public translate(x: Decimal, y: Decimal) { }
+
+    public rotate(cos: Decimal, sin: Decimal) { }
+
+    public scale(x: Decimal, y: Decimal) { }
+
+
+    public toAbsoluteCoordinates(current: Coordinate, start: Coordinate): string {
         current.x = start.x;
         current.y = start.y;
         return "Z ";
     }
 
-    toRelativeCoordinates(current: Coordinate, start: Coordinate): string {
+    public toRelativeCoordinates(current: Coordinate, start: Coordinate): string {
         current.x = start.x;
         current.y = start.y;
         return "z ";
     }
 
-    toMinCoordinates(current: Coordinate, start: Coordinate, last: { argument: string, hasDot: boolean; }): string {
+    public toMinCoordinates(current: Coordinate, start: Coordinate, last: { argument: string, hasDot: boolean; }): string {
         if (last.argument === 'z')
             return '';
 
@@ -36,24 +37,24 @@ export class ArgumentZ {
         return 'z';
     }
 
-    roundCoordinates() { }
+    public roundCoordinates() { }
 
 
-    #dotsVisibleInput: HTMLInputElement | null;
+    private dotsVisibleInput: HTMLInputElement | null;
 
-    createInputs(argumentDiv: HTMLDivElement) {
-        this.#dotsVisibleInput = <HTMLInputElement>argumentDiv.lastChild;
-        this.#dotsVisibleInput.style.display = "none";
+    public createInputs(argumentDiv: HTMLDivElement) {
+        this.dotsVisibleInput = <HTMLInputElement>argumentDiv.lastChild;
+        this.dotsVisibleInput.style.display = "none";
     }
 
-    removeInputs() {
-        this.#dotsVisibleInput!.style.removeProperty("display");
+    public removeInputs() {
+        this.dotsVisibleInput!.style.removeProperty("display");
     }
 
 
-    createDots() { }
+    public createDots() { }
 
-    updateDotsRadius() { }
+    public updateDotsRadius() { }
 
-    removeDots() { }
+    public removeDots() { }
 }

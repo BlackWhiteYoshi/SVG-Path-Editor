@@ -2,7 +2,7 @@ import path from "path";
 
 export default {
     mode: "development",
-    entry: "./main.ts",
+    entry: "./Main.ts",
     output: {
         path: path.resolve(import.meta.dirname, ".."),
         filename: "site.js"
@@ -30,4 +30,4 @@ export default {
     watch: true
 };
 
-// npx rspack build
+// rspack build
