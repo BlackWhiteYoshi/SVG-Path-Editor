@@ -4,7 +4,7 @@
 
 /** Dependencies **/
 // html-minifier-terser
-// css-minify
+// lightningcss
 // rspack
 
 
@@ -39,15 +39,14 @@ console.log("--> JS created\n");
 console.log("--> creating optimized css...");
 
 // create css file
-const cssResult = execSync('css-minify -f ../site.css -o ../temp', execSyncParameter);
+const cssResult = execSync('lightningcss ../site.css -o ../temp.css --minify --targets ">= 0%"', execSyncParameter);
 console.log("Output:\n", cssResult);
 
 // read in css file
-const cssFile = fileSystem.readFileSync("../temp/site.min.css", "utf8");
+const cssFile = fileSystem.readFileSync("../temp.css", "utf8");
 
-// remove css file with folder
-fileSystem.unlinkSync("../temp/site.min.css");
-fileSystem.rmdirSync("../temp");
+// remove css file
+fileSystem.unlinkSync("../temp.css");
 
 console.log("--> optimized css created\n");
 
